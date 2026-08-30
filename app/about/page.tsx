@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
+import { openGraph } from "@/lib/seo";
+
+const ABOUT_DESC = `About ${SITE_NAME} — a free collection of online calculators and unit converters for percentages, BMI, mortgages, loans, salaries and more.`;
 
 export const metadata: Metadata = {
   title: `About — ${SITE_NAME}`,
-  description: `About ${SITE_NAME}: free online calculators and unit converters.`,
+  description: ABOUT_DESC,
   alternates: { canonical: `${SITE_URL}/about` },
+  openGraph: openGraph({ title: `About — ${SITE_NAME}`, description: ABOUT_DESC, url: `${SITE_URL}/about` }),
 };
 
 export default function AboutPage() {

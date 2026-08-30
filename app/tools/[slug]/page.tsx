@@ -12,6 +12,7 @@ import { AdSlot } from "@/components/AdSlot";
 import { JsonLd } from "@/components/JsonLd";
 import { ToolCard } from "@/components/ToolCard";
 import { SITE_URL } from "@/lib/site";
+import { breadcrumbSchema, openGraph } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -25,10 +26,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const tool = getTool(slug);
   if (!tool) return {};
+  const url = `${SITE_URL}/tools/${tool.slug}`;
+  const title = `${tool.name} — Free Online Calculator`;
   return {
-    title: `${tool.name} — Free Online Calculator`,
+    title,
     description: tool.metaDescription,
-    alternates: { canonical: `${SITE_URL}/tools/${tool.slug}` },
+    alternates: { canonical: url },
+    openGraph: openGraph({ title, description: tool.metaDescription, url }),
   };
 }
 
@@ -63,6 +67,13 @@ export default async function ToolPage({ params }: Props) {
     <>
       <JsonLd data={faqSchema} />
       <JsonLd data={webPageSchema} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", url: SITE_URL },
+          { name: "Calculators", url: `${SITE_URL}/#calculators` },
+          { name: tool.name, url: `${SITE_URL}/tools/${tool.slug}` },
+        ])}
+      />
       <div className="mx-auto max-w-3xl px-4 py-8">
         <nav aria-label="Breadcrumb" className="text-sm text-zinc-500">
           <Link href="/" className="hover:text-zinc-800">

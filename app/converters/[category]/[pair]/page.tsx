@@ -8,6 +8,7 @@ import { ConversionTable } from "@/components/ConversionTable";
 import { AdSlot } from "@/components/AdSlot";
 import { JsonLd } from "@/components/JsonLd";
 import { SITE_URL } from "@/lib/site";
+import { breadcrumbSchema, openGraph } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ category: string; pair: string }>;
@@ -24,10 +25,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category, pair } = await params;
   const p = resolvePair(category, pair);
   if (!p) return {};
+  const url = `${SITE_URL}/converters/${category}/${pair}`;
+  const title = `${p.from.label} to ${p.to.label} Converter`;
+  const description = `Free ${p.from.label} to ${p.to.label} converter with an instant conversion calculator and a ${p.from.label} to ${p.to.label} conversion table.`;
   return {
-    title: `${p.from.label} to ${p.to.label} Converter`,
-    description: `Free ${p.from.label} to ${p.to.label} converter with an instant conversion calculator and a ${p.from.label} to ${p.to.label} conversion table.`,
-    alternates: { canonical: `${SITE_URL}/converters/${category}/${pair}` },
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: openGraph({ title, description, url }),
   };
 }
 
@@ -48,6 +53,14 @@ export default async function ConverterPairPage({ params }: Props) {
   return (
     <>
       <JsonLd data={webPageSchema} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", url: SITE_URL },
+          { name: "Converters", url: `${SITE_URL}/converters` },
+          { name: dim?.label ?? category, url: `${SITE_URL}/converters/${category}` },
+          { name: `${p.from.label} to ${p.to.label}`, url: `${SITE_URL}/converters/${category}/${pair}` },
+        ])}
+      />
       <div className="mx-auto max-w-3xl px-4 py-8">
         <nav aria-label="Breadcrumb" className="text-sm text-zinc-500">
           <Link href="/" className="hover:text-zinc-800">

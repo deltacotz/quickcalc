@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
 import { SITE_NAME, CONTACT_EMAIL, SITE_URL } from "@/lib/site";
+import { openGraph } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: `Contact — ${SITE_NAME}`,
-  description: `Contact ${SITE_NAME}.`,
+  description: `Contact ${SITE_NAME} with questions, corrections or suggestions for new calculators and unit converters.`,
   alternates: { canonical: `${SITE_URL}/contact` },
+  openGraph: openGraph({
+    title: `Contact — ${SITE_NAME}`,
+    description: `Contact ${SITE_NAME} with questions, corrections or suggestions for new calculators and unit converters.`,
+    url: `${SITE_URL}/contact`,
+  }),
 };
 
 export default function ContactPage() {

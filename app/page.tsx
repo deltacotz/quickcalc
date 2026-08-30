@@ -2,12 +2,18 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { TOOLS, type ToolCategory } from "@/content/tools";
 import { DIMENSIONS } from "@/lib/convert";
-import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
+import { SITE_NAME, SITE_TAGLINE, SITE_DESCRIPTION, SITE_URL } from "@/lib/site";
+import { openGraph } from "@/lib/seo";
 import { ToolCard } from "@/components/ToolCard";
 import { JsonLd } from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   alternates: { canonical: SITE_URL },
+  openGraph: openGraph({
+    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+  }),
 };
 
 const CATEGORIES: ToolCategory[] = ["Everyday", "Finance", "Health", "Education"];

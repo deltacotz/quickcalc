@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
 import { SITE_NAME, CONTACT_EMAIL, SITE_URL } from "@/lib/site";
+import { openGraph } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: `Privacy Policy — ${SITE_NAME}`,
-  description: `Privacy policy for ${SITE_NAME}.`,
+  description: `Privacy policy for ${SITE_NAME} — how we handle data, cookies and advertising on our free calculators and converters.`,
   alternates: { canonical: `${SITE_URL}/privacy` },
+  openGraph: openGraph({
+    title: `Privacy Policy — ${SITE_NAME}`,
+    description: `Privacy policy for ${SITE_NAME} — how we handle data, cookies and advertising on our free calculators and converters.`,
+    url: `${SITE_URL}/privacy`,
+  }),
 };
 
 export default function PrivacyPage() {

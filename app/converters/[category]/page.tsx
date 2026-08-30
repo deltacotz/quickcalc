@@ -7,6 +7,7 @@ import { AdSlot } from "@/components/AdSlot";
 import { FaqSection } from "@/components/FaqSection";
 import { JsonLd } from "@/components/JsonLd";
 import { SITE_URL } from "@/lib/site";
+import { breadcrumbSchema, openGraph } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ category: string }>;
@@ -20,10 +21,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category } = await params;
   const dim = getDimension(category);
   if (!dim) return {};
+  const url = `${SITE_URL}/converters/${dim.id}`;
+  const title = `${dim.label} Converter — Free Online Unit Converter`;
   return {
-    title: `${dim.label} Converter — Free Online Unit Converter`,
+    title,
     description: dim.description,
-    alternates: { canonical: `${SITE_URL}/converters/${dim.id}` },
+    alternates: { canonical: url },
+    openGraph: openGraph({ title, description: dim.description, url }),
   };
 }
 
@@ -56,6 +60,13 @@ export default async function ConverterCategoryPage({ params }: Props) {
   return (
     <>
       <JsonLd data={faqSchema} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", url: SITE_URL },
+          { name: "Converters", url: `${SITE_URL}/converters` },
+          { name: dim.label, url: `${SITE_URL}/converters/${dim.id}` },
+        ])}
+      />
       <div className="mx-auto max-w-3xl px-4 py-8">
         <nav aria-label="Breadcrumb" className="text-sm text-zinc-500">
           <Link href="/" className="hover:text-zinc-800">

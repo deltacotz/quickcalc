@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
 import { SITE_NAME, CONTACT_EMAIL, SITE_URL } from "@/lib/site";
+import { openGraph } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: `Terms of Use — ${SITE_NAME}`,
-  description: `Terms of use for ${SITE_NAME}.`,
+  description: `Terms of use for ${SITE_NAME} — the conditions governing use of our free calculators and unit converters.`,
   alternates: { canonical: `${SITE_URL}/terms` },
+  openGraph: openGraph({
+    title: `Terms of Use — ${SITE_NAME}`,
+    description: `Terms of use for ${SITE_NAME} — the conditions governing use of our free calculators and unit converters.`,
+    url: `${SITE_URL}/terms`,
+  }),
 };
 
 export default function TermsPage() {

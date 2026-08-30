@@ -18,7 +18,7 @@ export const ADSENSE_ENABLED = ADSENSE_CLIENT.startsWith("ca-pub-");
 
 // --- Analytics ----------------------------------------------------------
 // Google Analytics 4 measurement ID, e.g. "G-XXXXXXXXXX". Empty = disabled.
-export const GA_MEASUREMENT_ID = "";
+export const GA_MEASUREMENT_ID = "G-JWGR6Z0QGC";
 
 // --- Currency -----------------------------------------------------------
 // Fallback default (auto-detection from the visitor's locale runs first).

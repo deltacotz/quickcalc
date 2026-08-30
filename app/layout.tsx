@@ -1,0 +1,70 @@
+import type { Metadata } from "next";
+import Script from "next/script";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import {
+  SITE_NAME,
+  SITE_TAGLINE,
+  SITE_DESCRIPTION,
+  SITE_URL,
+  ADSENSE_ENABLED,
+  ADSENSE_CLIENT,
+  GA_MEASUREMENT_ID,
+} from "@/lib/site";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+  description: SITE_DESCRIPTION,
+  robots: { index: true, follow: true },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+  },
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body className="flex min-h-screen flex-col bg-white text-zinc-900 antialiased">
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
+
+        {/* Google AdSense — loads only once ADSENSE_CLIENT is set.
+            NOTE: before serving ads to EEA/UK visitors you must also integrate a
+            Google-certified Consent Management Platform (CMP). */}
+        {ADSENSE_ENABLED && (
+          <Script
+            async
+            strategy="afterInteractive"
+            crossOrigin="anonymous"
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
+          />
+        )}
+
+        {/* Google Analytics 4 — loads only once GA_MEASUREMENT_ID is set. */}
+        {GA_MEASUREMENT_ID && (
+          <>
+            <Script
+              async
+              strategy="afterInteractive"
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+            />
+            <Script id="ga4" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${GA_MEASUREMENT_ID}');`}
+            </Script>
+          </>
+        )}
+      </body>
+    </html>
+  );
+}

@@ -1,0 +1,119 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { getTool, TOOLS, type ToolContent } from "@/content/tools";
+import { CalculatorWidget } from "@/components/CalculatorWidget";
+import { GpaCalculator } from "@/components/GpaCalculator";
+import { HowItWorks } from "@/components/HowItWorks";
+import { ExampleSection } from "@/components/ExampleSection";
+import { FaqSection } from "@/components/FaqSection";
+import { Disclaimers } from "@/components/Disclaimers";
+import { AffiliateCta } from "@/components/AffiliateCta";
+import { AdSlot } from "@/components/AdSlot";
+import { JsonLd } from "@/components/JsonLd";
+import { ToolCard } from "@/components/ToolCard";
+import { SITE_URL } from "@/lib/site";
+
+interface Props {
+  params: Promise<{ slug: string }>;
+}
+
+export function generateStaticParams() {
+  return TOOLS.map((t) => ({ slug: t.slug }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const tool = getTool(slug);
+  if (!tool) return {};
+  return {
+    title: `${tool.name} — Free Online Calculator`,
+    description: tool.metaDescription,
+    alternates: { canonical: `${SITE_URL}/tools/${tool.slug}` },
+  };
+}
+
+export default async function ToolPage({ params }: Props) {
+  const { slug } = await params;
+  const tool = getTool(slug);
+  if (!tool) notFound();
+
+  const related = tool.related
+    .map((s) => TOOLS.find((t) => t.slug === s))
+    .filter((t): t is ToolContent => Boolean(t));
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: tool.faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: tool.name,
+    url: `${SITE_URL}/tools/${tool.slug}`,
+    description: tool.metaDescription,
+  };
+
+  return (
+    <>
+      <JsonLd data={faqSchema} />
+      <JsonLd data={webPageSchema} />
+      <div className="mx-auto max-w-3xl px-4 py-8">
+        <nav aria-label="Breadcrumb" className="text-sm text-zinc-500">
+          <Link href="/" className="hover:text-zinc-800">
+            Home
+          </Link>
+          <span className="mx-2">/</span>
+          <Link href="/#calculators" className="hover:text-zinc-800">
+            Calculators
+          </Link>
+          <span className="mx-2">/</span>
+          <span className="text-zinc-700">{tool.name}</span>
+        </nav>
+
+        <h1 className="mt-3 text-3xl font-bold tracking-tight text-zinc-900">{tool.name}</h1>
+        <p className="mt-3 text-lg leading-relaxed text-zinc-600">{tool.intro}</p>
+
+        <div className="mt-6">
+          {tool.kind === "gpa" ? <GpaCalculator /> : <CalculatorWidget slug={tool.slug} />}
+        </div>
+
+        <AdSlot className="mt-8" />
+
+        <HowItWorks formula={tool.howItWorks.formula} explanation={tool.howItWorks.explanation} />
+        <ExampleSection examples={tool.examples} />
+        <FaqSection faq={tool.faq} />
+
+        {tool.disclaimers && <Disclaimers kinds={tool.disclaimers} />}
+        {tool.affiliate && (
+          <AffiliateCta cta={tool.affiliate.cta} url={tool.affiliate.url} note={tool.affiliate.note} />
+        )}
+
+        {related.length > 0 && (
+          <section className="mt-10">
+            <h2 className="text-xl font-semibold tracking-tight text-zinc-900">
+              Related calculators
+            </h2>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              {related.map((t) => (
+                <ToolCard
+                  key={t.slug}
+                  slug={t.slug}
+                  name={t.name}
+                  category={t.category}
+                  description={t.metaDescription}
+                />
+              ))}
+            </div>
+          </section>
+        )}
+      </div>
+    </>
+  );
+}

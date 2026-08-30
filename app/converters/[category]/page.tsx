@@ -1,0 +1,104 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { DIMENSIONS, getDimension, pairSlug } from "@/lib/convert";
+import { ConverterWidget } from "@/components/ConverterWidget";
+import { AdSlot } from "@/components/AdSlot";
+import { FaqSection } from "@/components/FaqSection";
+import { JsonLd } from "@/components/JsonLd";
+import { SITE_URL } from "@/lib/site";
+
+interface Props {
+  params: Promise<{ category: string }>;
+}
+
+export function generateStaticParams() {
+  return DIMENSIONS.map((d) => ({ category: d.id }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { category } = await params;
+  const dim = getDimension(category);
+  if (!dim) return {};
+  return {
+    title: `${dim.label} Converter — Free Online Unit Converter`,
+    description: dim.description,
+    alternates: { canonical: `${SITE_URL}/converters/${dim.id}` },
+  };
+}
+
+export default async function ConverterCategoryPage({ params }: Props) {
+  const { category } = await params;
+  const dim = getDimension(category);
+  if (!dim) notFound();
+
+  // Pick a handful of popular ordered pairs for quick links.
+  const popular = dim.units.slice(0, Math.min(4, dim.units.length));
+  const pairs: { from: string; to: string; fromLabel: string; toLabel: string }[] = [];
+  for (const from of popular) {
+    for (const to of dim.units) {
+      if (from.id !== to.id && pairs.length < 12) {
+        pairs.push({ from: from.id, to: to.id, fromLabel: from.label, toLabel: to.label });
+      }
+    }
+  }
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: dim.faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
+  return (
+    <>
+      <JsonLd data={faqSchema} />
+      <div className="mx-auto max-w-3xl px-4 py-8">
+        <nav aria-label="Breadcrumb" className="text-sm text-zinc-500">
+          <Link href="/" className="hover:text-zinc-800">
+            Home
+          </Link>
+          <span className="mx-2">/</span>
+          <Link href="/converters" className="hover:text-zinc-800">
+            Converters
+          </Link>
+          <span className="mx-2">/</span>
+          <span className="text-zinc-700">{dim.label}</span>
+        </nav>
+
+        <h1 className="mt-3 text-3xl font-bold tracking-tight text-zinc-900">
+          {dim.label} Converter
+        </h1>
+        <p className="mt-3 text-lg leading-relaxed text-zinc-600">{dim.description}</p>
+
+        <div className="mt-6">
+          <ConverterWidget key={dim.id} dimensionId={dim.id} />
+        </div>
+
+        <AdSlot className="mt-8" />
+
+        <section className="mt-10">
+          <h2 className="text-xl font-semibold tracking-tight text-zinc-900">
+            Popular conversions
+          </h2>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {pairs.map((p) => (
+              <Link
+                key={`${p.from}-${p.to}`}
+                href={`/converters/${dim.id}/${pairSlug(p.from, p.to)}`}
+                className="rounded-full border border-zinc-200 px-3 py-1.5 text-sm text-zinc-700 hover:border-blue-400 hover:bg-blue-50"
+              >
+                {p.fromLabel} to {p.toLabel}
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <FaqSection faq={dim.faq} />
+      </div>
+    </>
+  );
+}

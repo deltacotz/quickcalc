@@ -2,13 +2,13 @@
 // page from a bare calculator widget ("thin content"). Each entry ships original
 // intro, formula explanation, worked examples and an FAQ.
 
-export type ToolCategory = "Everyday" | "Finance" | "Health" | "Education";
+export type ToolCategory = "Everyday" | "Finance" | "Health" | "Education" | "Home";
 
 export interface ToolContent {
   slug: string;
   name: string;
   category: ToolCategory;
-  kind: "widget" | "gpa";
+  kind: "widget" | "gpa" | "currency" | "timezone";
   metaDescription: string;
   intro: string;
   howItWorks: { formula: string; explanation: string };
@@ -352,6 +352,178 @@ export const TOOLS: ToolContent[] = [
       { q: "What is a weighted GPA?", a: "Weighted GPAs give extra points for honors or AP/IB courses, often on a scale above 4.0. This calculator uses a standard unweighted 4.0 scale." },
     ],
     related: ["percentage-calculator", "age-calculator", "salary-to-hourly-calculator"],
+  },
+  {
+    slug: "retirement-calculator",
+    name: "Retirement Calculator",
+    category: "Finance",
+    kind: "widget",
+    metaDescription:
+      "Free retirement calculator: estimate how much your savings will grow by retirement age with annual contributions and compound returns.",
+    intro:
+      "Estimate how much you'll have saved by retirement. Enter your current age, target retirement age, current savings, annual contribution and expected annual return to project your retirement nest egg.",
+    howItWorks: {
+      formula: "FV = P(1+r)ⁿ + C · ((1+r)ⁿ − 1) ÷ r",
+      explanation:
+        "P is current savings, C the annual contribution, r the annual return rate, and n the number of years until retirement. The formula compounds your current savings and contributions with interest.",
+    },
+    examples: [
+      { title: "Example", text: "Starting at 30 with 10,000 saved, adding 5,000 a year at 7% until 65 grows to roughly 800,000." },
+    ],
+    faq: [
+      { q: "How much do I need to retire?", a: "A common rule of thumb is 25× your annual expenses, but it depends on lifestyle, location and other income." },
+      { q: "Does this account for inflation?", a: "No. Use a real (inflation-adjusted) return rate, e.g. 5–6%, to see today's purchasing power." },
+      { q: "What is a safe withdrawal rate?", a: "The 4% rule suggests withdrawing about 4% of your portfolio in the first year, adjusted for inflation." },
+    ],
+    disclaimers: ["financial"],
+    related: ["compound-interest-calculator", "salary-to-hourly-calculator", "mortgage-calculator"],
+  },
+  {
+    slug: "pregnancy-due-date-calculator",
+    name: "Pregnancy Due Date Calculator",
+    category: "Health",
+    kind: "widget",
+    metaDescription:
+      "Free pregnancy due date calculator: estimate your baby's due date and conception date from the first day of your last period.",
+    intro:
+      "Estimate your baby's due date and conception date from the first day of your last menstrual period (LMP), using the standard Naegele's rule of 280 days from LMP.",
+    howItWorks: {
+      formula: "Due date = LMP + 280 days",
+      explanation:
+        "Naegele's rule adds 280 days (40 weeks) to the first day of your last period. Conception is estimated at around 14 days after LMP.",
+    },
+    examples: [
+      { title: "Example", text: "If your LMP was 1 January 2024, the estimated due date is around 7 October 2024." },
+    ],
+    faq: [
+      { q: "How accurate is the due date?", a: "Only about 4–5% of babies are born exactly on the due date; it is an estimate." },
+      { q: "How is pregnancy counted?", a: "Pregnancy is dated from the first day of your last period, about two weeks before conception." },
+      { q: "How many weeks is a full-term pregnancy?", a: "A full-term pregnancy is about 40 weeks (280 days) from the last period." },
+    ],
+    disclaimers: ["medical"],
+    related: ["bmi-calculator", "calorie-calculator", "age-calculator"],
+  },
+  {
+    slug: "body-fat-calculator",
+    name: "Body Fat Calculator",
+    category: "Health",
+    kind: "widget",
+    metaDescription:
+      "Free body fat percentage calculator using the US Navy method — estimate body fat from height, neck, waist and hip measurements.",
+    intro:
+      "Estimate your body fat percentage using the US Navy circumference method. Enter your sex, height, and neck, waist (and hip for women) measurements.",
+    howItWorks: {
+      formula: "US Navy circumference formula (log₁₀-based)",
+      explanation:
+        "The US Navy method estimates body density from body circumferences and height, then converts it to a body fat percentage. Measurements are entered in centimeters and converted to inches internally.",
+    },
+    examples: [
+      { title: "Male example", text: "A 175 cm man with a 38 cm neck and 90 cm waist has an estimated body fat of about 14%." },
+    ],
+    faq: [
+      { q: "How accurate is the US Navy method?", a: "It is a reasonable estimate (±3–5%) but not as precise as DEXA or hydrostatic weighing." },
+      { q: "What is a healthy body fat percentage?", a: "For men, roughly 14–24% is average; for women, roughly 21–31%." },
+      { q: "Why do women need a hip measurement?", a: "The female formula includes hip circumference because women store fat differently." },
+    ],
+    disclaimers: ["medical"],
+    related: ["bmi-calculator", "calorie-calculator", "pregnancy-due-date-calculator"],
+  },
+  {
+    slug: "paint-calculator",
+    name: "Paint Calculator",
+    category: "Home",
+    kind: "widget",
+    metaDescription:
+      "Free paint calculator: estimate how many gallons of paint you need for a room or wall, including coats and coverage.",
+    intro:
+      "Estimate how much paint you need. Enter the wall area, number of coats and the paint's coverage to see the gallons (and liters) required.",
+    howItWorks: {
+      formula: "Gallons = (Area × Coats) ÷ Coverage",
+      explanation:
+        "Multiply the area by the number of coats, then divide by the paint's coverage (square feet per gallon). Typical coverage is about 350 ft² per gallon.",
+    },
+    examples: [
+      { title: "Example", text: "400 sq ft of wall with 2 coats at 350 ft²/gallon needs about 2.3 gallons — round up to 3 gallons." },
+    ],
+    faq: [
+      { q: "How much area does a gallon of paint cover?", a: "Typically 250–400 square feet per coat, depending on surface and paint." },
+      { q: "Should I include two coats?", a: "Yes, most jobs need two coats for even coverage and full color." },
+      { q: "How do I calculate wall area?", a: "Multiply wall width by height, and subtract windows and doors." },
+    ],
+    related: ["amps-to-watts-calculator", "percentage-calculator", "fuel-cost-calculator"],
+  },
+  {
+    slug: "amps-to-watts-calculator",
+    name: "Amps to Watts Calculator",
+    category: "Home",
+    kind: "widget",
+    metaDescription:
+      "Free amps to watts calculator: convert electrical current and voltage into power (watts, kilowatts and kWh).",
+    intro:
+      "Convert amps and volts into watts. Enter the voltage and current to see power in watts, kilowatts and the energy used over one hour.",
+    howItWorks: {
+      formula: "Watts = Volts × Amps",
+      explanation:
+        "Electrical power (watts) equals voltage (volts) multiplied by current (amps). Kilowatts are watts divided by 1,000.",
+    },
+    examples: [
+      { title: "Example", text: "A 230-volt appliance drawing 10 amps uses 2,300 watts, or 2.3 kW." },
+    ],
+    faq: [
+      { q: "How do I convert amps to watts?", a: "Multiply amps by volts: watts = amps × volts." },
+      { q: "What is a kilowatt-hour?", a: "A kWh is the energy used by a 1,000-watt device running for one hour." },
+      { q: "What voltage should I use?", a: "Household mains is 230 V in Tanzania and most of the world, and 120 V in North America." },
+    ],
+    related: ["paint-calculator", "percentage-calculator", "discount-calculator"],
+  },
+  {
+    slug: "currency-converter",
+    name: "Currency Converter",
+    category: "Finance",
+    kind: "currency",
+    metaDescription:
+      "Free currency converter with live exchange rates — convert between USD, TZS and 100+ other currencies.",
+    intro:
+      "Convert between currencies using live exchange rates. Choose your source and target currencies and enter an amount — results update instantly. Rates refresh on each page load.",
+    howItWorks: {
+      formula: "Converted = Amount × Exchange rate",
+      explanation:
+        "The converter fetches the latest exchange rates and multiplies your amount by the rate to the target currency. Rates are indicative and may differ slightly from your bank.",
+    },
+    examples: [
+      { title: "Example", text: "At a rate of 2,500 TZS per USD, 100 USD equals 250,000 TZS." },
+    ],
+    faq: [
+      { q: "Are these the exact bank rates?", a: "No. Displayed rates are indicative market rates; banks and exchanges may charge a margin." },
+      { q: "How often do rates update?", a: "The converter fetches fresh rates each time the page loads." },
+      { q: "Which currencies are supported?", a: "100+ currencies, including USD and TZS." },
+    ],
+    disclaimers: ["financial"],
+    related: ["loan-calculator", "compound-interest-calculator", "tip-calculator"],
+  },
+  {
+    slug: "time-zone-converter",
+    name: "Time Zone Converter",
+    category: "Everyday",
+    kind: "timezone",
+    metaDescription:
+      "Free time zone converter: find the time in another city or time zone instantly, with world clock support.",
+    intro:
+      "Convert the time between two time zones. Pick a source and target time zone and a time to see the equivalent time in the other zone.",
+    howItWorks: {
+      formula: "Target time = source time + (target offset − source offset)",
+      explanation:
+        "The converter uses the browser's built-in time zone database to account for each zone's UTC offset and daylight-saving rules.",
+    },
+    examples: [
+      { title: "Example", text: "At 9:00 AM in New York, it's 5:00 PM in Dar es Salaam (EAT, UTC+3)." },
+    ],
+    faq: [
+      { q: "Does it account for daylight saving?", a: "Yes, the converter uses each time zone's current offset including daylight-saving rules." },
+      { q: "What time is it in Dar es Salaam?", a: "Tanzania is UTC+3 (East Africa Time) year-round, with no daylight saving." },
+      { q: "What is UTC?", a: "Coordinated Universal Time is the world time standard that all time zones are offset from." },
+    ],
+    related: ["age-calculator", "date-difference-calculator", "percentage-calculator"],
   },
 ];
 

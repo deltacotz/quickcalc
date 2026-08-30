@@ -118,4 +118,39 @@ export const salaryToHourly: CalculatorSpec = {
   },
 };
 
-export const FINANCE_CALCS = [mortgage, loan, compoundInterest, salaryToHourly];
+export const retirement: CalculatorSpec = {
+  slug: "retirement-calculator",
+  fields: [
+    { id: "age", label: "Current age", type: "number", default: "30", min: 1 },
+    { id: "retireAge", label: "Retirement age", type: "number", default: "65", min: 1 },
+    { id: "savings", label: "Current savings", type: "number", unit: "$", default: "10000", min: 0, step: "100" },
+    { id: "contribution", label: "Annual contribution", type: "number", unit: "$", default: "5000", min: 0, step: "100" },
+    { id: "rate", label: "Annual return", type: "number", unit: "%", default: "7", min: 0, step: "0.1" },
+  ],
+  compute: (inp: Inputs, ctx: CalcContext) => {
+    const age = num(inp, "age");
+    const retireAge = num(inp, "retireAge");
+    const savings = num(inp, "savings");
+    const contribution = num(inp, "contribution");
+    const ratePct = num(inp, "rate");
+    const years = retireAge - age;
+    if (years <= 0) return [{ label: "Error", value: "—", note: "Retirement age must be greater than current age." }];
+    const r = ratePct / 100;
+    let future: number;
+    if (r === 0) {
+      future = savings + contribution * years;
+    } else {
+      future =
+        savings * Math.pow(1 + r, years) +
+        contribution * ((Math.pow(1 + r, years) - 1) / r);
+    }
+    const contributed = savings + contribution * years;
+    return [
+      { label: "Retirement savings", value: formatCurrency(future, ctx.currency), highlight: true },
+      { label: "Total contributed", value: formatCurrency(contributed, ctx.currency) },
+      { label: "Growth (interest)", value: formatCurrency(future - contributed, ctx.currency) },
+    ];
+  },
+};
+
+export const FINANCE_CALCS = [mortgage, loan, compoundInterest, salaryToHourly, retirement];

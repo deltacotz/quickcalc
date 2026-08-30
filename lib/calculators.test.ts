@@ -1,8 +1,9 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { monthlyPayment, mortgage, compoundInterest, salaryToHourly } from "./calculators/finance";
-import { bmi, calorie } from "./calculators/health";
-import { percentage, tip, discount, fuelCost, age, dayDiff, breakdown } from "./calculators/everyday";
+import { monthlyPayment, mortgage, compoundInterest, salaryToHourly, retirement } from "./calculators/finance";
+import { bmi, calorie, bodyFat } from "./calculators/health";
+import { percentage, tip, discount, fuelCost, age, dayDiff, breakdown, pregnancy } from "./calculators/everyday";
+import { paint, electrical } from "./calculators/home";
 import { computeGpa } from "./calculators/education";
 
 const USD: { currency: "USD" } = { currency: "USD" };
@@ -105,6 +106,35 @@ test("date difference", () => {
 test("age", () => {
   const res = age.compute({ dob: "1990-01-01", asof: "2024-01-01" }, USD);
   assert.equal(res[0].value, "34 years, 0 months, 0 days");
+});
+
+test("retirement", () => {
+  const res = retirement.compute(
+    { age: "30", retireAge: "65", savings: "10000", contribution: "5000", rate: "7" },
+    USD
+  );
+  const v = Number(res[0].value.replace(/[$,]/g, ""));
+  assert.ok(v > 750000 && v < 850000, `got ${res[0].value}`);
+});
+
+test("pregnancy due date", () => {
+  const res = pregnancy.compute({ lmp: "2024-01-01" }, USD);
+  assert.equal(res[0].value, "October 7, 2024");
+});
+
+test("body fat (male)", () => {
+  const res = bodyFat.compute({ sex: "male", height: "175", neck: "38", waist: "90", hip: "95" }, USD);
+  assert.equal(res[0].value, "14.2%");
+});
+
+test("paint", () => {
+  const res = paint.compute({ area: "400", coats: "2", coverage: "350" }, USD);
+  assert.equal(res[0].value, "3 gal");
+});
+
+test("electrical", () => {
+  const res = electrical.compute({ volts: "230", amps: "10" }, USD);
+  assert.equal(res[0].value, "2,300 W");
 });
 
 test("GPA", () => {

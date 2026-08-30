@@ -31,16 +31,16 @@ Original slots (finance tools):
 - [x] Submit `https://www.calculator.co.tz/sitemap.xml` in Google Search Console (add both `www.calculator.co.tz` and `calculator.co.tz`).
 - [ ] Choose an affiliate network and re-add the CTAs above.
 
-## Future tools (wave 2)
+## Future tools (next wave)
 
-High-traffic candidates to add next, each as a new `content/tools.ts` entry + `lib/calculators/` function:
+- [x] **Currency converter (USD ↔ TZS)** — live rates via open.er-api.com (free, no key).
+- [x] **Time zone converter** — IANA time zones via the browser Intl API.
+- [x] **Retirement / 401k calculator**
+- [x] **Pregnancy due date calculator**
+- [x] **Body fat % calculator** (US Navy method)
+- [x] **Home/DIY** — paint calculator + amps↔watts.
 
-- **Currency converter (USD ↔ TZS)** — needs a live FX-rate API and a "last updated" timestamp. (The site now *supports* USD + TZS as display currencies across all money calculators, but has no live rate converter yet.)
-- **Time zone converter** — high volume; needs tz data.
-- **Retirement / 401k calculator** — strong finance affiliate fit.
-- **Pregnancy due date calculator** — evergreen health traffic.
-- **Body fat % calculator** — complements BMI.
-- **Home/DIY calculators** — paint, flooring/concrete, electrical (amps ↔ watts), BTU.
+Still optional later: flooring/concrete, BTU, scientific calculator, and more niche tools.
 
 ## SEO / polish
 

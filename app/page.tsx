@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   }),
 };
 
-const CATEGORIES: ToolCategory[] = ["Everyday", "Finance", "Health", "Education"];
+const CATEGORIES: ToolCategory[] = ["Everyday", "Finance", "Health", "Education", "Home"];
 
 const websiteSchema = {
   "@context": "https://schema.org",

@@ -1,11 +1,12 @@
 import type { CalculatorSpec } from "./types";
-import { percentage, age, dateDifference, tip, discount, fuelCost } from "./everyday";
-import { mortgage, loan, compoundInterest, salaryToHourly } from "./finance";
-import { bmi, calorie } from "./health";
+import { percentage, age, dateDifference, tip, discount, fuelCost, pregnancy } from "./everyday";
+import { mortgage, loan, compoundInterest, salaryToHourly, retirement } from "./finance";
+import { bmi, calorie, bodyFat } from "./health";
+import { paint, electrical } from "./home";
 
 export type { CalculatorSpec, CalcResult, FieldDef, Inputs } from "./types";
 
-/** All widget-driven calculators. The GPA calculator uses a custom component. */
+/** All widget-driven calculators. Custom-component calculators (GPA, currency, timezone) are excluded. */
 export const CALCULATORS: CalculatorSpec[] = [
   percentage,
   bmi,
@@ -15,10 +16,15 @@ export const CALCULATORS: CalculatorSpec[] = [
   loan,
   compoundInterest,
   salaryToHourly,
+  retirement,
   calorie,
+  bodyFat,
+  pregnancy,
   tip,
   discount,
   fuelCost,
+  paint,
+  electrical,
 ];
 
 export function getCalculator(slug: string): CalculatorSpec | undefined {

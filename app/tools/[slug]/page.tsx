@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { getTool, TOOLS, type ToolContent } from "@/content/tools";
 import { CalculatorWidget } from "@/components/CalculatorWidget";
 import { GpaCalculator } from "@/components/GpaCalculator";
+import { CurrencyConverter } from "@/components/CurrencyConverter";
+import { TimezoneConverter } from "@/components/TimezoneConverter";
 import { HowItWorks } from "@/components/HowItWorks";
 import { ExampleSection } from "@/components/ExampleSection";
 import { FaqSection } from "@/components/FaqSection";
@@ -91,7 +93,15 @@ export default async function ToolPage({ params }: Props) {
         <p className="mt-3 text-lg leading-relaxed text-zinc-600">{tool.intro}</p>
 
         <div className="mt-6">
-          {tool.kind === "gpa" ? <GpaCalculator /> : <CalculatorWidget slug={tool.slug} />}
+          {tool.kind === "gpa" ? (
+            <GpaCalculator />
+          ) : tool.kind === "currency" ? (
+            <CurrencyConverter />
+          ) : tool.kind === "timezone" ? (
+            <TimezoneConverter />
+          ) : (
+            <CalculatorWidget slug={tool.slug} />
+          )}
         </div>
 
         <AdSlot className="mt-8" />

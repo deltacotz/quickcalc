@@ -130,4 +130,57 @@ export const calorie: CalculatorSpec = {
   },
 };
 
-export const HEALTH_CALCS = [bmi, calorie];
+function bodyFatCategory(bf: number, female: boolean): string {
+  if (female) {
+    if (bf < 14) return "Essential fat";
+    if (bf < 21) return "Athletes";
+    if (bf < 25) return "Fitness";
+    if (bf < 32) return "Average";
+    return "Obese";
+  }
+  if (bf < 6) return "Essential fat";
+  if (bf < 14) return "Athletes";
+  if (bf < 18) return "Fitness";
+  if (bf < 25) return "Average";
+  return "Obese";
+}
+
+export const bodyFat: CalculatorSpec = {
+  slug: "body-fat-calculator",
+  fields: [
+    {
+      id: "sex",
+      label: "Sex",
+      type: "select",
+      options: [
+        { value: "male", label: "Male" },
+        { value: "female", label: "Female" },
+      ],
+      default: "male",
+    },
+    { id: "height", label: "Height", type: "number", unit: "cm", default: "175", min: 1, step: "0.1" },
+    { id: "neck", label: "Neck circumference", type: "number", unit: "cm", default: "38", min: 1, step: "0.1" },
+    { id: "waist", label: "Waist circumference", type: "number", unit: "cm", default: "90", min: 1, step: "0.1" },
+    { id: "hip", label: "Hip circumference (women)", type: "number", unit: "cm", default: "95", min: 1, step: "0.1" },
+  ],
+  compute: (inp: Inputs) => {
+    const female = inp.sex === "female";
+    const height = num(inp, "height") / 2.54;
+    const neck = num(inp, "neck") / 2.54;
+    const waist = num(inp, "waist") / 2.54;
+    const hip = num(inp, "hip") / 2.54;
+    if (height <= 0 || neck <= 0 || waist <= 0) {
+      return [{ label: "Error", value: "—", note: "Enter positive measurements." }];
+    }
+    const log = Math.log10;
+    const bf = female
+      ? 495 / (1.29579 - 0.35004 * log(waist + hip - neck) + 0.221 * log(height)) - 450
+      : 495 / (1.0324 - 0.19077 * log(waist - neck) + 0.15456 * log(height)) - 450;
+    return [
+      { label: "Body fat percentage", value: `${formatNumber(roundTo(bf, 1), 1)}%`, highlight: true },
+      { label: "Category", value: bodyFatCategory(bf, female) },
+    ];
+  },
+};
+
+export const HEALTH_CALCS = [bmi, calorie, bodyFat];

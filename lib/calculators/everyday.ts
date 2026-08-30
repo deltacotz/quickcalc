@@ -32,6 +32,23 @@ export function breakdown(from: Date, to: Date): { years: number; months: number
   return { years, months, days };
 }
 
+function addDays(d: Date, days: number): Date {
+  const r = new Date(d);
+  r.setDate(r.getDate() + days);
+  return r;
+}
+
+function formatDate(d: Date): string {
+  return d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+}
+
+function trimester(weeks: number): string {
+  if (weeks < 0) return "—";
+  if (weeks < 14) return "First trimester";
+  if (weeks < 28) return "Second trimester";
+  return "Third trimester";
+}
+
 const error = (msg: string): CalcResult[] => [{ label: "Error", value: "—", note: msg }];
 
 export const percentage: CalculatorSpec = {
@@ -192,6 +209,31 @@ export const fuelCost: CalculatorSpec = {
       { label: "Fuel needed", value: `${formatNumber(volume, 2)} ${metric ? "L" : "gal"}` },
       { label: "Total cost", value: formatCurrency(volume * price, ctx.currency), highlight: true },
       { label: metric ? "Cost per km" : "Cost per mile", value: formatCurrency(price / efficiency, ctx.currency) },
+    ];
+  },
+};
+
+export const pregnancy: CalculatorSpec = {
+  slug: "pregnancy-due-date-calculator",
+  fields: [
+    { id: "lmp", label: "First day of last period (LMP)", type: "date", default: "today" },
+  ],
+  compute: (inp: Inputs) => {
+    const lmp = parseDate(inp.lmp);
+    if (!lmp) return error("Enter a valid LMP date.");
+    const due = addDays(lmp, 280);
+    const conception = addDays(lmp, 14);
+    const daysPregnant = dayDiff(lmp, new Date());
+    const weeks = Math.floor(daysPregnant / 7);
+    const days = daysPregnant % 7;
+    return [
+      { label: "Estimated due date", value: formatDate(due), highlight: true },
+      { label: "Conception estimate", value: formatDate(conception) },
+      {
+        label: "Progress today",
+        value: daysPregnant >= 0 ? `${weeks} weeks, ${days} days` : "Not started",
+      },
+      { label: "Trimester", value: trimester(weeks) },
     ];
   },
 };

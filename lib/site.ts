@@ -19,4 +19,4 @@ export const ADSENSE_ENABLED = ADSENSE_CLIENT.startsWith("ca-pub-");
 export const GA_MEASUREMENT_ID = "";
 
 // --- Contact / compliance ----------------------------------------------
-export const CONTACT_EMAIL = "contact@quickcalc.example";
+export const CONTACT_EMAIL = "hello@dts.co.tz";

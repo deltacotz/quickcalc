@@ -12,7 +12,7 @@ export default function AboutPage() {
       <h1 className="text-3xl font-bold tracking-tight">About {SITE_NAME}</h1>
       <div className="mt-6 space-y-4 text-zinc-700">
         <p>
-          {SITE_NAME} is a free collection of online calculators and unit converters built to give
+          This site offers a free collection of online calculators and unit converters built to give
           fast, accurate answers to everyday questions — from working out a percentage or a tip to
           estimating a mortgage payment or converting miles to kilometers.
         </p>

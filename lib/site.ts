@@ -2,7 +2,7 @@
 
 import type { Currency } from "./currency";
 
-export const SITE_NAME = "QuickCalc";
+export const SITE_NAME = "Calculator";
 export const SITE_TAGLINE = "Free online calculators and unit converters";
 export const SITE_DESCRIPTION =
   "Free online calculators and unit converters: percentage, BMI, mortgage, loan, compound interest, salary, calorie, tip, discount, fuel, GPA, plus length, weight, temperature, area, volume, speed, data and time converters.";

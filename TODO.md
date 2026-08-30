@@ -1,4 +1,4 @@
-# TODO — QuickCalc
+# TODO — Calculator
 
 Backlog of future work. Nothing here blocks the current live site.
 

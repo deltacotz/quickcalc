@@ -32,7 +32,7 @@ export function ConverterWidget({
 
   return (
     <div className="rounded-xl border border-zinc-200 bg-white p-5 shadow-sm">
-      <div className="grid grid-cols-[1fr_auto_1fr] items-end gap-3">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-[1fr_auto_1fr] sm:items-end">
         <label className="block">
           <span className="text-sm font-medium text-zinc-700">From</span>
           <select
@@ -52,7 +52,7 @@ export function ConverterWidget({
           type="button"
           onClick={swap}
           aria-label="Swap units"
-          className="mb-0.5 rounded-md border border-zinc-300 px-3 py-2 text-zinc-600 hover:bg-zinc-50"
+          className="justify-self-center rounded-md border border-zinc-300 px-3 py-2 text-zinc-600 hover:bg-zinc-50"
         >
           ⇄
         </button>

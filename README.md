@@ -16,7 +16,7 @@ npm install
 npm run dev        # http://localhost:3000
 npm run build      # production build (static-generates ~490 pages)
 npm run lint
-npm test           # runs the 23 formula/unit tests
+npm test           # runs the 32 formula/unit/currency tests
 ```
 
 ## What's included
@@ -45,7 +45,7 @@ lib/site.ts          ALL site config (brand, domain, ads, analytics) — edit th
 ## Before launch — edit `lib/site.ts`
 
 1. **`SITE_NAME`** — your brand name (currently `QuickCalc`).
-2. **`SITE_URL`** — your real production domain (currently a `.example` placeholder).
+2. **`SITE_URL`** — your production domain (currently `https://www.calculator.co.tz`).
    This drives canonicals and the sitemap.
 3. **`CONTACT_EMAIL`** — your contact address.
 

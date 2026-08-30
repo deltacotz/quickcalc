@@ -8,7 +8,7 @@ export const SITE_DESCRIPTION =
   "Free online calculators and unit converters: percentage, BMI, mortgage, loan, compound interest, salary, calorie, tip, discount, fuel, GPA, plus length, weight, temperature, area, volume, speed, data and time converters.";
 
 // Replace with your real production domain (no trailing slash).
-export const SITE_URL = "https://quickcalc-sigma.vercel.app";
+export const SITE_URL = "https://www.calculator.co.tz";
 
 // --- Google AdSense -----------------------------------------------------
 // Paste your AdSense publisher ID here, e.g. "ca-pub-1234567890123456".

@@ -26,9 +26,9 @@ Original slots (finance tools):
 
 - [ ] Paste AdSense publisher ID into `ADSENSE_CLIENT` in `lib/site.ts` (after AdSense approval).
 - [ ] Add a GA4 measurement ID to `GA_MEASUREMENT_ID` in `lib/site.ts`.
-- [ ] Add a custom domain and update `SITE_URL` in `lib/site.ts` (currently `quickcalc-sigma.vercel.app`).
+- [x] Custom domain: `https://www.calculator.co.tz` is connected and set as `SITE_URL` (apex redirects to www).
 - [ ] Integrate a Google-certified CMP before serving ads to EEA/UK visitors.
-- [ ] Submit `https://quickcalc-sigma.vercel.app/sitemap.xml` in Google Search Console.
+- [ ] Submit `https://www.calculator.co.tz/sitemap.xml` in Google Search Console (add both `www.calculator.co.tz` and `calculator.co.tz`).
 - [ ] Choose an affiliate network and re-add the CTAs above.
 
 ## Future tools (wave 2)

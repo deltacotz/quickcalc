@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import { getCalculator } from "@/lib/calculators";
 import type { FieldDef, Inputs } from "@/lib/calculators";
+import { currencySymbol, type Currency } from "@/lib/currency";
+import { useCurrency } from "@/components/CurrencyProvider";
 
 function todayISO(): string {
   const d = new Date();
@@ -16,11 +18,13 @@ function FieldInput({
   field,
   value,
   inputs,
+  currency,
   onChange,
 }: {
   field: FieldDef;
   value: string;
   inputs: Inputs;
+  currency: Currency;
   onChange: (v: string) => void;
 }) {
   const id = `field-${field.id}`;
@@ -60,7 +64,13 @@ function FieldInput({
     );
   }
 
-  const unit = typeof field.unit === "function" ? field.unit(inputs) : field.unit;
+  const unit =
+    typeof field.unit === "function"
+      ? field.unit(inputs, { currency })
+      : field.unit === "$"
+        ? currencySymbol(currency)
+        : field.unit;
+
   return (
     <label htmlFor={id} className="block">
       <span className="text-sm font-medium text-zinc-700">{field.label}</span>
@@ -88,6 +98,7 @@ function FieldInput({
 
 export function CalculatorWidget({ slug }: { slug: string }) {
   const spec = getCalculator(slug);
+  const { currency } = useCurrency();
   const [inputs, setInputs] = useState<Inputs>(() => {
     const init: Inputs = {};
     if (spec) {
@@ -98,7 +109,10 @@ export function CalculatorWidget({ slug }: { slug: string }) {
     return init;
   });
 
-  const results = useMemo(() => (spec ? spec.compute(inputs) : []), [spec, inputs]);
+  const results = useMemo(
+    () => (spec ? spec.compute(inputs, { currency }) : []),
+    [spec, inputs, currency]
+  );
 
   if (!spec) return null;
 
@@ -113,6 +127,7 @@ export function CalculatorWidget({ slug }: { slug: string }) {
             field={f}
             value={inputs[f.id] ?? ""}
             inputs={inputs}
+            currency={currency}
             onChange={(v) => set(f.id, v)}
           />
         ))}

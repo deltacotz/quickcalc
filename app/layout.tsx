@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { CurrencyProvider } from "@/components/CurrencyProvider";
 import {
   SITE_NAME,
   SITE_TAGLINE,
@@ -35,9 +36,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex min-h-screen flex-col bg-white text-zinc-900 antialiased">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <CurrencyProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </CurrencyProvider>
 
         {/* Google AdSense — loads only once ADSENSE_CLIENT is set.
             NOTE: before serving ads to EEA/UK visitors you must also integrate a

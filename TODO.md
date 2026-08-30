@@ -35,7 +35,7 @@ Original slots (finance tools):
 
 High-traffic candidates to add next, each as a new `content/tools.ts` entry + `lib/calculators/` function:
 
-- **Currency converter** — needs a live FX-rate API and a "last updated" timestamp.
+- **Currency converter (USD ↔ TZS)** — needs a live FX-rate API and a "last updated" timestamp. (The site now *supports* USD + TZS as display currencies across all money calculators, but has no live rate converter yet.)
 - **Time zone converter** — high volume; needs tz data.
 - **Retirement / 401k calculator** — strong finance affiliate fit.
 - **Pregnancy due date calculator** — evergreen health traffic.

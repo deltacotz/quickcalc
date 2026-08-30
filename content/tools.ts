@@ -138,8 +138,8 @@ export const TOOLS: ToolContent[] = [
         "M is the monthly payment, P the loan principal, r the monthly interest rate (annual rate ÷ 12), and n the number of monthly payments (years × 12). This standard amortization formula spreads principal and interest evenly across the term.",
     },
     examples: [
-      { title: "Typical 30-year loan", text: "A $300,000 mortgage at 6.5% for 30 years gives a monthly payment of about $1,896.20, with roughly $382,633 paid in interest." },
-      { title: "Shorter term", text: "The same $300,000 at 6.5% over 15 years raises the monthly payment but cuts total interest dramatically." },
+      { title: "Typical 30-year loan", text: "A 300,000 mortgage at 6.5% for 30 years gives a monthly payment of about 1,896.20, with roughly 382,633 paid in interest." },
+      { title: "Shorter term", text: "The same 300,000 at 6.5% over 15 years raises the monthly payment but cuts total interest dramatically." },
     ],
     faq: [
       { q: "What is included in a mortgage payment?", a: "This calculator shows principal and interest only. Your actual payment may also include property taxes, homeowners insurance and, if applicable, mortgage insurance." },
@@ -164,8 +164,8 @@ export const TOOLS: ToolContent[] = [
         "M is the monthly payment, P the principal, r the monthly interest rate, and n the number of monthly payments. The formula calculates the fixed monthly payment needed to repay the loan with interest.",
     },
     examples: [
-      { title: "Auto loan", text: "A $25,000 auto loan at 7% for 5 years gives a monthly payment of about $495.03." },
-      { title: "Personal loan", text: "A $10,000 personal loan at 12% for 3 years gives a monthly payment of about $332.14." },
+      { title: "Auto loan", text: "A 25,000 auto loan at 7% for 5 years gives a monthly payment of about 495.03." },
+      { title: "Personal loan", text: "A 10,000 personal loan at 12% for 3 years gives a monthly payment of about 332.14." },
     ],
     faq: [
       { q: "What is the difference between APR and interest rate?", a: "APR includes the interest rate plus most loan fees, giving a truer picture of the loan's annual cost." },
@@ -190,8 +190,8 @@ export const TOOLS: ToolContent[] = [
         "A is the future value, P the initial principal, r the annual rate, n the number of compounding periods per year, t the years, and PMT the contribution per period. Compounding means you earn interest on previously earned interest.",
     },
     examples: [
-      { title: "Long-term growth", text: "$10,000 invested at 7% compounded monthly grows to about $40,387 after 20 years, even with no further contributions." },
-      { title: "With contributions", text: "Adding $200 per month to that same account dramatically increases the ending balance." },
+      { title: "Long-term growth", text: "10,000 invested at 7% compounded monthly grows to about 40,387 after 20 years, even with no further contributions." },
+      { title: "With contributions", text: "Adding 200 per month to that same account dramatically increases the ending balance." },
     ],
     faq: [
       { q: "What is compound interest?", a: "Compound interest is interest earned on both your original principal and the interest that has already accumulated." },
@@ -216,7 +216,7 @@ export const TOOLS: ToolContent[] = [
         "Your hourly rate is your annual salary divided by the total hours you work in a year. A standard full-time schedule is 40 hours per week for 52 weeks, or 2,080 hours per year.",
     },
     examples: [
-      { title: "Standard full-time", text: "A $60,000 salary at 40 hours/week for 52 weeks equals 60,000 ÷ 2,080 = $28.85 per hour." },
+      { title: "Standard full-time", text: "A 60,000 salary at 40 hours/week for 52 weeks equals 60,000 ÷ 2,080 = 28.85 per hour." },
       { title: "Fewer weeks", text: "If you only work 48 weeks a year, the same salary is a higher effective hourly rate." },
     ],
     faq: [
@@ -268,8 +268,8 @@ export const TOOLS: ToolContent[] = [
         "The tip is a percentage of the pre-tax bill. The total is the bill plus tip, and dividing by the number of people gives each person's share.",
     },
     examples: [
-      { title: "Standard tip", text: "A $50 bill with a 15% tip gives a $7.50 tip and a $57.50 total." },
-      { title: "Splitting", text: "That same bill split 2 ways is $28.75 per person, tip included." },
+      { title: "Standard tip", text: "A bill of 50 with a 15% tip gives a 7.50 tip and a 57.50 total." },
+      { title: "Splitting", text: "That same bill split 2 ways is 28.75 per person, tip included." },
     ],
     faq: [
       { q: "What is a standard tip percentage?", a: "In the US, 15–20% of the pre-tax bill is customary for table service." },
@@ -293,13 +293,13 @@ export const TOOLS: ToolContent[] = [
         "The amount saved is the original price multiplied by the discount percentage. Subtract the savings from the original price to get the final price.",
     },
     examples: [
-      { title: "Percent off", text: "A $100 item with 20% off saves you $20 and costs $80." },
-      { title: "Stacked sale", text: "A $250 item at 30% off saves $75 and costs $175." },
+      { title: "Percent off", text: "An item priced 100 with 20% off saves 20 and costs 80." },
+      { title: "Stacked sale", text: "An item priced 250 at 30% off saves 75 and costs 175." },
     ],
     faq: [
       { q: "How do I calculate 20% off?", a: "Multiply the price by 0.20 to get the savings, then subtract from the original price." },
       { q: "What does 'percent off' mean?", a: "It means the price is reduced by that percentage of the original price." },
-      { q: "How do I find the original price from a sale price?", a: "Divide the sale price by (1 − discount percentage). For example, $80 after 20% off is $80 ÷ 0.80 = $100." },
+      { q: "How do I find the original price from a sale price?", a: "Divide the sale price by (1 − discount percentage). For example, 80 after 20% off is 80 ÷ 0.80 = 100." },
     ],
     related: ["percentage-calculator", "tip-calculator", "fuel-cost-calculator"],
   },
@@ -309,22 +309,22 @@ export const TOOLS: ToolContent[] = [
     category: "Everyday",
     kind: "widget",
     metaDescription:
-      "Free fuel cost calculator: estimate trip fuel usage, total gas cost and cost per mile for any distance and MPG.",
+      "Free fuel cost calculator: estimate trip fuel usage and total cost in US (miles/MPG) or metric (km/km/L) units.",
     intro:
-      "Estimate how much a trip will cost in fuel. Enter the distance, your vehicle's fuel efficiency and the fuel price to see gallons needed, total cost and cost per mile.",
+      "Estimate how much a trip will cost in fuel. Choose US (miles, MPG, price per gallon) or metric (km, km/L, price per liter) units, then enter your distance, efficiency and fuel price to see the fuel needed and total cost.",
     howItWorks: {
-      formula: "Gallons = Distance ÷ MPG   ·   Cost = Gallons × Price per gallon",
+      formula: "Fuel needed = Distance ÷ Efficiency   ·   Cost = Fuel needed × Price",
       explanation:
-        "Divide the trip distance by your fuel efficiency (miles per gallon) to get the gallons needed, then multiply by the price per gallon for the total cost.",
+        "Divide the trip distance by your fuel efficiency to get the fuel volume needed (gallons in US units, liters in metric), then multiply by the fuel price (per gallon or per liter) for the total cost.",
     },
     examples: [
-      { title: "Road trip", text: "A 300-mile trip at 25 MPG uses 12 gallons; at $3.50/gallon the fuel costs $42." },
-      { title: "Cost per mile", text: "At 25 MPG and $3.50/gallon, fuel costs about $0.14 per mile." },
+      { title: "US example", text: "A 300-mile trip at 25 MPG uses 12 gallons; at 3.50 per gallon the fuel costs 42." },
+      { title: "Metric example", text: "A 300 km trip at 15 km/L uses 20 liters; at 2,500 per liter the fuel costs 50,000." },
     ],
     faq: [
-      { q: "How do I calculate fuel cost for a trip?", a: "Divide the distance by your MPG, then multiply by the fuel price per gallon." },
-      { q: "What is good fuel efficiency?", a: "Modern compact cars often exceed 30 MPG, while trucks and SUVs are typically lower." },
-      { q: "Does this work for km and liters?", a: "This calculator uses miles and US gallons. Use the unit converters to convert km to miles or liters to gallons first." },
+      { q: "How do I calculate fuel cost for a trip?", a: "Divide the distance by your fuel efficiency (MPG or km/L), then multiply by the fuel price (per gallon or per liter)." },
+      { q: "What is good fuel efficiency?", a: "Modern compact cars often exceed 30 MPG (about 12–13 km/L), while trucks and SUVs are typically lower." },
+      { q: "Does this work for km and liters?", a: "Yes. Switch the Units selector to Metric to use kilometers, km/L and a price per liter." },
     ],
     related: ["discount-calculator", "percentage-calculator", "date-difference-calculator"],
   },

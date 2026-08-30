@@ -1,6 +1,7 @@
-import type { CalculatorSpec, CalcResult, Inputs } from "./types";
+import type { CalcContext, CalcResult, CalculatorSpec, Inputs } from "./types";
 import { num } from "./types";
-import { formatNumber, formatCurrency, formatPercent } from "../format";
+import { formatNumber, formatPercent } from "../format";
+import { formatCurrency, currencySymbol } from "../currency";
 
 function parseDate(s: string): Date | null {
   if (!s) return null;
@@ -31,7 +32,7 @@ export function breakdown(from: Date, to: Date): { years: number; months: number
   return { years, months, days };
 }
 
-const error = (msg: string) => [{ label: "Error", value: "—", note: msg }];
+const error = (msg: string): CalcResult[] => [{ label: "Error", value: "—", note: msg }];
 
 export const percentage: CalculatorSpec = {
   slug: "percentage-calculator",
@@ -109,17 +110,17 @@ export const tip: CalculatorSpec = {
     { id: "pct", label: "Tip", type: "number", unit: "%", default: "15", min: 0 },
     { id: "people", label: "Number of people", type: "number", default: "1", min: 1 },
   ],
-  compute: (inp: Inputs) => {
+  compute: (inp: Inputs, ctx: CalcContext) => {
     const bill = num(inp, "bill");
     const pct = num(inp, "pct");
     const people = Math.max(1, Math.round(num(inp, "people")));
     const tipAmount = (bill * pct) / 100;
     const total = bill + tipAmount;
     return [
-      { label: "Tip amount", value: formatCurrency(tipAmount) },
-      { label: "Total bill", value: formatCurrency(total), highlight: true },
-      { label: "Tip per person", value: formatCurrency(tipAmount / people) },
-      { label: "Total per person", value: formatCurrency(total / people) },
+      { label: "Tip amount", value: formatCurrency(tipAmount, ctx.currency) },
+      { label: "Total bill", value: formatCurrency(total, ctx.currency), highlight: true },
+      { label: "Tip per person", value: formatCurrency(tipAmount / people, ctx.currency) },
+      { label: "Total per person", value: formatCurrency(total / people, ctx.currency) },
     ];
   },
 };
@@ -130,13 +131,13 @@ export const discount: CalculatorSpec = {
     { id: "price", label: "Original price", type: "number", unit: "$", default: "100", min: 0, step: "0.01" },
     { id: "pct", label: "Discount", type: "number", unit: "%", default: "20", min: 0 },
   ],
-  compute: (inp: Inputs) => {
+  compute: (inp: Inputs, ctx: CalcContext) => {
     const price = num(inp, "price");
     const pct = num(inp, "pct");
     const saved = (price * pct) / 100;
     return [
-      { label: "You save", value: formatCurrency(saved) },
-      { label: "Final price", value: formatCurrency(price - saved), highlight: true },
+      { label: "You save", value: formatCurrency(saved, ctx.currency) },
+      { label: "Final price", value: formatCurrency(price - saved, ctx.currency), highlight: true },
     ];
   },
 };
@@ -144,20 +145,53 @@ export const discount: CalculatorSpec = {
 export const fuelCost: CalculatorSpec = {
   slug: "fuel-cost-calculator",
   fields: [
-    { id: "distance", label: "Trip distance", type: "number", unit: "mi", default: "300", min: 0 },
-    { id: "mpg", label: "Fuel efficiency", type: "number", unit: "mpg", default: "25", min: 0.1 },
-    { id: "price", label: "Fuel price", type: "number", unit: "$/gal", default: "3.50", min: 0, step: "0.01" },
+    {
+      id: "system",
+      label: "Units",
+      type: "select",
+      options: [
+        { value: "us", label: "US (miles · mpg · per gallon)" },
+        { value: "metric", label: "Metric (km · km/L · per liter)" },
+      ],
+      default: "us",
+    },
+    {
+      id: "distance",
+      label: "Trip distance",
+      type: "number",
+      unit: (inp) => (inp.system === "metric" ? "km" : "mi"),
+      default: "300",
+      min: 0,
+    },
+    {
+      id: "efficiency",
+      label: "Fuel efficiency",
+      type: "number",
+      unit: (inp) => (inp.system === "metric" ? "km/L" : "mpg"),
+      default: "25",
+      min: 0.1,
+    },
+    {
+      id: "price",
+      label: "Fuel price",
+      type: "number",
+      unit: (inp, ctx) => (inp.system === "metric" ? `${currencySymbol(ctx.currency)}/L` : `${currencySymbol(ctx.currency)}/gal`),
+      default: "3.50",
+      min: 0,
+      step: "0.01",
+    },
   ],
-  compute: (inp: Inputs) => {
+  compute: (inp: Inputs, ctx: CalcContext) => {
     const distance = num(inp, "distance");
-    const mpg = num(inp, "mpg");
+    const efficiency = num(inp, "efficiency");
     const price = num(inp, "price");
-    if (mpg <= 0) return error("Fuel efficiency must be greater than zero.");
-    const gallons = distance / mpg;
+    if (efficiency <= 0) return error("Fuel efficiency must be greater than zero.");
+    const metric = inp.system === "metric";
+    const volume = distance / efficiency;
     return [
-      { label: "Fuel needed", value: `${formatNumber(gallons, 2)} gal` },
-      { label: "Total cost", value: formatCurrency(gallons * price), highlight: true },
-      { label: "Cost per mile", value: formatCurrency(price / mpg) },
+      { label: "Fuel needed", value: `${formatNumber(volume, 2)} ${metric ? "L" : "gal"}` },
+      { label: "Total cost", value: formatCurrency(volume * price, ctx.currency), highlight: true },
+      { label: metric ? "Cost per km" : "Cost per mile", value: formatCurrency(price / efficiency, ctx.currency) },
     ];
   },
 };

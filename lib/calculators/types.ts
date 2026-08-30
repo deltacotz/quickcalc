@@ -1,5 +1,7 @@
 // Shared types for calculator widgets and their pure compute functions.
 
+import type { Currency } from "../currency";
+
 /** Raw string values captured from form inputs. */
 export type Inputs = Record<string, string>;
 
@@ -11,8 +13,13 @@ export interface CalcResult {
   highlight?: boolean;
 }
 
-/** Resolve a field's unit suffix dynamically from current inputs. */
-export type UnitResolver = (inputs: Inputs) => string | undefined;
+/** Context passed to compute functions (currently just the active currency). */
+export interface CalcContext {
+  currency: Currency;
+}
+
+/** Resolve a field's unit suffix dynamically from current inputs + context. */
+export type UnitResolver = (inputs: Inputs, ctx: CalcContext) => string | undefined;
 
 export type FieldDef =
   | {
@@ -42,7 +49,7 @@ export type FieldDef =
 export interface CalculatorSpec {
   slug: string;
   fields: FieldDef[];
-  compute: (inputs: Inputs) => CalcResult[];
+  compute: (inputs: Inputs, ctx: CalcContext) => CalcResult[];
 }
 
 /** Parse an input value to a finite number (0 when absent/invalid). */

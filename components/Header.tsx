@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SITE_NAME } from "@/lib/site";
+import { CurrencySwitcher } from "@/components/CurrencySwitcher";
 
 export function Header() {
   return (
@@ -18,6 +19,7 @@ export function Header() {
           <Link href="/about" className="hidden hover:text-zinc-900 sm:inline">
             About
           </Link>
+          <CurrencySwitcher />
         </nav>
       </div>
     </header>

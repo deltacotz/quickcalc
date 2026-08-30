@@ -15,17 +15,6 @@ export function formatNumber(value: number, maxDecimals = 2): string {
   });
 }
 
-/** Format a value as USD currency. */
-export function formatCurrency(value: number): string {
-  if (!Number.isFinite(value)) return "—";
-  return value.toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
-}
-
 /** Append a percent sign to a formatted number. */
 export function formatPercent(value: number, maxDecimals = 2): string {
   return `${formatNumber(value, maxDecimals)}%`;

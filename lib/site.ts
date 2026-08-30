@@ -1,5 +1,7 @@
 // Central site configuration. Change these before launch.
 
+import type { Currency } from "./currency";
+
 export const SITE_NAME = "QuickCalc";
 export const SITE_TAGLINE = "Free online calculators and unit converters";
 export const SITE_DESCRIPTION =
@@ -17,6 +19,10 @@ export const ADSENSE_ENABLED = ADSENSE_CLIENT.startsWith("ca-pub-");
 // --- Analytics ----------------------------------------------------------
 // Google Analytics 4 measurement ID, e.g. "G-XXXXXXXXXX". Empty = disabled.
 export const GA_MEASUREMENT_ID = "";
+
+// --- Currency -----------------------------------------------------------
+// Fallback default (auto-detection from the visitor's locale runs first).
+export const DEFAULT_CURRENCY: Currency = "USD";
 
 // --- Contact / compliance ----------------------------------------------
 export const CONTACT_EMAIL = "hello@dts.co.tz";

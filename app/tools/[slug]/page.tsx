@@ -8,7 +8,6 @@ import { HowItWorks } from "@/components/HowItWorks";
 import { ExampleSection } from "@/components/ExampleSection";
 import { FaqSection } from "@/components/FaqSection";
 import { Disclaimers } from "@/components/Disclaimers";
-import { AffiliateCta } from "@/components/AffiliateCta";
 import { AdSlot } from "@/components/AdSlot";
 import { JsonLd } from "@/components/JsonLd";
 import { ToolCard } from "@/components/ToolCard";
@@ -91,9 +90,6 @@ export default async function ToolPage({ params }: Props) {
         <FaqSection faq={tool.faq} />
 
         {tool.disclaimers && <Disclaimers kinds={tool.disclaimers} />}
-        {tool.affiliate && (
-          <AffiliateCta cta={tool.affiliate.cta} url={tool.affiliate.url} note={tool.affiliate.note} />
-        )}
 
         {related.length > 0 && (
           <section className="mt-10">

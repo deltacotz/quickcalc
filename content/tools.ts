@@ -147,11 +147,6 @@ export const TOOLS: ToolContent[] = [
       { q: "What is amortization?", a: "Amortization is the gradual repayment of a loan through scheduled payments that cover both principal and interest." },
     ],
     disclaimers: ["financial"],
-    affiliate: {
-      cta: "Compare current mortgage rates",
-      url: "https://www.quickcalc.example/go/mortgage-rates",
-      note: "This calculator is for estimation only and is not a loan offer.",
-    },
     related: ["loan-calculator", "compound-interest-calculator", "salary-to-hourly-calculator"],
   },
   {
@@ -178,11 +173,6 @@ export const TOOLS: ToolContent[] = [
       { q: "Does this calculator include fees?", a: "No. It covers principal and interest only; origination and other fees are excluded." },
     ],
     disclaimers: ["financial"],
-    affiliate: {
-      cta: "Check today's personal loan rates",
-      url: "https://www.quickcalc.example/go/loan-rates",
-      note: "This calculator is for estimation only and is not a loan offer.",
-    },
     related: ["mortgage-calculator", "compound-interest-calculator", "percentage-calculator"],
   },
   {
@@ -209,11 +199,6 @@ export const TOOLS: ToolContent[] = [
       { q: "What is the difference between simple and compound interest?", a: "Simple interest is paid only on the principal, while compound interest also pays on accumulated interest." },
     ],
     disclaimers: ["financial"],
-    affiliate: {
-      cta: "Open a brokerage or retirement account",
-      url: "https://www.quickcalc.example/go/investing",
-      note: "Projections are illustrative and do not guarantee future returns.",
-    },
     related: ["mortgage-calculator", "loan-calculator", "salary-to-hourly-calculator"],
   },
   {

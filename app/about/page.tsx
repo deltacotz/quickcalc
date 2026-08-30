@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { SITE_NAME, SITE_TAGLINE } from "@/lib/site";
+import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: `About — ${SITE_NAME}`,
   description: `About ${SITE_NAME}: free online calculators and unit converters.`,
+  alternates: { canonical: `${SITE_URL}/about` },
 };
 
 export default function AboutPage() {

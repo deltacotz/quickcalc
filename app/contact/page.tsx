@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { SITE_NAME, CONTACT_EMAIL } from "@/lib/site";
+import { SITE_NAME, CONTACT_EMAIL, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: `Contact — ${SITE_NAME}`,
   description: `Contact ${SITE_NAME}.`,
+  alternates: { canonical: `${SITE_URL}/contact` },
 };
 
 export default function ContactPage() {

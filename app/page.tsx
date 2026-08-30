@@ -1,9 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { TOOLS, type ToolCategory } from "@/content/tools";
 import { DIMENSIONS } from "@/lib/convert";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
 import { ToolCard } from "@/components/ToolCard";
 import { JsonLd } from "@/components/JsonLd";
+
+export const metadata: Metadata = {
+  alternates: { canonical: SITE_URL },
+};
 
 const CATEGORIES: ToolCategory[] = ["Everyday", "Finance", "Health", "Education"];
 

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { DIMENSIONS } from "@/lib/convert";
-import { SITE_NAME } from "@/lib/site";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: `Unit Converters — ${SITE_NAME}`,
   description:
     "Free online unit converters for length, weight, temperature, area, volume, speed, data storage and time — with instant conversions and tables.",
+  alternates: { canonical: `${SITE_URL}/converters` },
 };
 
 export default function ConvertersIndex() {

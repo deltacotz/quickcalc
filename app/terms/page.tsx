@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { SITE_NAME, CONTACT_EMAIL } from "@/lib/site";
+import { SITE_NAME, CONTACT_EMAIL, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: `Terms of Use — ${SITE_NAME}`,
   description: `Terms of use for ${SITE_NAME}.`,
+  alternates: { canonical: `${SITE_URL}/terms` },
 };
 
 export default function TermsPage() {

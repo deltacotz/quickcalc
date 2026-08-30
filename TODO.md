@@ -25,10 +25,10 @@ Original slots (finance tools):
 ## Monetization & ops
 
 - [ ] Paste AdSense publisher ID into `ADSENSE_CLIENT` in `lib/site.ts` (after AdSense approval).
-- [ ] Add a GA4 measurement ID to `GA_MEASUREMENT_ID` in `lib/site.ts`.
+- [x] Add a GA4 measurement ID (done: `G-JWGR6Z0QGC`).
 - [x] Custom domain: `https://www.calculator.co.tz` is connected and set as `SITE_URL` (apex redirects to www).
 - [ ] Integrate a Google-certified CMP before serving ads to EEA/UK visitors.
-- [ ] Submit `https://www.calculator.co.tz/sitemap.xml` in Google Search Console (add both `www.calculator.co.tz` and `calculator.co.tz`).
+- [x] Submit `https://www.calculator.co.tz/sitemap.xml` in Google Search Console (add both `www.calculator.co.tz` and `calculator.co.tz`).
 - [ ] Choose an affiliate network and re-add the CTAs above.
 
 ## Future tools (wave 2)

@@ -52,3 +52,17 @@ Still optional later: flooring/concrete, BTU, scientific calculator, and more ni
 
 - [x] Add explicit `canonical` to the home page and converter index (hub) pages (also added to the compliance pages).
 - [x] iOS apple-touch-icon (180×180 PNG at `app/apple-icon.png`).
+
+## Off-page SEO / backlinks
+
+The plan to grow external links and referral traffic. Code items I can build; outreach/submission items are manual.
+
+- [ ] Embeddable calculator widgets — `/embed/[slug]` route + an "Embed" button + copy-paste iframe snippet on each tool.
+- [ ] Brand / press page (`/press`) — downloadable logo (SVG/PNG), site description, suggested anchor text.
+- [ ] Outreach kit (`docs/outreach.md`) — directory list + guest-post pitch and social post templates.
+- [ ] Submit to free tool directories & "best calculators" lists.
+- [ ] Tanzania local citations (consistent name/address/phone).
+- [ ] Guest posts / outreach to East Africa finance, tech and education sites.
+- [ ] Q&A & community participation (Reddit, Quora, Tanzanian forums) — value-first, no spam.
+- [ ] Social profiles (Facebook, X, LinkedIn, Instagram).
+- [ ] Data-driven linkable asset (e.g. Tanzania salary / cost-of-living / tax reference).

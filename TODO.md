@@ -42,6 +42,12 @@ Original slots (finance tools):
 
 Still optional later: flooring/concrete, BTU, scientific calculator, and more niche tools.
 
+## Local / Tanzania SEO
+
+- [x] USD → TZS and TZS → USD preset converter pages (`/usd-to-tzs`, `/tzs-to-usd`).
+- [x] Tanzania hub page (`/tanzania`).
+- [ ] Tanzania PAYE / take-home salary calculator (needs current TRA tax bands).
+
 ## SEO / polish
 
 - [x] Add explicit `canonical` to the home page and converter index (hub) pages (also added to the compliance pages).

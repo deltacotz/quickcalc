@@ -26,6 +26,9 @@ export function Header() {
             <Link href="/converters" className="hover:text-zinc-900">
               Unit Converters
             </Link>
+            <Link href="/tanzania" className="hover:text-zinc-900">
+              Tanzania
+            </Link>
             <Link href="/about" className="hover:text-zinc-900">
               About
             </Link>
@@ -60,6 +63,13 @@ export function Header() {
               className="py-2 text-sm font-medium text-zinc-700 hover:text-zinc-900"
             >
               Unit Converters
+            </Link>
+            <Link
+              href="/tanzania"
+              onClick={() => setOpen(false)}
+              className="py-2 text-sm font-medium text-zinc-700 hover:text-zinc-900"
+            >
+              Tanzania
             </Link>
             <Link
               href="/about"

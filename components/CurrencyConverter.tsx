@@ -17,12 +17,18 @@ function formatMoney(value: number, currency: string): string {
   }
 }
 
-export function CurrencyConverter() {
+export function CurrencyConverter({
+  defaultFrom = "USD",
+  defaultTo = "TZS",
+}: {
+  defaultFrom?: string;
+  defaultTo?: string;
+}) {
   const [rates, setRates] = useState<Record<string, number> | null>(null);
   const [updated, setUpdated] = useState("");
   const [error, setError] = useState("");
-  const [from, setFrom] = useState("USD");
-  const [to, setTo] = useState("TZS");
+  const [from, setFrom] = useState(defaultFrom);
+  const [to, setTo] = useState(defaultTo);
   const [amount, setAmount] = useState("1");
 
   useEffect(() => {

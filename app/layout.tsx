@@ -37,23 +37,22 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex min-h-screen flex-col bg-white text-zinc-900 antialiased">
+        {/* AdSense tag — rendered as a literal <script> so the AdSense crawler sees it in the raw HTML.
+            NOTE: before serving ads to EEA/UK visitors you must also integrate a
+            Google-certified Consent Management Platform (CMP). */}
+        {ADSENSE_ENABLED && (
+          <script
+            async
+            crossOrigin="anonymous"
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
+          />
+        )}
+
         <CurrencyProvider>
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
         </CurrencyProvider>
-
-        {/* Google AdSense — loads only once ADSENSE_CLIENT is set.
-            NOTE: before serving ads to EEA/UK visitors you must also integrate a
-            Google-certified Consent Management Platform (CMP). */}
-        {ADSENSE_ENABLED && (
-          <Script
-            async
-            strategy="beforeInteractive"
-            crossOrigin="anonymous"
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
-          />
-        )}
 
         {/* Google Analytics 4 — loads only once GA_MEASUREMENT_ID is set. */}
         {GA_MEASUREMENT_ID && (

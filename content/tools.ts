@@ -525,6 +525,32 @@ export const TOOLS: ToolContent[] = [
     ],
     related: ["age-calculator", "date-difference-calculator", "percentage-calculator"],
   },
+  {
+    slug: "tanzania-paye-calculator",
+    name: "Tanzania PAYE Calculator",
+    category: "Finance",
+    kind: "widget",
+    metaDescription:
+      "Free Tanzania PAYE calculator: work out your take-home pay after income tax. Enter your gross monthly salary in TZS.",
+    intro:
+      "Calculate your take-home pay in Tanzania after PAYE income tax. Enter your gross monthly salary in Tanzanian Shillings to see your monthly tax and net pay, based on the current TRA resident tax bands.",
+    howItWorks: {
+      formula: "Progressive bands: 0% ≤270k · 8% 270–520k · 20% 520–760k · 25% 760k–1M · 30% >1M (monthly)",
+      explanation:
+        "PAYE (Pay As You Earn) is withheld from employment income each month. Tax is calculated progressively: each band's rate applies only to income within that band. The first 270,000 TZS per month is tax-free.",
+    },
+    examples: [
+      { title: "Example", text: "A 1,000,000 TZS gross salary is taxed 128,000 TZS, giving about 872,000 TZS take-home per month." },
+    ],
+    faq: [
+      { q: "What is PAYE?", a: "Pay As You Earn is the income tax deducted from employment income every month before you're paid." },
+      { q: "What are the Tanzania PAYE tax bands?", a: "For residents: 0% up to 270,000 TZS, 8% on 270,001–520,000, 20% on 520,001–760,000, 25% on 760,001–1,000,000, and 30% above 1,000,000 TZS per month." },
+      { q: "Does this include NSSF and other deductions?", a: "No. This shows PAYE income tax only. NSSF (10% of salary) and other deductions are separate." },
+      { q: "What is the tax-free threshold in Tanzania?", a: "The first 270,000 TZS of monthly income is taxed at 0%." },
+    ],
+    disclaimers: ["financial"],
+    related: ["salary-to-hourly-calculator", "loan-calculator", "retirement-calculator"],
+  },
 ];
 
 export function getTool(slug: string): ToolContent | undefined {

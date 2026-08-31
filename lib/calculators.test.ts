@@ -4,6 +4,7 @@ import { monthlyPayment, mortgage, compoundInterest, salaryToHourly, retirement 
 import { bmi, calorie, bodyFat } from "./calculators/health";
 import { percentage, tip, discount, fuelCost, age, dayDiff, breakdown, pregnancy } from "./calculators/everyday";
 import { paint, electrical } from "./calculators/home";
+import { payeTax, tanzaniaPaye } from "./calculators/tanzania";
 import { computeGpa } from "./calculators/education";
 
 const USD: { currency: "USD" } = { currency: "USD" };
@@ -135,6 +136,16 @@ test("paint", () => {
 test("electrical", () => {
   const res = electrical.compute({ volts: "230", amps: "10" }, USD);
   assert.equal(res[0].value, "2,300 W");
+});
+
+test("tanzania PAYE", () => {
+  assert.equal(payeTax(270000), 0);
+  assert.equal(payeTax(520000), 20000);
+  assert.equal(payeTax(760000), 68000);
+  assert.equal(payeTax(1000000), 128000);
+  const res = tanzaniaPaye.compute({ salary: "1000000" }, USD);
+  assert.equal(res[0].value, "TSh 872,000");
+  assert.equal(res[1].value, "TSh 128,000");
 });
 
 test("GPA", () => {

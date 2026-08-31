@@ -3,6 +3,7 @@ import { percentage, age, dateDifference, tip, discount, fuelCost, pregnancy } f
 import { mortgage, loan, compoundInterest, salaryToHourly, retirement } from "./finance";
 import { bmi, calorie, bodyFat } from "./health";
 import { paint, electrical } from "./home";
+import { tanzaniaPaye } from "./tanzania";
 
 export type { CalculatorSpec, CalcResult, FieldDef, Inputs } from "./types";
 
@@ -25,6 +26,7 @@ export const CALCULATORS: CalculatorSpec[] = [
   fuelCost,
   paint,
   electrical,
+  tanzaniaPaye,
 ];
 
 export function getCalculator(slug: string): CalculatorSpec | undefined {

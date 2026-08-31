@@ -46,7 +46,7 @@ Still optional later: flooring/concrete, BTU, scientific calculator, and more ni
 
 - [x] USD → TZS and TZS → USD preset converter pages (`/usd-to-tzs`, `/tzs-to-usd`).
 - [x] Tanzania hub page (`/tanzania`).
-- [ ] Tanzania PAYE / take-home salary calculator (needs current TRA tax bands).
+- [x] Tanzania PAYE / take-home salary calculator (`/tools/tanzania-paye-calculator`).
 
 ## SEO / polish
 

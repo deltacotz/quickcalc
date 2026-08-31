@@ -49,7 +49,7 @@ export default function RootLayout({
         {ADSENSE_ENABLED && (
           <Script
             async
-            strategy="afterInteractive"
+            strategy="beforeInteractive"
             crossOrigin="anonymous"
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
           />

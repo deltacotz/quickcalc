@@ -3,7 +3,7 @@ import { num } from "./types";
 import { formatCurrency } from "../currency";
 
 // Tanzania resident PAYE monthly bands (TZS). Verify against the latest TRA rates.
-const BANDS = [
+export const PAYE_BANDS = [
   { upTo: 270000, rate: 0 },
   { upTo: 520000, rate: 0.08 },
   { upTo: 760000, rate: 0.2 },
@@ -15,7 +15,7 @@ const BANDS = [
 export function payeTax(monthlySalary: number): number {
   let tax = 0;
   let prev = 0;
-  for (const band of BANDS) {
+  for (const band of PAYE_BANDS) {
     if (monthlySalary > prev) {
       const taxable = Math.min(monthlySalary, band.upTo) - prev;
       tax += taxable * band.rate;

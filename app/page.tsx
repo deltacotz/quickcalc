@@ -26,10 +26,34 @@ const websiteSchema = {
   description: SITE_TAGLINE,
 };
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE_NAME,
+  url: SITE_URL,
+  logo: `${SITE_URL}/apple-icon.png`,
+  sameAs: ["https://x.com/tzcalculator", "https://www.instagram.com/tzcalculator"],
+};
+
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: SITE_NAME,
+  url: SITE_URL,
+  applicationCategory: "UtilitiesApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  description: SITE_DESCRIPTION,
+  featureList:
+    "USD to TZS converter, Tanzania PAYE calculator, loan calculator, mortgage calculator, percentage calculator, BMI calculator, and metric/imperial unit converters.",
+};
+
 export default function Home() {
   return (
     <>
       <JsonLd data={websiteSchema} />
+      <JsonLd data={organizationSchema} />
+      <JsonLd data={webAppSchema} />
       <div className="mx-auto max-w-5xl px-4 py-8">
         <section className="rounded-2xl bg-blue-600 px-6 py-10 text-white">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">

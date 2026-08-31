@@ -1,0 +1,16 @@
+# Calculator — Free Calculators & Unit Converters
+
+> Free online calculators and unit converters for Tanzania and worldwide — USD↔TZS, PAYE tax, loans, percentages, BMI and metric/imperial conversions. Rates and tax bands are indicative and should be verified.
+
+- [USD to TZS](https://www.calculator.co.tz/usd-to-tzs): Live US Dollar to Tanzanian Shilling converter.
+- [TZS to USD](https://www.calculator.co.tz/tzs-to-usd): Tanzanian Shilling to US Dollar converter.
+- [Tanzania PAYE Tax Brackets](https://www.calculator.co.tz/tanzania/paye-tax-brackets): Current TRA resident monthly bands.
+- [Tanzania PAYE Calculator](https://www.calculator.co.tz/tools/tanzania-paye-calculator): Take-home pay after PAYE income tax.
+- [Tanzania Currency Guide](https://www.calculator.co.tz/tanzania/currency): How the TZS and the USD↔TZS rate work.
+- [Currency Converter](https://www.calculator.co.tz/tools/currency-converter): 100+ currencies with live rates.
+- [Loan Calculator](https://www.calculator.co.tz/tools/loan-calculator)
+- [Mortgage Calculator](https://www.calculator.co.tz/tools/mortgage-calculator)
+- [Compound Interest Calculator](https://www.calculator.co.tz/tools/compound-interest-calculator)
+- [Percentage Calculator](https://www.calculator.co.tz/tools/percentage-calculator)
+- [BMI Calculator](https://www.calculator.co.tz/tools/bmi-calculator)
+- [Length Converter](https://www.calculator.co.tz/converters/length) · [Weight](https://www.calculator.co.tz/converters/weight) · [Temperature](https://www.calculator.co.tz/converters/temperature) · [Area](https://www.calculator.co.tz/converters/area) · [Volume](https://www.calculator.co.tz/converters/volume) · [Speed](https://www.calculator.co.tz/converters/speed) · [Data](https://www.calculator.co.tz/converters/data) · [Time](https://www.calculator.co.tz/converters/time)

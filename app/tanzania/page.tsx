@@ -122,6 +122,20 @@ export default function TanzaniaPage() {
           </div>
         </section>
 
+        <section className="mt-10">
+          <h2 className="text-xl font-semibold tracking-tight text-zinc-900">Guides &amp; reference</h2>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <Link href="/tanzania/paye-tax-brackets" className="rounded-lg border border-zinc-200 bg-white p-4 transition-colors hover:border-blue-400 hover:bg-blue-50/40">
+              <h3 className="font-semibold text-zinc-900">PAYE Tax Brackets</h3>
+              <p className="mt-1 text-sm text-zinc-600">Current TRA resident income tax bands</p>
+            </Link>
+            <Link href="/tanzania/currency" className="rounded-lg border border-zinc-200 bg-white p-4 transition-colors hover:border-blue-400 hover:bg-blue-50/40">
+              <h3 className="font-semibold text-zinc-900">Currency Guide</h3>
+              <p className="mt-1 text-sm text-zinc-600">How the TZS and USD↔TZS rate work</p>
+            </Link>
+          </div>
+        </section>
+
         <div className="mt-10">
           <FaqSection faq={FAQ} />
         </div>

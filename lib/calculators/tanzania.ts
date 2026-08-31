@@ -1,4 +1,4 @@
-import type { CalculatorSpec, Inputs } from "./types";
+import type { CalcResult, CalculatorSpec, Inputs } from "./types";
 import { num } from "./types";
 import { formatCurrency } from "../currency";
 
@@ -41,5 +41,44 @@ export const tanzaniaPaye: CalculatorSpec = {
       { label: "Net (take-home) annual", value: formatCurrency(netMonthly * 12, "TZS") },
       { label: "PAYE tax (annual)", value: formatCurrency(monthlyTax * 12, "TZS") },
     ];
+  },
+};
+
+export const tanzaniaVat: CalculatorSpec = {
+  slug: "tanzania-vat-calculator",
+  fields: [
+    {
+      id: "mode",
+      label: "Calculation",
+      type: "select",
+      options: [
+        { value: "add", label: "Add VAT (price excl. VAT)" },
+        { value: "remove", label: "Remove VAT (price incl. VAT)" },
+      ],
+      default: "add",
+    },
+    { id: "amount", label: "Amount", type: "number", unit: "TSh", default: "100000", min: 0, step: "1000" },
+    { id: "rate", label: "VAT rate", type: "number", unit: "%", default: "18", min: 0, step: "0.5" },
+  ],
+  compute: (inp: Inputs) => {
+    const amount = num(inp, "amount");
+    const rate = num(inp, "rate");
+    if (amount <= 0) return [{ label: "Error", value: "—", note: "Enter a positive amount." }];
+    const add = inp.mode !== "remove";
+    const vat = add ? (amount * rate) / 100 : amount - amount / (1 + rate / 100);
+    const excl = add ? amount : amount / (1 + rate / 100);
+    const total = add ? amount + vat : amount;
+    const f = (v: number) => formatCurrency(v, "TZS");
+    const results: CalcResult[] = [];
+    if (add) {
+      results.push({ label: "VAT amount", value: f(vat) });
+      results.push({ label: "Total incl. VAT", value: f(total), highlight: true });
+      results.push({ label: "Amount excl. VAT", value: f(excl) });
+    } else {
+      results.push({ label: "Amount excl. VAT", value: f(excl), highlight: true });
+      results.push({ label: "VAT amount", value: f(vat) });
+      results.push({ label: "Total incl. VAT", value: f(total) });
+    }
+    return results;
   },
 };

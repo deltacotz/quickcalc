@@ -44,6 +44,13 @@ export type FieldDef =
       type: "select";
       options: { value: string; label: string }[];
       default?: string;
+    }
+  | {
+      id: string;
+      label: string;
+      type: "text";
+      placeholder?: string;
+      default?: string;
     };
 
 export interface CalculatorSpec {

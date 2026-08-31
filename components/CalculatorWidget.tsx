@@ -64,6 +64,22 @@ function FieldInput({
     );
   }
 
+  if (field.type === "text") {
+    return (
+      <label htmlFor={id} className="block">
+        <span className="text-sm font-medium text-zinc-700">{field.label}</span>
+        <input
+          id={id}
+          type="text"
+          value={value}
+          placeholder={field.placeholder}
+          onChange={(e) => onChange(e.target.value)}
+          className="mt-1 w-full rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-900"
+        />
+      </label>
+    );
+  }
+
   const unit =
     typeof field.unit === "function"
       ? field.unit(inputs, { currency })

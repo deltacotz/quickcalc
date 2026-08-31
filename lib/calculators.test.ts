@@ -2,9 +2,9 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { monthlyPayment, mortgage, compoundInterest, salaryToHourly, retirement } from "./calculators/finance";
 import { bmi, calorie, bodyFat } from "./calculators/health";
-import { percentage, tip, discount, fuelCost, age, dayDiff, breakdown, pregnancy } from "./calculators/everyday";
+import { percentage, tip, discount, fuelCost, age, dayDiff, breakdown, pregnancy, average } from "./calculators/everyday";
 import { paint, electrical } from "./calculators/home";
-import { payeTax, tanzaniaPaye } from "./calculators/tanzania";
+import { payeTax, tanzaniaPaye, tanzaniaVat } from "./calculators/tanzania";
 import { mobileMoneyFee } from "./calculators/mobilemoney";
 import { feeFor } from "./mobilemoney";
 import { computeGpa } from "./calculators/education";
@@ -173,6 +173,25 @@ test("mobile money: M-Pesa send is free up to 10,000", () => {
 test("mobile money calculator compute", () => {
   const res = mobileMoneyFee.compute({ operator: "mpesa", type: "withdraw", amount: "10000" }, USD);
   assert.equal(res[0].value, "TSh 8,016");
+});
+
+test("tanzania VAT (add)", () => {
+  const res = tanzaniaVat.compute({ mode: "add", amount: "100000", rate: "18" }, USD);
+  assert.equal(res[0].value, "TSh 18,000"); // VAT
+  assert.equal(res[1].value, "TSh 118,000"); // total incl VAT
+});
+
+test("tanzania VAT (remove)", () => {
+  const res = tanzaniaVat.compute({ mode: "remove", amount: "118000", rate: "18" }, USD);
+  assert.equal(res[0].value, "TSh 100,000"); // amount excl VAT
+  assert.equal(res[1].value, "TSh 18,000"); // VAT
+});
+
+test("average", () => {
+  const res = average.compute({ numbers: "10, 20, 30, 40" }, USD);
+  assert.equal(res[0].value, "25");
+  assert.equal(res[1].value, "100");
+  assert.equal(res[2].value, "4");
 });
 
 test("GPA", () => {

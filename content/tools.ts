@@ -578,6 +578,56 @@ export const TOOLS: ToolContent[] = [
     disclaimers: ["financial"],
     related: ["currency-converter", "tanzania-paye-calculator", "loan-calculator"],
   },
+  {
+    slug: "tanzania-vat-calculator",
+    name: "Tanzania VAT Calculator",
+    category: "Finance",
+    kind: "widget",
+    metaDescription:
+      "Free Tanzania VAT calculator: add or remove 18% VAT on any amount in TZS, showing the VAT amount and total.",
+    intro:
+      "Work out Tanzania's Value Added Tax (VAT) quickly. Choose to add VAT to a price (excl. VAT) or remove VAT from a price (incl. VAT), enter the amount and see the VAT and the total. The standard VAT rate is 18%.",
+    howItWorks: {
+      formula: "Add: total = amount × (1 + rate/100)  ·  Remove: net = amount ÷ (1 + rate/100)",
+      explanation:
+        "To add VAT, multiply the net amount by (1 + rate/100). To remove VAT from a gross amount, divide by (1 + rate/100) to get the net amount; the VAT is the difference. Tanzania's standard VAT rate is 18%.",
+    },
+    examples: [
+      { title: "Adding VAT", text: "An item priced 100,000 TZS excl. VAT plus 18% is 118,000 TZS, with 18,000 TZS VAT." },
+      { title: "Removing VAT", text: "A 118,000 TZS gross price is 100,000 TZS excl. VAT, with 18,000 TZS VAT." },
+    ],
+    faq: [
+      { q: "What is the VAT rate in Tanzania?", a: "The standard VAT rate in Tanzania is 18%, with some goods and services zero-rated or exempt." },
+      { q: "How do I add VAT to a price?", a: "Multiply the net amount by 1.18. For example, 100,000 × 1.18 = 118,000." },
+      { q: "How do I remove VAT from a price?", a: "Divide the gross amount by 1.18 to get the net amount; the VAT is the difference." },
+    ],
+    disclaimers: ["financial"],
+    related: ["tanzania-paye-calculator", "discount-calculator", "percentage-calculator"],
+  },
+  {
+    slug: "average-calculator",
+    name: "Average Calculator",
+    category: "Everyday",
+    kind: "widget",
+    metaDescription:
+      "Free average calculator: find the mean, sum and count of a list of numbers in seconds.",
+    intro:
+      "Calculate the average (mean) of any list of numbers. Enter the numbers separated by commas and see the average, total and count instantly.",
+    howItWorks: {
+      formula: "Average = Sum of numbers ÷ Count",
+      explanation:
+        "Add up all the numbers and divide by how many there are. This is the arithmetic mean — the most common form of average.",
+    },
+    examples: [
+      { title: "Example", text: "The average of 10, 20, 30 and 40 is (10 + 20 + 30 + 40) ÷ 4 = 25." },
+    ],
+    faq: [
+      { q: "How do I calculate an average?", a: "Add all the numbers together and divide by the total count. For example, 10 + 20 + 30 = 60, and 60 ÷ 3 = 20." },
+      { q: "What is the difference between mean, median and mode?", a: "The mean is the average from dividing the sum by the count. The median is the middle value, and the mode is the most common value." },
+      { q: "Can I enter negative numbers?", a: "Yes, negative numbers are included in the average." },
+    ],
+    related: ["percentage-calculator", "gpa-calculator", "date-difference-calculator"],
+  },
 ];
 
 export function getTool(slug: string): ToolContent | undefined {

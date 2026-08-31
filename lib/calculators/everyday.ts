@@ -237,3 +237,29 @@ export const pregnancy: CalculatorSpec = {
     ];
   },
 };
+
+export const average: CalculatorSpec = {
+  slug: "average-calculator",
+  fields: [
+    {
+      id: "numbers",
+      label: "Numbers (comma-separated)",
+      type: "text",
+      placeholder: "e.g. 10, 20, 30, 40",
+      default: "10, 20, 30, 40",
+    },
+  ],
+  compute: (inp: Inputs) => {
+    const nums = (inp.numbers ?? "")
+      .split(/[,;\s]+/)
+      .map((s) => Number.parseFloat(s))
+      .filter((n) => Number.isFinite(n));
+    if (nums.length === 0) return error("Enter at least one number.");
+    const sum = nums.reduce((a, b) => a + b, 0);
+    return [
+      { label: "Average (mean)", value: formatNumber(sum / nums.length, 2), highlight: true },
+      { label: "Sum", value: formatNumber(sum, 2) },
+      { label: "Count", value: `${nums.length}` },
+    ];
+  },
+};

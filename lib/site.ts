@@ -13,7 +13,7 @@ export const SITE_URL = "https://www.calculator.co.tz";
 // --- Google AdSense -----------------------------------------------------
 // Paste your AdSense publisher ID here, e.g. "ca-pub-1234567890123456".
 // Ads render ONLY when this is set (keeps the site clean pre-approval).
-export const ADSENSE_CLIENT = "";
+export const ADSENSE_CLIENT = "ca-pub-3764832370784513";
 export const ADSENSE_ENABLED = ADSENSE_CLIENT.startsWith("ca-pub-");
 
 // --- Analytics ----------------------------------------------------------

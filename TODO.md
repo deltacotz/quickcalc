@@ -24,7 +24,7 @@ Original slots (finance tools):
 
 ## Monetization & ops
 
-- [ ] Paste AdSense publisher ID into `ADSENSE_CLIENT` in `lib/site.ts` (after AdSense approval).
+- [x] Paste AdSense publisher ID into `ADSENSE_CLIENT` (done: `ca-pub-3764832370784513`).
 - [x] Add a GA4 measurement ID (done: `G-JWGR6Z0QGC`).
 - [x] Custom domain: `https://www.calculator.co.tz` is connected and set as `SITE_URL` (apex redirects to www).
 - [ ] Integrate a Google-certified CMP before serving ads to EEA/UK visitors.

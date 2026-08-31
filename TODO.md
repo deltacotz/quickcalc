@@ -52,5 +52,3 @@ Still optional later: flooring/concrete, BTU, scientific calculator, and more ni
 
 - [x] Add explicit `canonical` to the home page and converter index (hub) pages (also added to the compliance pages).
 - [x] iOS apple-touch-icon (180×180 PNG at `app/apple-icon.png`).
-- [ ] Consider `HowTo` or `Calculator`-specific structured data beyond `FAQPage`.
-- [ ] Add a sitemap submission reminder to the README's launch checklist.

@@ -24,10 +24,11 @@ Original slots (finance tools):
 
 ## Monetization & ops
 
-- [x] Paste AdSense publisher ID into `ADSENSE_CLIENT` (done: `ca-pub-3764832370784513`).
+- [x] Paste AdSense publisher ID into `ADSENSE_CLIENT` (done: `ca-pub-3764832370784513`, site verified).
+- [ ] Wait for AdSense content review/approval, then turn on Auto ads (or create manual ad units).
 - [x] Add a GA4 measurement ID (done: `G-JWGR6Z0QGC`).
 - [x] Custom domain: `https://www.calculator.co.tz` is connected and set as `SITE_URL` (apex redirects to www).
-- [ ] Integrate a Google-certified CMP before serving ads to EEA/UK visitors.
+- [ ] Integrate a Google-certified CMP before serving ads to EEA/UK visitors (use Google Privacy & Messaging — no code change needed).
 - [x] Submit `https://www.calculator.co.tz/sitemap.xml` in Google Search Console (add both `www.calculator.co.tz` and `calculator.co.tz`).
 - [ ] Choose an affiliate network and re-add the CTAs above.
 
@@ -40,7 +41,10 @@ Original slots (finance tools):
 - [x] **Body fat % calculator** (US Navy method)
 - [x] **Home/DIY** — paint calculator + amps↔watts.
 
-Still optional later: flooring/concrete, BTU, scientific calculator, and more niche tools.
+Still optional later:
+- [ ] More currency pairs — USD→KES, USD→UGX, EUR→TZS, etc. (one-line addition via `content/currency-pages.ts`).
+- [ ] Flooring/concrete, BTU, and scientific calculators.
+- [ ] More niche tools as search demand suggests.
 
 ## Local / Tanzania SEO
 
@@ -66,3 +70,13 @@ The plan to grow external links and referral traffic. Code items I can build; ou
 - [ ] Q&A & community participation (Reddit, Quora, Tanzanian forums) — value-first, no spam.
 - [ ] Social profiles (Facebook, X, LinkedIn, Instagram).
 - [ ] Data-driven linkable asset (e.g. Tanzania salary / cost-of-living / tax reference).
+
+## Maintenance & reliability
+
+- [ ] Re-verify Tanzania PAYE tax bands each July (TRA budget changes) and update `lib/calculators/tanzania.ts`.
+- [ ] Upgrade the currency-rate API from open.er-api.com to a paid/reliable FX provider if the converter grows.
+- [ ] Confirm Core Web Vitals (LCP/CLS) in PageSpeed Insights once Google indexes.
+
+## Localization (future)
+
+- [ ] Swahili language version (larger effort — UI and content translation).

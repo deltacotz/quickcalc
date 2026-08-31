@@ -37,9 +37,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex min-h-screen flex-col bg-white text-zinc-900 antialiased">
-        {/* AdSense tag — rendered as a literal <script> so the AdSense crawler sees it in the raw HTML.
-            NOTE: before serving ads to EEA/UK visitors you must also integrate a
-            Google-certified Consent Management Platform (CMP). */}
+        <CurrencyProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </CurrencyProvider>
+
+        {/* AdSense tag — literal <script> kept in raw HTML for the AdSense crawler, but placed last so it doesn't compete with initial render. */}
         {ADSENSE_ENABLED && (
           <script
             async
@@ -48,21 +52,15 @@ export default function RootLayout({
           />
         )}
 
-        <CurrencyProvider>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </CurrencyProvider>
-
-        {/* Google Analytics 4 — loads only once GA_MEASUREMENT_ID is set. */}
+        {/* Google Analytics 4 — deferred to after load to avoid blocking the main thread. */}
         {GA_MEASUREMENT_ID && (
           <>
             <Script
               async
-              strategy="afterInteractive"
+              strategy="lazyOnload"
               src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
             />
-            <Script id="ga4" strategy="afterInteractive">
+            <Script id="ga4" strategy="lazyOnload">
               {`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${GA_MEASUREMENT_ID}');`}
             </Script>
           </>

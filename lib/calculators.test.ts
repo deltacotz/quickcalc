@@ -5,6 +5,8 @@ import { bmi, calorie, bodyFat } from "./calculators/health";
 import { percentage, tip, discount, fuelCost, age, dayDiff, breakdown, pregnancy } from "./calculators/everyday";
 import { paint, electrical } from "./calculators/home";
 import { payeTax, tanzaniaPaye } from "./calculators/tanzania";
+import { mobileMoneyFee } from "./calculators/mobilemoney";
+import { feeFor } from "./mobilemoney";
 import { computeGpa } from "./calculators/education";
 
 const USD: { currency: "USD" } = { currency: "USD" };
@@ -146,6 +148,31 @@ test("tanzania PAYE", () => {
   const res = tanzaniaPaye.compute({ salary: "1000000" }, USD);
   assert.equal(res[0].value, "TSh 872,000");
   assert.equal(res[1].value, "TSh 128,000");
+});
+
+test("mobile money: M-Pesa withdraw 10,000", () => {
+  const r = feeFor("mpesa", "withdraw", 10000);
+  assert.equal(r.baseFee, 1450);
+  assert.equal(r.levy, 102);
+  assert.ok(Math.abs(r.fee - 1984.1) < 0.5, `fee ${r.fee}`);
+});
+
+test("mobile money: Airtel send 50,000 (no levy)", () => {
+  const r = feeFor("airtel", "send", 50000);
+  assert.equal(r.baseFee, 680);
+  assert.equal(r.levy, 0); // sends are exempt
+  assert.ok(Math.abs(r.fee - 882.64) < 0.5, `fee ${r.fee}`);
+});
+
+test("mobile money: M-Pesa send is free up to 10,000", () => {
+  const r = feeFor("mpesa", "send", 10000);
+  assert.equal(r.baseFee, 0);
+  assert.equal(r.fee, 0);
+});
+
+test("mobile money calculator compute", () => {
+  const res = mobileMoneyFee.compute({ operator: "mpesa", type: "withdraw", amount: "10000" }, USD);
+  assert.equal(res[0].value, "TSh 8,016");
 });
 
 test("GPA", () => {

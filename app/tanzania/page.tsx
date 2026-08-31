@@ -9,6 +9,7 @@ const MONEY = [
   { href: "/usd-to-tzs", title: "USD to TZS", desc: "US Dollar to Tanzanian Shilling" },
   { href: "/tzs-to-usd", title: "TZS to USD", desc: "Tanzanian Shilling to US Dollar" },
   { href: "/tools/tanzania-paye-calculator", title: "Tanzania PAYE Calculator", desc: "Take-home pay after PAYE tax" },
+  { href: "/tools/mobile-money-fee-calculator", title: "Mobile Money Fees", desc: "M-Pesa, Airtel & Mixx send/withdraw fees" },
   { href: "/tools/loan-calculator", title: "Loan Calculator", desc: "Monthly payments in TZS or USD" },
   { href: "/tools/salary-to-hourly-calculator", title: "Salary to Hourly", desc: "Convert a TZS salary to hourly pay" },
   { href: "/tools/mortgage-calculator", title: "Mortgage Calculator", desc: "Estimate monthly mortgage payments" },

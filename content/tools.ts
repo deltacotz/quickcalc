@@ -551,6 +551,33 @@ export const TOOLS: ToolContent[] = [
     disclaimers: ["financial"],
     related: ["salary-to-hourly-calculator", "loan-calculator", "retirement-calculator"],
   },
+  {
+    slug: "mobile-money-fee-calculator",
+    name: "Mobile Money Fee Calculator",
+    category: "Finance",
+    kind: "widget",
+    metaDescription:
+      "Free Tanzania mobile money fee calculator — check M-Pesa, Airtel Money and Mixx by Yas send and withdrawal fees, including the 10% excise, 18% VAT and the government withdrawal levy.",
+    intro:
+      "Work out the real cost of a mobile money transaction in Tanzania. Pick M-Pesa, Airtel Money or Mixx by Yas, choose send or withdraw, and enter an amount to see the fee including the 10% excise duty, 18% VAT and the government withdrawal levy where it applies.",
+    howItWorks: {
+      formula: "Total = (operator fee × 1.298) + withdrawal levy",
+      explanation:
+        "Tanzania adds a 10% excise duty and 18% VAT on top of the operator's base fee (so the taxed fee is about 1.298× the published fee). Cashing out at an agent also attracts a banded government withdrawal levy; sending money does not.",
+    },
+    examples: [
+      { title: "Withdraw example", text: "Withdrawing 10,000 TZS from M-Pesa at an agent costs about 1,984 TZS (base 1,450 + tax 432 + levy 102), so you'd receive about 8,016 TZS." },
+      { title: "Send example", text: "Sending 50,000 TZS via Airtel Money costs about 883 TZS (base 680 + tax 203), so you'd pay 50,883 TZS." },
+    ],
+    faq: [
+      { q: "How are mobile money fees calculated in Tanzania?", a: "The operator charges a base fee by amount band, then Tanzania adds a 10% excise duty and 18% VAT (about 1.298× the base fee). Withdrawing cash at an agent also adds a banded government levy." },
+      { q: "Is there a levy on sending money?", a: "No. The government withdrawal levy applies only to agent cash-out; sending money (P2P, cross-network, to bank) is exempt from the levy." },
+      { q: "Which provider is cheapest?", a: "It depends on the amount. M-Pesa is often cheapest for small sends (free up to 10,000 TZS); use the calculator to compare for your exact amount." },
+      { q: "Are these fees exact?", a: "Fees change with operator tariffs and government budgets. The figures are a snapshot — always verify with your operator before a large transaction." },
+    ],
+    disclaimers: ["financial"],
+    related: ["currency-converter", "tanzania-paye-calculator", "loan-calculator"],
+  },
 ];
 
 export function getTool(slug: string): ToolContent | undefined {

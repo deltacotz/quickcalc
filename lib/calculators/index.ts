@@ -4,6 +4,7 @@ import { mortgage, loan, compoundInterest, salaryToHourly, retirement } from "./
 import { bmi, calorie, bodyFat } from "./health";
 import { paint, electrical } from "./home";
 import { tanzaniaPaye } from "./tanzania";
+import { mobileMoneyFee } from "./mobilemoney";
 
 export type { CalculatorSpec, CalcResult, FieldDef, Inputs } from "./types";
 
@@ -27,6 +28,7 @@ export const CALCULATORS: CalculatorSpec[] = [
   paint,
   electrical,
   tanzaniaPaye,
+  mobileMoneyFee,
 ];
 
 export function getCalculator(slug: string): CalculatorSpec | undefined {

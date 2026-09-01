@@ -59,8 +59,11 @@ Still optional later:
 
 ## Off-page SEO / backlinks
 
+**Sequence:** set up the `@tzcalculator` social handles first (user), then continue with the items below.
+
 The plan to grow external links and referral traffic. Code items I can build; outreach/submission items are manual.
 
+- [ ] Social profiles — set up `@tzcalculator` on X + Instagram (and Facebook/LinkedIn) first.
 - [ ] Embeddable calculator widgets — `/embed/[slug]` route + an "Embed" button + copy-paste iframe snippet on each tool.
 - [ ] Brand / press page (`/press`) — downloadable logo (SVG/PNG), site description, suggested anchor text.
 - [ ] Outreach kit (`docs/outreach.md`) — directory list + guest-post pitch and social post templates.
@@ -68,7 +71,6 @@ The plan to grow external links and referral traffic. Code items I can build; ou
 - [ ] Tanzania local citations (consistent name/address/phone).
 - [ ] Guest posts / outreach to East Africa finance, tech and education sites.
 - [ ] Q&A & community participation (Reddit, Quora, Tanzanian forums) — value-first, no spam.
-- [ ] Social profiles (Facebook, X, LinkedIn, Instagram).
 - [ ] Data-driven linkable asset (e.g. Tanzania salary / cost-of-living / tax reference).
 
 ## Maintenance & reliability

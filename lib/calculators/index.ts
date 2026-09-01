@@ -1,6 +1,6 @@
 import type { CalculatorSpec } from "./types";
-import { percentage, age, dateDifference, tip, discount, fuelCost, pregnancy, average } from "./everyday";
-import { mortgage, loan, compoundInterest, salaryToHourly, retirement } from "./finance";
+import { percentage, age, dateDifference, tip, discount, fuelCost, pregnancy, average, standardDeviation } from "./everyday";
+import { mortgage, loan, compoundInterest, salaryToHourly, retirement, inflation, debtToIncome } from "./finance";
 import { bmi, calorie, bodyFat } from "./health";
 import { paint, electrical } from "./home";
 import { tanzaniaPaye, tanzaniaVat } from "./tanzania";
@@ -33,6 +33,9 @@ export const CALCULATORS: CalculatorSpec[] = [
   mobileMoneyFee,
   average,
   uttCalculator,
+  standardDeviation,
+  inflation,
+  debtToIncome,
 ];
 
 export function getCalculator(slug: string): CalculatorSpec | undefined {

@@ -1,6 +1,7 @@
 import type { CalcContext, CalculatorSpec, Inputs } from "./types";
 import { num } from "./types";
 import { formatCurrency } from "../currency";
+import { formatPercent } from "../format";
 
 /** Monthly payment for an amortizing loan (principal + interest). */
 export function monthlyPayment(principal: number, annualRatePct: number, years: number): number {
@@ -153,4 +154,65 @@ export const retirement: CalculatorSpec = {
   },
 };
 
-export const FINANCE_CALCS = [mortgage, loan, compoundInterest, salaryToHourly, retirement];
+export const inflation: CalculatorSpec = {
+  slug: "inflation-calculator",
+  fields: [
+    {
+      id: "mode",
+      label: "Calculate",
+      type: "select",
+      options: [
+        { value: "future", label: "Future value" },
+        { value: "present", label: "Value today" },
+      ],
+      default: "future",
+    },
+    { id: "amount", label: "Amount", type: "number", unit: "$", default: "100000", min: 0, step: "1000" },
+    { id: "rate", label: "Inflation rate", type: "number", unit: "%/yr", default: "5", min: 0, step: "0.1" },
+    { id: "years", label: "Years", type: "number", default: "10", min: 1 },
+  ],
+  compute: (inp: Inputs, ctx: CalcContext) => {
+    const amount = num(inp, "amount");
+    const rate = num(inp, "rate");
+    const years = num(inp, "years");
+    if (years <= 0) return [{ label: "Error", value: "—", note: "Years must be at least 1." }];
+    const r = rate / 100;
+    const future = amount * Math.pow(1 + r, years);
+    const present = amount / Math.pow(1 + r, years);
+    const futureMode = inp.mode !== "present";
+    const main = futureMode ? future : present;
+    const other = futureMode ? present : future;
+    return [
+      {
+        label: futureMode ? `Future value (in ${years} yrs)` : "Value today",
+        value: formatCurrency(main, ctx.currency),
+        highlight: true,
+      },
+      {
+        label: futureMode ? "Equivalent today" : "Future equivalent",
+        value: formatCurrency(other, ctx.currency),
+      },
+    ];
+  },
+};
+
+export const debtToIncome: CalculatorSpec = {
+  slug: "debt-to-income-calculator",
+  fields: [
+    { id: "debt", label: "Monthly debt payments", type: "number", unit: "$", default: "500", min: 0, step: "50" },
+    { id: "income", label: "Gross monthly income", type: "number", unit: "$", default: "2000", min: 1, step: "100" },
+  ],
+  compute: (inp: Inputs) => {
+    const debt = num(inp, "debt");
+    const income = num(inp, "income");
+    if (income <= 0) return [{ label: "Error", value: "—", note: "Income must be greater than zero." }];
+    const dti = (debt / income) * 100;
+    const cat = dti < 36 ? "Healthy" : dti < 50 ? "High" : "Very high";
+    return [
+      { label: "Debt-to-income ratio", value: formatPercent(dti, 1), highlight: true },
+      { label: "Category", value: cat },
+    ];
+  },
+};
+
+export const FINANCE_CALCS = [mortgage, loan, compoundInterest, salaryToHourly, retirement, inflation, debtToIncome];

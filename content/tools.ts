@@ -653,6 +653,80 @@ export const TOOLS: ToolContent[] = [
     disclaimers: ["financial"],
     related: ["compound-interest-calculator", "retirement-calculator", "mobile-money-fee-calculator"],
   },
+  {
+    slug: "standard-deviation-calculator",
+    name: "Standard Deviation Calculator",
+    category: "Everyday",
+    kind: "widget",
+    metaDescription:
+      "Free standard deviation calculator: find the mean and population/sample standard deviation of a set of numbers.",
+    intro:
+      "Calculate the standard deviation and mean of a set of numbers. Enter the values separated by commas to see the population and sample standard deviation.",
+    howItWorks: {
+      formula: "σ = √(Σ(x − μ)² ÷ N)",
+      explanation:
+        "Standard deviation measures how spread out the numbers are from the mean. Population deviation divides by N; sample deviation divides by N−1.",
+    },
+    examples: [
+      { title: "Example", text: "For 10, 12, 23, 23, 16 the mean is 16.8 and the population standard deviation is about 5.42." },
+    ],
+    faq: [
+      { q: "What is standard deviation?", a: "It measures how much a set of numbers varies from their average — a higher value means more spread." },
+      { q: "Population vs sample?", a: "Use population when you have all values; use sample when your numbers are a sample of a larger group (divides by n−1)." },
+      { q: "What does a high standard deviation mean?", a: "The values are more spread out from the mean; a low one means they cluster close to the average." },
+    ],
+    related: ["average-calculator", "percentage-calculator", "gpa-calculator"],
+  },
+  {
+    slug: "inflation-calculator",
+    name: "Inflation Calculator",
+    category: "Finance",
+    kind: "widget",
+    metaDescription:
+      "Free inflation calculator: see how inflation affects purchasing power over time — future value or value today.",
+    intro:
+      "See how inflation affects the value of money. Enter an amount, an inflation rate and a number of years to calculate its future value, or its value today.",
+    howItWorks: {
+      formula: "Future = amount × (1 + r)ⁿ  ·  Present = amount ÷ (1 + r)ⁿ",
+      explanation:
+        "Money loses purchasing power as prices rise. The future value multiplies by (1 + r)ⁿ; the value today divides by the same factor.",
+    },
+    examples: [
+      { title: "Example", text: "100,000 at 5% inflation for 10 years grows to about 162,889 in future money." },
+    ],
+    faq: [
+      { q: "What is inflation?", a: "Inflation is the rate at which the general level of prices rises, reducing the purchasing power of money." },
+      { q: "How do I calculate future value?", a: "Multiply the amount by (1 + inflation rate) raised to the number of years." },
+      { q: "What is a typical inflation rate?", a: "It varies by country and year; enter your best estimate for planning." },
+    ],
+    disclaimers: ["financial"],
+    related: ["compound-interest-calculator", "retirement-calculator", "salary-to-hourly-calculator"],
+  },
+  {
+    slug: "debt-to-income-calculator",
+    name: "Debt-to-Income Ratio Calculator",
+    category: "Finance",
+    kind: "widget",
+    metaDescription:
+      "Free debt-to-income (DTI) ratio calculator: see how much of your income goes to debt each month.",
+    intro:
+      "Calculate your debt-to-income (DTI) ratio. Enter your total monthly debt payments and your gross monthly income to see the percentage of income that goes to debt.",
+    howItWorks: {
+      formula: "DTI = (Monthly debt ÷ Gross monthly income) × 100",
+      explanation:
+        "Lenders use DTI to assess affordability. A lower DTI is better — below 36% is generally considered healthy.",
+    },
+    examples: [
+      { title: "Example", text: "500 in monthly debt against 2,000 gross income is a 25% DTI." },
+    ],
+    faq: [
+      { q: "What is a good DTI ratio?", a: "A DTI below 36% is generally considered healthy; above 50% is high and can make borrowing harder." },
+      { q: "What counts as monthly debt?", a: "Recurring obligations like loans, credit-card minimums and other fixed payments." },
+      { q: "Why does DTI matter?", a: "Lenders use it to decide whether you can afford a new loan." },
+    ],
+    disclaimers: ["financial"],
+    related: ["loan-calculator", "mortgage-calculator", "compound-interest-calculator"],
+  },
 ];
 
 export function getTool(slug: string): ToolContent | undefined {

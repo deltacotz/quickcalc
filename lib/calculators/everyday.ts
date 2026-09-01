@@ -263,3 +263,34 @@ export const average: CalculatorSpec = {
     ];
   },
 };
+
+export const standardDeviation: CalculatorSpec = {
+  slug: "standard-deviation-calculator",
+  fields: [
+    {
+      id: "numbers",
+      label: "Numbers (comma-separated)",
+      type: "text",
+      placeholder: "e.g. 10, 12, 23, 23, 16",
+      default: "10, 12, 23, 23, 16",
+    },
+  ],
+  compute: (inp: Inputs) => {
+    const nums = (inp.numbers ?? "")
+      .split(/[,;\s]+/)
+      .map((s) => Number.parseFloat(s))
+      .filter((n) => Number.isFinite(n));
+    if (nums.length === 0) return error("Enter at least one number.");
+    const n = nums.length;
+    const mean = nums.reduce((a, b) => a + b, 0) / n;
+    const sq = nums.reduce((a, x) => a + (x - mean) ** 2, 0);
+    const popSd = Math.sqrt(sq / n);
+    const sampleSd = n > 1 ? Math.sqrt(sq / (n - 1)) : 0;
+    return [
+      { label: "Mean", value: formatNumber(mean, 2) },
+      { label: "Population std. deviation", value: formatNumber(popSd, 2), highlight: true },
+      { label: "Sample std. deviation", value: formatNumber(sampleSd, 2) },
+      { label: "Count", value: `${n}` },
+    ];
+  },
+};

@@ -1,8 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { monthlyPayment, mortgage, compoundInterest, salaryToHourly, retirement } from "./calculators/finance";
+import { monthlyPayment, mortgage, compoundInterest, salaryToHourly, retirement, inflation, debtToIncome } from "./calculators/finance";
 import { bmi, calorie, bodyFat } from "./calculators/health";
-import { percentage, tip, discount, fuelCost, age, dayDiff, breakdown, pregnancy, average } from "./calculators/everyday";
+import { percentage, tip, discount, fuelCost, age, dayDiff, breakdown, pregnancy, average, standardDeviation } from "./calculators/everyday";
 import { paint, electrical } from "./calculators/home";
 import { payeTax, tanzaniaPaye, tanzaniaVat } from "./calculators/tanzania";
 import { mobileMoneyFee } from "./calculators/mobilemoney";
@@ -204,6 +204,23 @@ test("UTT project value", () => {
 test("UTT calculator compute", () => {
   const res = uttCalculator.compute({ fund: "money-market", amount: "1000000", contribution: "0", years: "5" }, USD);
   assert.equal(res[0].value, "TSh 1,489,846");
+});
+
+test("standard deviation", () => {
+  const res = standardDeviation.compute({ numbers: "10, 12, 23, 23, 16" }, USD);
+  assert.equal(res[0].value, "16.8"); // mean
+  assert.equal(res[1].value, "5.42"); // population sd
+});
+
+test("inflation (future value)", () => {
+  const res = inflation.compute({ mode: "future", amount: "100000", rate: "5", years: "10" }, USD);
+  assert.equal(res[0].value, "$162,889.46");
+});
+
+test("debt-to-income", () => {
+  const res = debtToIncome.compute({ debt: "500", income: "2000" }, USD);
+  assert.equal(res[0].value, "25%");
+  assert.equal(res[1].value, "Healthy");
 });
 
 test("GPA", () => {

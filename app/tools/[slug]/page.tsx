@@ -10,6 +10,7 @@ import { HowItWorks } from "@/components/HowItWorks";
 import { ExampleSection } from "@/components/ExampleSection";
 import { FaqSection } from "@/components/FaqSection";
 import { MobileMoneyFees } from "@/components/MobileMoneyFees";
+import { UttFunds } from "@/components/UttFunds";
 import { Disclaimers } from "@/components/Disclaimers";
 import { AdSlot } from "@/components/AdSlot";
 import { JsonLd } from "@/components/JsonLd";
@@ -110,6 +111,7 @@ export default async function ToolPage({ params }: Props) {
         <HowItWorks formula={tool.howItWorks.formula} explanation={tool.howItWorks.explanation} />
         <ExampleSection examples={tool.examples} />
         {tool.slug === "mobile-money-fee-calculator" && <MobileMoneyFees />}
+        {tool.slug === "utt-calculator" && <UttFunds />}
         <FaqSection faq={tool.faq} />
 
         {tool.disclaimers && <Disclaimers kinds={tool.disclaimers} />}

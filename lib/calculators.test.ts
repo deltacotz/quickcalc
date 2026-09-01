@@ -7,6 +7,8 @@ import { paint, electrical } from "./calculators/home";
 import { payeTax, tanzaniaPaye, tanzaniaVat } from "./calculators/tanzania";
 import { mobileMoneyFee } from "./calculators/mobilemoney";
 import { feeFor } from "./mobilemoney";
+import { uttCalculator } from "./calculators/utt";
+import { projectValue } from "./utt";
 import { computeGpa } from "./calculators/education";
 
 const USD: { currency: "USD" } = { currency: "USD" };
@@ -192,6 +194,16 @@ test("average", () => {
   assert.equal(res[0].value, "25");
   assert.equal(res[1].value, "100");
   assert.equal(res[2].value, "4");
+});
+
+test("UTT project value", () => {
+  const v = projectValue(1000000, 0, 8, 5);
+  assert.ok(Math.abs(v - 1489846) < 1, `got ${v}`);
+});
+
+test("UTT calculator compute", () => {
+  const res = uttCalculator.compute({ fund: "money-market", amount: "1000000", contribution: "0", years: "5" }, USD);
+  assert.equal(res[0].value, "TSh 1,489,846");
 });
 
 test("GPA", () => {

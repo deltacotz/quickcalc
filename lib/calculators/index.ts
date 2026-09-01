@@ -5,6 +5,7 @@ import { bmi, calorie, bodyFat } from "./health";
 import { paint, electrical } from "./home";
 import { tanzaniaPaye, tanzaniaVat } from "./tanzania";
 import { mobileMoneyFee } from "./mobilemoney";
+import { uttCalculator } from "./utt";
 
 export type { CalculatorSpec, CalcResult, FieldDef, Inputs } from "./types";
 
@@ -31,6 +32,7 @@ export const CALCULATORS: CalculatorSpec[] = [
   tanzaniaVat,
   mobileMoneyFee,
   average,
+  uttCalculator,
 ];
 
 export function getCalculator(slug: string): CalculatorSpec | undefined {

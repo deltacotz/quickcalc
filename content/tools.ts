@@ -628,6 +628,31 @@ export const TOOLS: ToolContent[] = [
     ],
     related: ["percentage-calculator", "gpa-calculator", "date-difference-calculator"],
   },
+  {
+    slug: "utt-calculator",
+    name: "UTT Calculator",
+    category: "Finance",
+    kind: "widget",
+    metaDescription:
+      "Free UTT AMIS unit trust calculator — project the future value of your UTT investment in Tanzania with monthly contributions.",
+    intro:
+      "Estimate how your money could grow in a UTT AMIS unit trust fund. Pick a fund, enter your initial investment and an optional monthly contribution, and see the projected value over time.",
+    howItWorks: {
+      formula: "FV = P(1 + r/12)^(12n) + PMT × ((1 + r/12)^(12n) − 1) ÷ (r/12)",
+      explanation:
+        "Your investment grows with compound interest credited monthly. P is the initial amount, PMT the monthly contribution, r the annual return, and n the number of years.",
+    },
+    examples: [
+      { title: "Example", text: "1,000,000 TZS in the Money Market Fund at 8% for 5 years grows to about 1,489,846 TZS." },
+    ],
+    faq: [
+      { q: "What is UTT AMIS?", a: "UTT Asset Management and Investor Services (UTT AMIS) is Tanzania's government-backed investment company that manages collective investment schemes (unit trusts)." },
+      { q: "Which UTT fund is right for me?", a: "Money Market and Liquid funds suit short-term, low-risk goals, while Balanced and Jikimu funds suit longer-term goals that can tolerate more risk." },
+      { q: "Are these returns guaranteed?", a: "No. The figures are illustrative. Unit trust returns vary with market performance — always verify current rates with UTT AMIS." },
+    ],
+    disclaimers: ["financial"],
+    related: ["compound-interest-calculator", "retirement-calculator", "mobile-money-fee-calculator"],
+  },
 ];
 
 export function getTool(slug: string): ToolContent | undefined {

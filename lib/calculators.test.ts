@@ -185,6 +185,14 @@ test("mobile money: T-Pesa withdraw 10,000 (tax-inclusive)", () => {
   assert.equal(r.total, 8518);
 });
 
+test("mobile money: HaloPesa withdraw 10,000 (tax-inclusive)", () => {
+  const r = feeFor("halopesa", "withdraw", 10000);
+  assert.equal(r.baseFee, 1300);
+  assert.equal(r.levy, 102);
+  assert.equal(r.fee, 1402);
+  assert.equal(r.total, 8598);
+});
+
 test("tanzania VAT (add)", () => {
   const res = tanzaniaVat.compute({ mode: "add", amount: "100000", rate: "18" }, USD);
   assert.equal(res[0].value, "TSh 18,000"); // VAT

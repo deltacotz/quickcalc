@@ -69,6 +69,24 @@ test("time conversions", () => {
   approx(cv("time", "days", "minutes", 1), 1440);
 });
 
+test("power conversions", () => {
+  approx(cv("power", "horsepower", "watts", 1), 745.6998715822702);
+  approx(cv("power", "kilowatts", "watts", 1), 1000);
+  approx(cv("power", "kilowatts", "horsepower", 1), 1.34102209, 1e-6);
+});
+
+test("energy conversions", () => {
+  approx(cv("energy", "calories", "joules", 1), 4.184);
+  approx(cv("energy", "kilowatt-hours", "joules", 1), 3.6e6);
+  approx(cv("energy", "kilocalories", "joules", 1), 4184);
+});
+
+test("pressure conversions", () => {
+  approx(cv("pressure", "atmospheres", "pascals", 1), 101325);
+  approx(cv("pressure", "psi", "pascals", 1), 6894.757293168);
+  approx(cv("pressure", "bar", "psi", 1), 14.5037738, 1e-6);
+});
+
 test("pair slugs resolve round-trip", () => {
   assert.equal(pairSlug("miles", "kilometers"), "miles-to-kilometers");
   assert.equal(pairSlug("miles-per-hour", "kilometers-per-hour"), "miles-per-hour-to-kilometers-per-hour");

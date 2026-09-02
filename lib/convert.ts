@@ -271,6 +271,99 @@ export const DIMENSIONS: Dimension[] = [
       { id: "years", label: "Years (avg)", symbol: "yr", factor: 31557600 },
     ],
   },
+  {
+    id: "power",
+    label: "Power",
+    baseUnitId: "watts",
+    description:
+      "Convert between power units — milliwatts, watts, kilowatts, megawatts, horsepower, metric horsepower and BTU per hour.",
+    faq: [
+      {
+        q: "How many watts are in a horsepower?",
+        a: "One mechanical horsepower equals about 745.7 watts.",
+      },
+      {
+        q: "How do I convert kilowatts to horsepower?",
+        a: "Multiply kilowatts by about 1.341 to get horsepower (1 kW ≈ 1.341 hp).",
+      },
+      {
+        q: "What is a BTU per hour?",
+        a: "BTU per hour is a measure of heating/cooling power; 1 BTU/h equals about 0.293 watts.",
+      },
+    ],
+    units: [
+      { id: "milliwatts", label: "Milliwatts", symbol: "mW", factor: 0.001 },
+      { id: "watts", label: "Watts", symbol: "W", factor: 1 },
+      { id: "kilowatts", label: "Kilowatts", symbol: "kW", factor: 1000 },
+      { id: "megawatts", label: "Megawatts", symbol: "MW", factor: 1e6 },
+      { id: "horsepower", label: "Horsepower (mechanical)", symbol: "hp", factor: 745.6998715822702 },
+      { id: "metric-horsepower", label: "Metric horsepower", symbol: "PS", factor: 735.49875 },
+      { id: "btu-per-hour", label: "BTU per hour", symbol: "BTU/h", factor: 0.29307107 },
+    ],
+  },
+  {
+    id: "energy",
+    label: "Energy",
+    baseUnitId: "joules",
+    description:
+      "Convert between energy units — joules, kilojoules, megajoules, calories, kilocalories, watt-hours, kilowatt-hours and BTU.",
+    faq: [
+      {
+        q: "How many joules are in a calorie?",
+        a: "One calorie equals 4.184 joules, and one food Calorie (kilocalorie) equals 4,184 joules.",
+      },
+      {
+        q: "How many joules are in a kilowatt-hour?",
+        a: "One kilowatt-hour equals 3.6 million joules.",
+      },
+      {
+        q: "What is a BTU?",
+        a: "A British Thermal Unit is the energy needed to heat one pound of water by 1°F; it equals about 1,055 joules.",
+      },
+    ],
+    units: [
+      { id: "joules", label: "Joules", symbol: "J", factor: 1 },
+      { id: "kilojoules", label: "Kilojoules", symbol: "kJ", factor: 1000 },
+      { id: "megajoules", label: "Megajoules", symbol: "MJ", factor: 1e6 },
+      { id: "watt-hours", label: "Watt-hours", symbol: "Wh", factor: 3600 },
+      { id: "kilowatt-hours", label: "Kilowatt-hours", symbol: "kWh", factor: 3.6e6 },
+      { id: "calories", label: "Calories", symbol: "cal", factor: 4.184 },
+      { id: "kilocalories", label: "Kilocalories", symbol: "kcal", factor: 4184 },
+      { id: "btu", label: "BTU", symbol: "BTU", factor: 1055.05585262 },
+    ],
+  },
+  {
+    id: "pressure",
+    label: "Pressure",
+    baseUnitId: "pascals",
+    description:
+      "Convert between pressure units — pascals, kilopascals, megapascals, bar, millibar, atmospheres, psi, mmHg and inches of mercury.",
+    faq: [
+      {
+        q: "How many psi are in a bar?",
+        a: "One bar equals about 14.5 psi.",
+      },
+      {
+        q: "How do I convert psi to kPa?",
+        a: "Multiply psi by about 6.895 to get kilopascals.",
+      },
+      {
+        q: "What is standard atmospheric pressure?",
+        a: "Standard atmospheric pressure is 1 atm, which equals 101,325 pascals, about 14.7 psi, or 760 mmHg.",
+      },
+    ],
+    units: [
+      { id: "pascals", label: "Pascals", symbol: "Pa", factor: 1 },
+      { id: "kilopascals", label: "Kilopascals", symbol: "kPa", factor: 1000 },
+      { id: "megapascals", label: "Megapascals", symbol: "MPa", factor: 1e6 },
+      { id: "bar", label: "Bar", symbol: "bar", factor: 100000 },
+      { id: "millibar", label: "Millibar", symbol: "mbar", factor: 100 },
+      { id: "atmospheres", label: "Atmospheres", symbol: "atm", factor: 101325 },
+      { id: "psi", label: "Pounds per square inch", symbol: "psi", factor: 6894.757293168 },
+      { id: "millimeters-of-mercury", label: "Millimeters of mercury", symbol: "mmHg", factor: 133.322387415 },
+      { id: "inches-of-mercury", label: "Inches of mercury", symbol: "inHg", factor: 3386.389 },
+    ],
+  },
 ];
 
 export function getDimension(id: string): Dimension | undefined {

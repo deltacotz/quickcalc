@@ -566,7 +566,7 @@ export const TOOLS: ToolContent[] = [
         "Tanzania adds a 10% excise duty and 18% VAT on top of the operator's base fee (so the taxed fee is about 1.298× the published fee). Cashing out at an agent also attracts a banded government withdrawal levy; sending money does not.",
     },
     examples: [
-      { title: "Withdraw example", text: "Withdrawing 10,000 TZS from M-Pesa at an agent costs about 1,984 TZS (base 1,450 + tax 432 + levy 102), so you'd receive about 8,016 TZS." },
+      { title: "Withdraw example", text: "Withdrawing 10,000 TZS from M-Pesa at an agent costs about 1,552 TZS (base fee 1,450 + levy 102), so you'd receive about 8,448 TZS." },
       { title: "Send example", text: "Sending 50,000 TZS via Airtel Money costs about 883 TZS (base 680 + tax 203), so you'd pay 50,883 TZS." },
     ],
     faq: [

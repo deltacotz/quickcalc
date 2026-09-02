@@ -152,18 +152,18 @@ test("tanzania PAYE", () => {
   assert.equal(res[1].value, "TSh 128,000");
 });
 
-test("mobile money: M-Pesa withdraw 10,000", () => {
+test("mobile money: M-Pesa withdraw 10,000 (tax-inclusive)", () => {
   const r = feeFor("mpesa", "withdraw", 10000);
   assert.equal(r.baseFee, 1450);
   assert.equal(r.levy, 102);
-  assert.ok(Math.abs(r.fee - 1984.1) < 0.5, `fee ${r.fee}`);
+  assert.equal(r.fee, 1552);
 });
 
 test("mobile money: Airtel send 50,000 (no levy)", () => {
   const r = feeFor("airtel", "send", 50000);
   assert.equal(r.baseFee, 680);
   assert.equal(r.levy, 0); // sends are exempt
-  assert.ok(Math.abs(r.fee - 882.64) < 0.5, `fee ${r.fee}`);
+  assert.equal(r.fee, 680);
 });
 
 test("mobile money: M-Pesa send is free up to 10,000", () => {
@@ -172,9 +172,17 @@ test("mobile money: M-Pesa send is free up to 10,000", () => {
   assert.equal(r.fee, 0);
 });
 
+test("mobile money: Mixx 10,000 matches official tariff", () => {
+  const r = feeFor("mixx", "withdraw", 10000);
+  assert.equal(r.baseFee, 1450);
+  assert.equal(r.levy, 102);
+  assert.equal(r.fee, 1552);
+  assert.equal(r.total, 8448);
+});
+
 test("mobile money calculator compute", () => {
   const res = mobileMoneyFee.compute({ operator: "mpesa", type: "withdraw", amount: "10000" }, USD);
-  assert.equal(res[0].value, "TSh 8,016");
+  assert.equal(res[0].value, "TSh 8,448");
 });
 
 test("mobile money: T-Pesa withdraw 10,000 (tax-inclusive)", () => {

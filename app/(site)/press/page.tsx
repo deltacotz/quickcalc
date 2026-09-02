@@ -97,6 +97,23 @@ export default function PressPage() {
         </section>
 
         <section className="mt-10">
+          <h2 className="text-xl font-semibold tracking-tight text-zinc-900">Embeddable widgets</h2>
+          <p className="mt-2 text-zinc-600">
+            Add a free, working calculator to your site in a few lines of HTML. It links back to{" "}
+            {SITE_URL.replace(/^https?:\/\//, "")} automatically. Grab the code from the{" "}
+            <Link href="/tools/percentage-calculator" className="text-blue-700 underline">
+              &ldquo;Embed this calculator&rdquo; block
+            </Link>{" "}
+            on any tool page, or embed the currency converter directly:
+          </p>
+          <div className="mt-3 overflow-x-auto rounded-lg bg-zinc-100 px-4 py-3">
+            <code className="text-sm text-zinc-800">
+              {`<iframe src="${SITE_URL}/embed/percentage-calculator" title="Free calculator" width="600" height="520" loading="lazy"></iframe>`}
+            </code>
+          </div>
+        </section>
+
+        <section className="mt-10">
           <h2 className="text-xl font-semibold tracking-tight text-zinc-900">About / description</h2>
           <div className="mt-4 space-y-4">
             {(

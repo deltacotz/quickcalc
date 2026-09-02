@@ -17,6 +17,7 @@ import { Disclaimers } from "@/components/Disclaimers";
 import { AdSlot } from "@/components/AdSlot";
 import { JsonLd } from "@/components/JsonLd";
 import { ToolCard } from "@/components/ToolCard";
+import { EmbedCode } from "@/components/EmbedCode";
 import { SITE_URL } from "@/lib/site";
 import { breadcrumbSchema, openGraph } from "@/lib/seo";
 
@@ -162,6 +163,10 @@ export default async function ToolPage({ params }: Props) {
             </div>
           </section>
         )}
+
+        <div className="mt-10">
+          <EmbedCode slug={tool.slug} siteUrl={SITE_URL} />
+        </div>
       </div>
     </>
   );

@@ -22,6 +22,16 @@ Submit via the site's "Add / Submit your tool" page. These are quick, often rele
 **Find more with:** `"best free calculators list submit"` · `"unit converter directory"` ·
 `"free tools directory add site"`
 
+### A2. Embed the widget (a strong, self-serve backlink incentive)
+
+Every calculator page has an **"Embed this calculator"** block with copyable HTML. When another
+site embeds it, the iframe renders a small attribution link back to calculator.co.tz — a live,
+contextual backlink with zero effort from either of you. Offer this in any outreach: instead of
+asking for a link, offer a free embeddable calculator.
+
+- Every tool page (`/tools/[slug]`) has the embed code + a `/embed/[slug]` URL that's iframe-ready.
+- Lead with this for blogs/educators — "add a free calculator to your page, it links back automatically."
+
 ### B. "Best X" listicle blogs (link / guest request)
 These roundup posts link out to tools. Find them, then pitch to be added.
 

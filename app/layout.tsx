@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { CurrencyProvider } from "@/components/CurrencyProvider";
 import {
   SITE_NAME,
   SITE_TAGLINE,
@@ -37,13 +34,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex min-h-screen flex-col bg-white text-zinc-900 antialiased">
-        <CurrencyProvider>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </CurrencyProvider>
+        {children}
 
-        {/* AdSense tag — literal <script> kept in raw HTML for the AdSense crawler, but placed last so it doesn't compete with initial render. */}
+        {/* AdSense tag — literal <script> kept in raw HTML for the AdSense crawler. */}
         {ADSENSE_ENABLED && (
           <script
             async

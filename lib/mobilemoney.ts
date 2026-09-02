@@ -20,6 +20,8 @@ export interface Operator {
   short: string;
   send: Band[];
   withdraw: Band[];
+  /** true = the published fee already includes the 10% excise + 18% VAT (no ×1.298). */
+  taxInclusive?: boolean;
 }
 
 export const FEE_TAX = 1.298;
@@ -147,6 +149,54 @@ export const OPERATORS: Operator[] = [
       { min: 500000, max: Infinity, fee: 6000 },
     ],
   },
+  {
+    id: "tpesa",
+    name: "T-Pesa (TTCL)",
+    short: "T-Pesa",
+    taxInclusive: true,
+    send: [
+      { min: 1, max: 999, fee: 9 },
+      { min: 1000, max: 2999, fee: 20 },
+      { min: 3000, max: 3999, fee: 30 },
+      { min: 4000, max: 4999, fee: 40 },
+      { min: 5000, max: 6999, fee: 100 },
+      { min: 7000, max: 7999, fee: 110 },
+      { min: 8000, max: 9999, fee: 140 },
+      { min: 10000, max: 14999, fee: 300 },
+      { min: 15000, max: 19999, fee: 320 },
+      { min: 20000, max: 29999, fee: 345 },
+      { min: 30000, max: 49999, fee: 350 },
+      { min: 50000, max: 99999, fee: 500 },
+      { min: 100000, max: 199999, fee: 615 },
+      { min: 200000, max: 299999, fee: 700 },
+      { min: 300000, max: 499999, fee: 915 },
+      { min: 500000, max: 999999, fee: 1250 },
+      { min: 1000000, max: 3000000, fee: 2900 },
+      { min: 3000001, max: Infinity, fee: 2900 },
+    ],
+    withdraw: [
+      { min: 1, max: 999, fee: 0 },
+      { min: 1000, max: 1999, fee: 300 },
+      { min: 2000, max: 2999, fee: 370 },
+      { min: 3000, max: 3999, fee: 550 },
+      { min: 4000, max: 4999, fee: 600 },
+      { min: 5000, max: 6999, fee: 850 },
+      { min: 7000, max: 9999, fee: 900 },
+      { min: 10000, max: 14999, fee: 1380 },
+      { min: 15000, max: 19999, fee: 1435 },
+      { min: 20000, max: 29999, fee: 1750 },
+      { min: 30000, max: 49999, fee: 1735 },
+      { min: 50000, max: 99999, fee: 2550 },
+      { min: 100000, max: 199999, fee: 3400 },
+      { min: 200000, max: 299999, fee: 5000 },
+      { min: 300000, max: 499999, fee: 5500 },
+      { min: 500000, max: 599999, fee: 6950 },
+      { min: 600000, max: 699999, fee: 6950 },
+      { min: 700000, max: 799999, fee: 7480 },
+      { min: 800000, max: 1000000, fee: 7490 },
+      { min: 1000001, max: Infinity, fee: 7490 },
+    ],
+  },
 ];
 
 export function getOperator(id: string): Operator | undefined {
@@ -179,9 +229,10 @@ export function feeFor(operatorId: string, type: "send" | "withdraw", amount: nu
   const operator = getOperator(operatorId);
   const bands = type === "send" ? operator?.send : operator?.withdraw;
   const baseFee = operator && bands ? bandFee(bands, amount) : undefined;
-  const tax = (baseFee ?? 0) * (FEE_TAX - 1);
+  const mult = operator?.taxInclusive ? 1 : FEE_TAX;
+  const tax = (baseFee ?? 0) * (mult - 1);
   const levy = type === "withdraw" ? (bandFee(WITHDRAWAL_LEVY, amount) ?? 0) : 0;
-  const fee = (baseFee ?? 0) * FEE_TAX + levy;
+  const fee = (baseFee ?? 0) * mult + levy;
   const total = type === "send" ? amount + fee : amount - fee;
   return {
     operator: operator ?? OPERATORS[0],

@@ -177,6 +177,14 @@ test("mobile money calculator compute", () => {
   assert.equal(res[0].value, "TSh 8,016");
 });
 
+test("mobile money: T-Pesa withdraw 10,000 (tax-inclusive)", () => {
+  const r = feeFor("tpesa", "withdraw", 10000);
+  assert.equal(r.baseFee, 1380);
+  assert.equal(r.levy, 102);
+  assert.equal(r.fee, 1482);
+  assert.equal(r.total, 8518);
+});
+
 test("tanzania VAT (add)", () => {
   const res = tanzaniaVat.compute({ mode: "add", amount: "100000", rate: "18" }, USD);
   assert.equal(res[0].value, "TSh 18,000"); // VAT

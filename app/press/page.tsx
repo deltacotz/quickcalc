@@ -7,7 +7,6 @@ import { JsonLd } from "@/components/JsonLd";
 const FACTS = [
   { label: "Calculators", value: "25+" },
   { label: "Converter categories", value: "11" },
-  { label: "Indexable pages", value: "~680" },
   { label: "Domain", value: "calculator.co.tz" },
 ];
 

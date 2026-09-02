@@ -59,7 +59,7 @@ Still optional later:
 
 ## Off-page SEO / backlinks
 
-**Sequence:** set up the `@tzcalculator` social handles first (user), then continue with the items below.
+**Sequence:** set up the `@calculatorcotz` social handles (Instagram + TikTok done; Twitter/X pending), then continue with the items below.
 
 The plan to grow external links and referral traffic. Code items I can build; outreach/submission items are manual.
 

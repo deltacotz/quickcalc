@@ -6,6 +6,7 @@ import {
   getAllPairs,
   resolvePair,
   pairSlug,
+  getRelatedPairs,
 } from "./convert";
 import { formatConverted } from "./format";
 
@@ -114,4 +115,43 @@ test("formatConverted", () => {
   assert.equal(formatConverted(0), "0");
   assert.equal(formatConverted(1048576), "1,048,576");
   assert.equal(formatConverted(1e-9), "1e-9");
+});
+
+test("getRelatedPairs returns the reverse pair first", () => {
+  const r = getRelatedPairs("length", "meters", "feet");
+  assert.ok(r.length >= 1);
+  assert.equal(r[0].from.id, "feet");
+  assert.equal(r[0].to.id, "meters");
+});
+
+test("getRelatedPairs includes siblings sharing source or target", () => {
+  const r = getRelatedPairs("length", "meters", "feet", 8);
+  // reverse + up to 8 siblings
+  const slugs = r.map((p) => `${p.from.id}-to-${p.to.id}`);
+  // sibling must share meters or feet
+  for (const p of r) {
+    const shares = p.from.id === "meters" || p.from.id === "feet" || p.to.id === "meters" || p.to.id === "feet";
+    assert.ok(shares, `unrelated pair ${p.from.id}-to-${p.to.id}`);
+  }
+  // no limit cheating: cannot return the same pair twice, and capping works
+  assert.equal(new Set(slugs).size, slugs.length, "duplicate pairs returned");
+});
+
+test("getRelatedPairs caps at limit and is deterministic", () => {
+  const a = getRelatedPairs("weight", "kilograms", "pounds", 4);
+  const b = getRelatedPairs("weight", "kilograms", "pounds", 4);
+  assert.deepEqual(a.map((p) => p.from.id + p.to.id), b.map((p) => p.from.id + p.to.id));
+  assert.ok(a.length <= 5, `expected <=5 (reverse + limit), got ${a.length}`);
+});
+
+test("getRelatedPairs is stable across reverse orientation", () => {
+  for (const dim of ["length", "temperature", "data", "pressure"]) {
+    const pairs = getAllPairs().filter((p) => p.dimensionId === dim);
+    for (const p of pairs.slice(0, 5)) {
+      const r = getRelatedPairs(p.dimensionId, p.from.id, p.to.id);
+      assert.ok(r.length >= 1, `no related for ${p.dimensionId}/${p.from.id}-to-${p.to.id}`);
+      assert.equal(r[0].from.id, p.to.id);
+      assert.equal(r[0].to.id, p.from.id);
+    }
+  }
 });

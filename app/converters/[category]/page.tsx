@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DIMENSIONS, getDimension, pairSlug } from "@/lib/convert";
+import { DIMENSION_TOOLS } from "@/lib/crosslinks";
 import { ConverterWidget } from "@/components/ConverterWidget";
 import { AdSlot } from "@/components/AdSlot";
 import { FaqSection } from "@/components/FaqSection";
@@ -109,6 +110,28 @@ export default async function ConverterCategoryPage({ params }: Props) {
         </section>
 
         <FaqSection faq={dim.faq} />
+
+        {(DIMENSION_TOOLS[dim.id]?.length ?? 0) > 0 && (
+          <section className="mt-10">
+            <h2 className="text-xl font-semibold tracking-tight text-zinc-900">
+              Related calculators
+            </h2>
+            <p className="mt-2 text-sm text-zinc-600">
+              Try these calculators that use {dim.label.toLowerCase()} measurements.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {DIMENSION_TOOLS[dim.id]!.map((t) => (
+                <Link
+                  key={t.slug}
+                  href={`/tools/${t.slug}`}
+                  className="rounded-full border border-zinc-200 px-3 py-1.5 text-sm text-zinc-700 hover:border-blue-400 hover:bg-blue-50"
+                >
+                  {t.name}
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </>
   );

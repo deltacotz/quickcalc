@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTool, TOOLS, type ToolContent } from "@/content/tools";
+import { getToolDimensions } from "@/lib/crosslinks";
+import { getDimension } from "@/lib/convert";
 import { CalculatorWidget } from "@/components/CalculatorWidget";
 import { GpaCalculator } from "@/components/GpaCalculator";
 import { CurrencyConverter } from "@/components/CurrencyConverter";
@@ -131,6 +133,32 @@ export default async function ToolPage({ params }: Props) {
                   description={t.metaDescription}
                 />
               ))}
+            </div>
+          </section>
+        )}
+
+        {getToolDimensions(slug).length > 0 && (
+          <section className="mt-10">
+            <h2 className="text-xl font-semibold tracking-tight text-zinc-900">
+              Related unit converters
+            </h2>
+            <p className="mt-2 text-sm text-zinc-600">
+              Convert the units used by this calculator.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {getToolDimensions(slug).map((dimId) => {
+                const dim = getDimension(dimId);
+                if (!dim) return null;
+                return (
+                  <Link
+                    key={dimId}
+                    href={`/converters/${dimId}`}
+                    className="rounded-full border border-zinc-200 px-3 py-1.5 text-sm text-zinc-700 hover:border-blue-400 hover:bg-blue-50"
+                  >
+                    {dim.label} Converter
+                  </Link>
+                );
+              })}
             </div>
           </section>
         )}

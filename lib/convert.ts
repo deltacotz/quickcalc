@@ -404,6 +404,47 @@ export function getAllPairs(): UnitPair[] {
   return pairs;
 }
 
+/**
+ * Related pairs for a given ordered pair — used for the "Related conversions"
+ * internal-linking block on every converter pair page.
+ *
+ * Returns the reverse pair plus up to `limit` siblings that share either the
+ * source or the target unit, ordered so the reverse pair comes first and pairs
+ * are de-duplicated. This circulates link equity across the near-orphan pair
+ * pages and lets users hop to the reciprocal conversion in one click.
+ */
+export function getRelatedPairs(
+  dimensionId: string,
+  fromId: string,
+  toId: string,
+  limit = 8,
+): UnitPair[] {
+  const dim = getDimension(dimensionId);
+  if (!dim) return [];
+
+  const from = dim.units.find((u) => u.id === fromId);
+  const to = dim.units.find((u) => u.id === toId);
+  if (!from || !to) return [];
+
+  // 1) The reverse (reciprocal) conversion — always most useful.
+  const reverse: UnitPair = { dimensionId, from: to, to: from };
+
+  // 2) Siblings sharing the source or target unit, de-duplicated and stable.
+  const siblingIds: { from: Unit; to: Unit }[] = [];
+  for (const u of dim.units) {
+    if (u.id === fromId || u.id === toId) continue;
+    siblingIds.push({ from, to: u }); // from -> every other unit
+    siblingIds.push({ from: u, to }); // every other unit -> to
+  }
+
+  // Stable-ish order: keep dimension declaration order, cap at `limit`.
+  const siblings = siblingIds.slice(0, limit).map(
+    (s): UnitPair => ({ dimensionId, from: s.from, to: s.to }),
+  );
+
+  return [reverse, ...siblings];
+}
+
 /** Resolve a URL pair slug back to its units (unambiguous via full match). */
 export function resolvePair(dimensionId: string, slug: string): UnitPair | null {
   const dim = getDimension(dimensionId);

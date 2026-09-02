@@ -66,7 +66,7 @@ The plan to grow external links and referral traffic. Code items I can build; ou
 - [x] Social profiles — Instagram + TikTok registered as `@calculatorcotz`. Twitter/X handle still pending (add to `lib/site.ts` → `SOCIAL.twitter` once confirmed).
 - [ ] Embeddable calculator widgets — `/embed/[slug]` route + an "Embed" button + copy-paste iframe snippet on each tool.
 - [ ] Brand / press page (`/press`) — downloadable logo (SVG/PNG), site description, suggested anchor text.
-- [ ] Outreach kit (`docs/outreach.md`) — directory list + guest-post pitch and social post templates.
+- [x] Outreach kit (`docs/outreach.md`) — directory list + guest-post pitch and social post templates.
 - [ ] Submit to free tool directories & "best calculators" lists.
 - [ ] Tanzania local citations (consistent name/address/phone).
 - [ ] Guest posts / outreach to East Africa finance, tech and education sites.

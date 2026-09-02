@@ -24,5 +24,13 @@ export const GA_MEASUREMENT_ID = "G-JWGR6Z0QGC";
 // Fallback default (auto-detection from the visitor's locale runs first).
 export const DEFAULT_CURRENCY: Currency = "USD";
 
+// --- Social profiles ----------------------------------------------------
+// Add the Twitter/X URL here once the account is confirmed.
+export const SOCIAL = {
+  instagram: "https://www.instagram.com/calculatorcotz",
+  tiktok: "https://www.tiktok.com/@calculatorcotz",
+  twitter: "",
+} as const;
+
 // --- Contact / compliance ----------------------------------------------
 export const CONTACT_EMAIL = "hello@dts.co.tz";

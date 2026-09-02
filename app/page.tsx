@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { TOOLS, type ToolCategory } from "@/content/tools";
 import { DIMENSIONS } from "@/lib/convert";
-import { SITE_NAME, SITE_TAGLINE, SITE_DESCRIPTION, SITE_URL } from "@/lib/site";
+import { SITE_NAME, SITE_TAGLINE, SITE_DESCRIPTION, SITE_URL, SOCIAL } from "@/lib/site";
 import { openGraph } from "@/lib/seo";
 import { ToolCard } from "@/components/ToolCard";
 import { JsonLd } from "@/components/JsonLd";
@@ -32,7 +32,7 @@ const organizationSchema = {
   name: SITE_NAME,
   url: SITE_URL,
   logo: `${SITE_URL}/apple-icon.png`,
-  sameAs: ["https://x.com/tzcalculator", "https://www.instagram.com/tzcalculator"],
+  sameAs: [SOCIAL.instagram, SOCIAL.tiktok],
 };
 
 const webAppSchema = {

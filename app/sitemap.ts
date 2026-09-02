@@ -77,7 +77,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  for (const page of ["about", "contact", "privacy", "terms"]) {
+  for (const page of ["about", "contact", "privacy", "terms", "press"]) {
     entries.push({
       url: `${SITE_URL}/${page}`,
       lastModified: now,

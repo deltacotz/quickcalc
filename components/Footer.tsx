@@ -12,6 +12,9 @@ export function Footer() {
           <Link href="/contact" className="hover:text-zinc-800">
             Contact
           </Link>
+          <Link href="/press" className="hover:text-zinc-800">
+            Press
+          </Link>
           <Link href="/privacy" className="hover:text-zinc-800">
             Privacy Policy
           </Link>

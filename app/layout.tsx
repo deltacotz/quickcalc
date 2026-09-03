@@ -33,6 +33,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* Preconnect to the third-party script origins so DNS/TLS setup happens
+            in parallel with the critical path, shaving LCP/FCP under slow-4G. */}
+        {ADSENSE_ENABLED && (
+          <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
+        )}
+        {GA_MEASUREMENT_ID && (
+          <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        )}
+      </head>
       <body className="flex min-h-screen flex-col bg-white text-zinc-900 antialiased">
         {children}
 

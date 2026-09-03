@@ -7,6 +7,7 @@ import { formatConverted } from "@/lib/format";
 import { ConverterWidget } from "@/components/ConverterWidget";
 import { ConversionTable } from "@/components/ConversionTable";
 import { AdSlot } from "@/components/AdSlot";
+import { AdSenseScript } from "@/components/AdSenseScript";
 import { JsonLd } from "@/components/JsonLd";
 import { ShareButton } from "@/components/ShareButton";
 import { SITE_URL } from "@/lib/site";
@@ -57,6 +58,7 @@ export default async function ConverterPairPage({ params }: Props) {
 
   return (
     <>
+      <AdSenseScript />
       <JsonLd data={webPageSchema} />
       <JsonLd
         data={breadcrumbSchema([

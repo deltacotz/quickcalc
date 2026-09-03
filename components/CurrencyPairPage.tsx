@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CurrencyConverter } from "@/components/CurrencyConverter";
 import { FaqSection } from "@/components/FaqSection";
 import { AdSlot } from "@/components/AdSlot";
+import { AdSenseScript } from "@/components/AdSenseScript";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
@@ -30,6 +31,7 @@ export function CurrencyPairPage({ data }: { data: CurrencyPage }) {
 
   return (
     <>
+      <AdSenseScript />
       <JsonLd data={faqSchema} />
       <JsonLd data={webPageSchema} />
       <JsonLd

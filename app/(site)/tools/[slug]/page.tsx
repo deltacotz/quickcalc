@@ -15,6 +15,7 @@ import { MobileMoneyFees } from "@/components/MobileMoneyFees";
 import { UttFunds } from "@/components/UttFunds";
 import { Disclaimers } from "@/components/Disclaimers";
 import { AdSlot } from "@/components/AdSlot";
+import { AdSenseScript } from "@/components/AdSenseScript";
 import { JsonLd } from "@/components/JsonLd";
 import { ToolCard } from "@/components/ToolCard";
 import { EmbedCode } from "@/components/EmbedCode";
@@ -73,6 +74,7 @@ export default async function ToolPage({ params }: Props) {
 
   return (
     <>
+      <AdSenseScript />
       <JsonLd data={faqSchema} />
       <JsonLd data={webPageSchema} />
       <JsonLd

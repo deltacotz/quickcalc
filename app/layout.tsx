@@ -6,7 +6,6 @@ import {
   SITE_DESCRIPTION,
   SITE_URL,
   ADSENSE_ENABLED,
-  ADSENSE_CLIENT,
   GA_MEASUREMENT_ID,
 } from "@/lib/site";
 import "./globals.css";
@@ -45,15 +44,6 @@ export default function RootLayout({
       </head>
       <body className="flex min-h-screen flex-col bg-white text-zinc-900 antialiased">
         {children}
-
-        {/* AdSense tag — literal <script> kept in raw HTML for the AdSense crawler. */}
-        {ADSENSE_ENABLED && (
-          <script
-            async
-            crossOrigin="anonymous"
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
-          />
-        )}
 
         {/* Google Analytics 4 — deferred to after load to avoid blocking the main thread. */}
         {GA_MEASUREMENT_ID && (

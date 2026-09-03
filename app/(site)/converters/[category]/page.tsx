@@ -5,6 +5,7 @@ import { DIMENSIONS, getDimension, pairSlug } from "@/lib/convert";
 import { DIMENSION_TOOLS } from "@/lib/crosslinks";
 import { ConverterWidget } from "@/components/ConverterWidget";
 import { AdSlot } from "@/components/AdSlot";
+import { AdSenseScript } from "@/components/AdSenseScript";
 import { FaqSection } from "@/components/FaqSection";
 import { JsonLd } from "@/components/JsonLd";
 import { SITE_URL } from "@/lib/site";
@@ -60,6 +61,7 @@ export default async function ConverterCategoryPage({ params }: Props) {
 
   return (
     <>
+      <AdSenseScript />
       <JsonLd data={faqSchema} />
       <JsonLd
         data={breadcrumbSchema([

@@ -557,7 +557,7 @@ export const TOOLS: ToolContent[] = [
     category: "Finance",
     kind: "widget",
     metaDescription:
-      "Free Tanzania mobile money fee calculator — check M-Pesa, Airtel Money and Mixx by Yas send and withdrawal fees, including the 10% excise, 18% VAT and the government withdrawal levy.",
+      "Free Tanzania mobile money fee calculator: see M-Pesa, Airtel, Mixx, T-Pesa and HaloPesa send and withdrawal charges before you get charged.",
     intro:
       "Work out the real cost of a mobile money transaction in Tanzania. Pick M-Pesa, Airtel Money or Mixx by Yas, choose send or withdraw, and enter an amount to see the fee including the 10% excise duty, 18% VAT and the government withdrawal levy where it applies.",
     howItWorks: {

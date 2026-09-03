@@ -4,11 +4,11 @@ import { openGraph } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: `Terms of Use — ${SITE_NAME}`,
-  description: `Terms of use for ${SITE_NAME} — the conditions governing use of our free calculators and unit converters.`,
+  description: `Terms of use for ${SITE_NAME} — the conditions governing use of our free online calculators and unit converters. Read before you use the site.`,
   alternates: { canonical: `${SITE_URL}/terms` },
   openGraph: openGraph({
     title: `Terms of Use — ${SITE_NAME}`,
-    description: `Terms of use for ${SITE_NAME} — the conditions governing use of our free calculators and unit converters.`,
+    description: `Terms of use for ${SITE_NAME} — the conditions governing use of our free online calculators and unit converters. Read before you use the site.`,
     url: `${SITE_URL}/terms`,
   }),
 };

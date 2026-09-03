@@ -26,7 +26,7 @@ const FAQ = [
 export const metadata: Metadata = {
   title: "Tanzania PAYE Tax Brackets (TRA)",
   description:
-    "Current Tanzania PAYE income tax bands for resident employees — monthly income thresholds and rates, with examples.",
+    "Current Tanzania PAYE income tax bands for resident employees — see each taxable income rate and use our calculator to work out your take-home pay.",
   alternates: { canonical: `${SITE_URL}/tanzania/paye-tax-brackets` },
   openGraph: openGraph({
     title: "Tanzania PAYE Tax Brackets (TRA)",

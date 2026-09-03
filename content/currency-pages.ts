@@ -46,7 +46,7 @@ export const TZS_TO_USD: CurrencyPage = {
   name: "TZS to USD",
   h1: "TZS to USD — Tanzanian Shilling to US Dollar Converter",
   metaDescription:
-    "Convert Tanzanian Shillings (TZS) to US Dollars (USD) with live exchange rates. Free, instant TZS to USD converter.",
+    "Convert Tanzanian Shillings (TZS) to US Dollars (USD) with our live-rate converter. See the current rate and convert any amount instantly.",
   intro:
     "Convert Tanzanian Shillings to US Dollars using the latest exchange rate. Enter an amount to see the current TZS to USD value instantly.",
   from: "TZS",

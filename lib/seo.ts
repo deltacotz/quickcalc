@@ -34,3 +34,22 @@ export function breadcrumbSchema(items: { name: string; url: string }[]) {
     })),
   };
 }
+
+/**
+ * Build a meta description for a converter pair page that stays inside the
+ * 120–160 character window Google displays in SERPs, regardless of how long
+ * the two unit labels are. The labels vary widely (e.g. "Feet to Yards"
+ * vs "Millimeters of mercury to Pounds per square inch"), so a single fixed
+ * template can end up too short or too long. Start from a base long enough
+ * that the shortest labels clear 120, then trim for the longest ones.
+ */
+export function buildConverterPairDescription(fromLabel: string, toLabel: string): string {
+  let description = `Free ${fromLabel} to ${toLabel} converter: convert any value instantly, see the formula and a full conversion table. No sign-up needed.`;
+  if (description.length > 158) {
+    description = `Free ${fromLabel} to ${toLabel} converter: convert instantly, see the formula and a full conversion table.`;
+  }
+  if (description.length > 158) {
+    description = `Free ${fromLabel} to ${toLabel} converter: instant results, formula and conversion table.`;
+  }
+  return description;
+}

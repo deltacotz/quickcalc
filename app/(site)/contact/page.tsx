@@ -4,11 +4,11 @@ import { openGraph } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: `Contact — ${SITE_NAME}`,
-  description: `Contact ${SITE_NAME} with questions, corrections or suggestions for new calculators and unit converters.`,
+  description: `Contact ${SITE_NAME} with questions, corrections or suggestions about our free online calculators and converters for Tanzania. We reply fast.`,
   alternates: { canonical: `${SITE_URL}/contact` },
   openGraph: openGraph({
     title: `Contact — ${SITE_NAME}`,
-    description: `Contact ${SITE_NAME} with questions, corrections or suggestions for new calculators and unit converters.`,
+    description: `Contact ${SITE_NAME} with questions, corrections or suggestions about our free online calculators and converters for Tanzania. We reply fast.`,
     url: `${SITE_URL}/contact`,
   }),
 };

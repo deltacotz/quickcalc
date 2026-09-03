@@ -5,7 +5,7 @@ import type { Currency } from "./currency";
 export const SITE_NAME = "Calculator";
 export const SITE_TAGLINE = "Free online calculators and unit converters";
 export const SITE_DESCRIPTION =
-  "Free online calculators and unit converters: percentage, BMI, mortgage, loan, compound interest, salary, calorie, tip, discount, fuel, GPA, plus length, weight, temperature, area, volume, speed, data and time converters.";
+  "Free calculators and unit converters: percentage, BMI, loan, mortgage, compound interest, salary, tip, discount, fuel and more, plus metric/imperial converters.";
 
 // Replace with your real production domain (no trailing slash).
 export const SITE_URL = "https://www.calculator.co.tz";

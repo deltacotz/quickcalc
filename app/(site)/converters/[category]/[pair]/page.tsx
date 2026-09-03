@@ -10,7 +10,7 @@ import { AdSlot } from "@/components/AdSlot";
 import { JsonLd } from "@/components/JsonLd";
 import { ShareButton } from "@/components/ShareButton";
 import { SITE_URL } from "@/lib/site";
-import { breadcrumbSchema, openGraph } from "@/lib/seo";
+import { breadcrumbSchema, openGraph, buildConverterPairDescription } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ category: string; pair: string }>;
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!p) return {};
   const url = `${SITE_URL}/converters/${category}/${pair}`;
   const title = `${p.from.label} to ${p.to.label} Converter`;
-  const description = `Free ${p.from.label} to ${p.to.label} converter with an instant conversion calculator and a ${p.from.label} to ${p.to.label} conversion table.`;
+  const description = buildConverterPairDescription(p.from.label, p.to.label);
   return {
     title,
     description,

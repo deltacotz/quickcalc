@@ -104,7 +104,7 @@ export const TOOLS: ToolContent[] = [
     category: "Everyday",
     kind: "widget",
     metaDescription:
-      "Free date difference calculator: count the days, weeks, months and years between any two dates, with a full breakdown.",
+      "Free date difference calculator: count the days, weeks, months and years between any two dates, with a full breakdown. Fast, free and accurate.",
     intro:
       "Count exactly how many days are between two dates. Enter a start and end date to get the number of days, weeks, months and years between them, plus a year/month/day breakdown.",
     howItWorks: {
@@ -233,7 +233,7 @@ export const TOOLS: ToolContent[] = [
     category: "Health",
     kind: "widget",
     metaDescription:
-      "Free calorie calculator: estimate your BMR and daily TDEE (maintenance calories) using the Mifflin-St Jeor equation.",
+      "Free calorie calculator: estimate your BMR and daily TDEE (maintenance calories) using the Mifflin-St Jeor equation — accurate for weight loss or gain.",
     intro:
       "Estimate how many calories you burn each day. This calculator uses the Mifflin-St Jeor equation to estimate your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE), and suggests calorie targets for weight loss or gain.",
     howItWorks: {
@@ -259,7 +259,7 @@ export const TOOLS: ToolContent[] = [
     category: "Everyday",
     kind: "widget",
     metaDescription:
-      "Free tip calculator: split a restaurant bill, calculate the tip amount and see the total per person in seconds.",
+      "Free tip calculator: split a restaurant bill, calculate the tip amount and see the total per person in seconds. Works with any tip percentage.",
     intro:
       "Quickly work out how much to tip and split the bill fairly. Enter the bill amount, tip percentage and number of people to see the tip, the total, and the per-person amounts.",
     howItWorks: {
@@ -284,7 +284,7 @@ export const TOOLS: ToolContent[] = [
     category: "Everyday",
     kind: "widget",
     metaDescription:
-      "Free discount calculator: find the final price after a percentage discount and see exactly how much you save.",
+      "Free discount calculator: find the final price after a percentage discount and see exactly how much you save. Great for sales and deals.",
     intro:
       "Find out how much you'll save and what you'll pay after a percentage discount. Enter the original price and the discount percentage to see your savings and the final price instantly.",
     howItWorks: {
@@ -309,7 +309,7 @@ export const TOOLS: ToolContent[] = [
     category: "Everyday",
     kind: "widget",
     metaDescription:
-      "Free fuel cost calculator: estimate trip fuel usage and total cost in US (miles/MPG) or metric (km/km/L) units.",
+      "Free fuel cost calculator: estimate trip fuel usage and total cost in US (miles/MPG) or metric (km/km/L) units, including fuel price per gallon or litre.",
     intro:
       "Estimate how much a trip will cost in fuel. Choose US (miles, MPG, price per gallon) or metric (km, km/L, price per liter) units, then enter your distance, efficiency and fuel price to see the fuel needed and total cost.",
     howItWorks: {
@@ -334,7 +334,7 @@ export const TOOLS: ToolContent[] = [
     category: "Education",
     kind: "gpa",
     metaDescription:
-      "Free GPA calculator: compute your weighted grade point average on a 4.0 scale by entering your courses and credits.",
+      "Free GPA calculator: compute your weighted grade point average on a 4.0 scale by entering your courses and credits — with instant letter-grade results.",
     intro:
       "Calculate your grade point average (GPA) on a standard 4.0 scale. Add your courses, select the letter grade and enter the credit hours for each, and the calculator computes your weighted GPA.",
     howItWorks: {
@@ -434,7 +434,7 @@ export const TOOLS: ToolContent[] = [
     category: "Home",
     kind: "widget",
     metaDescription:
-      "Free paint calculator: estimate how many gallons of paint you need for a room or wall, including coats and coverage.",
+      "Free paint calculator: estimate how many gallons of paint you need for a room or wall, including coats and coverage, so you buy the right amount.",
     intro:
       "Estimate how much paint you need. Enter the wall area, number of coats and the paint's coverage to see the gallons (and liters) required.",
     howItWorks: {
@@ -458,7 +458,7 @@ export const TOOLS: ToolContent[] = [
     category: "Home",
     kind: "widget",
     metaDescription:
-      "Free amps to watts calculator: convert electrical current and voltage into power (watts, kilowatts and kWh).",
+      "Free amps to watts calculator: convert electrical current (amps) and voltage into power in watts, kilowatts and kWh. Fast for any appliance or circuit.",
     intro:
       "Convert amps and volts into watts. Enter the voltage and current to see power in watts, kilowatts and the energy used over one hour.",
     howItWorks: {
@@ -482,7 +482,7 @@ export const TOOLS: ToolContent[] = [
     category: "Finance",
     kind: "currency",
     metaDescription:
-      "Free currency converter with live exchange rates — convert between USD, TZS and 100+ other currencies.",
+      "Free currency converter with live exchange rates: convert between USD, TZS and 100+ other world currencies instantly. No sign-up needed.",
     intro:
       "Convert between currencies using live exchange rates. Choose your source and target currencies and enter an amount — results update instantly. Rates refresh on each page load.",
     howItWorks: {
@@ -507,7 +507,7 @@ export const TOOLS: ToolContent[] = [
     category: "Everyday",
     kind: "timezone",
     metaDescription:
-      "Free time zone converter: find the time in another city or time zone instantly, with world clock support.",
+      "Free time zone converter: find the current time in any city or time zone instantly, with world clock support and live clock comparisons.",
     intro:
       "Convert the time between two time zones. Pick a source and target time zone and a time to see the equivalent time in the other zone.",
     howItWorks: {
@@ -531,7 +531,7 @@ export const TOOLS: ToolContent[] = [
     category: "Finance",
     kind: "widget",
     metaDescription:
-      "Free Tanzania PAYE calculator: work out your take-home pay after income tax. Enter your gross monthly salary in TZS.",
+      "Free Tanzania PAYE calculator: work out your take-home pay after income tax. Enter your gross monthly salary in TZS and see your net pay.",
     intro:
       "Calculate your take-home pay in Tanzania after PAYE income tax. Enter your gross monthly salary in Tanzanian Shillings to see your monthly tax and net pay, based on the current TRA resident tax bands.",
     howItWorks: {
@@ -584,7 +584,7 @@ export const TOOLS: ToolContent[] = [
     category: "Finance",
     kind: "widget",
     metaDescription:
-      "Free Tanzania VAT calculator: add or remove 18% VAT on any amount in TZS, showing the VAT amount and total.",
+      "Free Tanzania VAT calculator: add or remove 18% VAT on any amount in TZS, showing the VAT amount and total. Accurate for invoices and pricing.",
     intro:
       "Work out Tanzania's Value Added Tax (VAT) quickly. Choose to add VAT to a price (excl. VAT) or remove VAT from a price (incl. VAT), enter the amount and see the VAT and the total. The standard VAT rate is 18%.",
     howItWorks: {
@@ -610,7 +610,7 @@ export const TOOLS: ToolContent[] = [
     category: "Everyday",
     kind: "widget",
     metaDescription:
-      "Free average calculator: find the mean, sum and count of a list of numbers in seconds.",
+      "Free average calculator: enter any list of numbers to instantly find the mean, sum and count. Clear steps and examples, accurate and free — no sign-up needed.",
     intro:
       "Calculate the average (mean) of any list of numbers. Enter the numbers separated by commas and see the average, total and count instantly.",
     howItWorks: {
@@ -659,7 +659,7 @@ export const TOOLS: ToolContent[] = [
     category: "Everyday",
     kind: "widget",
     metaDescription:
-      "Free standard deviation calculator: find the mean and population/sample standard deviation of a set of numbers.",
+      "Free standard deviation calculator: find the mean and population or sample standard deviation of a set of numbers, with clear step-by-step working.",
     intro:
       "Calculate the standard deviation and mean of a set of numbers. Enter the values separated by commas to see the population and sample standard deviation.",
     howItWorks: {
@@ -683,7 +683,7 @@ export const TOOLS: ToolContent[] = [
     category: "Finance",
     kind: "widget",
     metaDescription:
-      "Free inflation calculator: see how inflation affects purchasing power over time — future value or value today.",
+      "Free inflation calculator: see how inflation affects purchasing power over time — future value or what money is worth today. Adjust for any rate.",
     intro:
       "See how inflation affects the value of money. Enter an amount, an inflation rate and a number of years to calculate its future value, or its value today.",
     howItWorks: {
@@ -708,7 +708,7 @@ export const TOOLS: ToolContent[] = [
     category: "Finance",
     kind: "widget",
     metaDescription:
-      "Free debt-to-income (DTI) ratio calculator: see how much of your income goes to debt each month.",
+      "Free debt-to-income (DTI) ratio calculator: enter monthly debt and gross income to instantly find the % of income going to debt, with healthy-range guidance.",
     intro:
       "Calculate your debt-to-income (DTI) ratio. Enter your total monthly debt payments and your gross monthly income to see the percentage of income that goes to debt.",
     howItWorks: {

@@ -18,6 +18,7 @@ import { AdSlot } from "@/components/AdSlot";
 import { JsonLd } from "@/components/JsonLd";
 import { ToolCard } from "@/components/ToolCard";
 import { EmbedCode } from "@/components/EmbedCode";
+import { ShareButton } from "@/components/ShareButton";
 import { SITE_URL } from "@/lib/site";
 import { breadcrumbSchema, openGraph } from "@/lib/seo";
 
@@ -107,6 +108,10 @@ export default async function ToolPage({ params }: Props) {
           ) : (
             <CalculatorWidget slug={tool.slug} />
           )}
+        </div>
+
+        <div className="mt-4">
+          <ShareButton url={`${SITE_URL}/tools/${tool.slug}`} title={tool.name} />
         </div>
 
         <AdSlot className="mt-8" />

@@ -8,6 +8,7 @@ import { ConverterWidget } from "@/components/ConverterWidget";
 import { ConversionTable } from "@/components/ConversionTable";
 import { AdSlot } from "@/components/AdSlot";
 import { JsonLd } from "@/components/JsonLd";
+import { ShareButton } from "@/components/ShareButton";
 import { SITE_URL } from "@/lib/site";
 import { breadcrumbSchema, openGraph } from "@/lib/seo";
 
@@ -98,6 +99,13 @@ export default async function ConverterPairPage({ params }: Props) {
             dimensionId={category}
             defaultFrom={p.from.id}
             defaultTo={p.to.id}
+          />
+        </div>
+
+        <div className="mt-4">
+          <ShareButton
+            url={`${SITE_URL}/converters/${category}/${pair}`}
+            title={`${p.from.label} to ${p.to.label} Converter`}
           />
         </div>
 

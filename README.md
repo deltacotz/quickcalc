@@ -42,6 +42,21 @@ lib/format.ts        number/currency formatting
 lib/site.ts          ALL site config (brand, domain, ads, analytics) — edit this first
 ```
 
+## Content standards
+
+**Meta descriptions must be 120–160 characters.** This is the range Google displays fully in
+search results; shorter descriptions waste keyword/CTR space and longer ones get truncated. The
+site audits this automatically:
+
+```bash
+npm run audit:meta
+```
+
+It checks **every** description source (converter pair + category pages, tool pages, currency
+pages, and `SITE_DESCRIPTION`) and exits non-zero if any is outside 120–160. Run it whenever you
+**add or edit a page** and fix any flagged description before deploying. New converter dimensions
+and tools must bring a description that fits the window.
+
 ## Before launch — edit `lib/site.ts`
 
 1. **`SITE_NAME`** — your brand name (currently `Calculator`).

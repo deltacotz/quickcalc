@@ -187,7 +187,7 @@ export const DIMENSIONS: Dimension[] = [
     label: "Speed",
     baseUnitId: "meters-per-second",
     description:
-      "Convert between speed units — meters per second, kilometers per hour, miles per hour, knots and feet per second.",
+      "Convert between speed units — meters per second, kilometers per hour, miles per hour, knots and feet per second. Free instant converter.",
     faq: [
       {
         q: "How do I convert mph to km/h?",
@@ -245,7 +245,7 @@ export const DIMENSIONS: Dimension[] = [
     label: "Time",
     baseUnitId: "seconds",
     description:
-      "Convert between time units — milliseconds, seconds, minutes, hours, days, weeks, months (average) and years (average).",
+      "Convert between time units — milliseconds, seconds, minutes, hours, days, weeks, months (average) and years (average). Free instant converter.",
     faq: [
       {
         q: "How many seconds are in an hour?",
@@ -276,7 +276,7 @@ export const DIMENSIONS: Dimension[] = [
     label: "Power",
     baseUnitId: "watts",
     description:
-      "Convert between power units — milliwatts, watts, kilowatts, megawatts, horsepower, metric horsepower and BTU per hour.",
+      "Convert between power units — milliwatts, watts, kilowatts, megawatts, horsepower, metric horsepower and BTU per hour. Free instant converter.",
     faq: [
       {
         q: "How many watts are in a horsepower?",

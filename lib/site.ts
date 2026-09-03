@@ -25,11 +25,11 @@ export const GA_MEASUREMENT_ID = "G-JWGR6Z0QGC";
 export const DEFAULT_CURRENCY: Currency = "USD";
 
 // --- Social profiles ----------------------------------------------------
-// Add the Twitter/X URL here once the account is confirmed.
+// Social handles are set once each account is confirmed. Twitter/X is now live.
 export const SOCIAL = {
   instagram: "https://www.instagram.com/calculatorcotz",
   tiktok: "https://www.tiktok.com/@calculatorcotz",
-  twitter: "",
+  twitter: "https://twitter.com/calculatorcotz",
 } as const;
 
 // --- Contact / compliance ----------------------------------------------

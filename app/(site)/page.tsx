@@ -32,7 +32,7 @@ const organizationSchema = {
   name: SITE_NAME,
   url: SITE_URL,
   logo: `${SITE_URL}/apple-icon.png`,
-  sameAs: [SOCIAL.instagram, SOCIAL.tiktok],
+  sameAs: [SOCIAL.instagram, SOCIAL.tiktok, SOCIAL.twitter],
 };
 
 const webAppSchema = {

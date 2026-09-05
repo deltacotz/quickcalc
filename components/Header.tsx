@@ -20,7 +20,7 @@ export function Header() {
         <div className="flex items-center gap-3">
           <CurrencySwitcher />
           <nav className="hidden items-center gap-4 text-sm font-medium text-zinc-600 md:flex">
-            <Link href="/#calculators" className="hover:text-zinc-900">
+            <Link href="/tools" className="hover:text-zinc-900">
               Calculators
             </Link>
             <Link href="/converters" className="hover:text-zinc-900">
@@ -51,7 +51,7 @@ export function Header() {
         <nav className="border-t border-zinc-200 bg-white px-4 py-2 md:hidden">
           <div className="flex flex-col">
             <Link
-              href="/#calculators"
+              href="/tools"
               onClick={() => setOpen(false)}
               className="py-2 text-sm font-medium text-zinc-700 hover:text-zinc-900"
             >

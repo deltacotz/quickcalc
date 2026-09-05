@@ -80,7 +80,7 @@ export default async function ToolPage({ params }: Props) {
       <JsonLd
         data={breadcrumbSchema([
           { name: "Home", url: SITE_URL },
-          { name: "Calculators", url: `${SITE_URL}/#calculators` },
+          { name: "Calculators", url: `${SITE_URL}/tools` },
           { name: tool.name, url: `${SITE_URL}/tools/${tool.slug}` },
         ])}
       />
@@ -90,7 +90,7 @@ export default async function ToolPage({ params }: Props) {
             Home
           </Link>
           <span className="mx-2">/</span>
-          <Link href="/#calculators" className="hover:text-zinc-800">
+          <Link href="/tools" className="hover:text-zinc-800">
             Calculators
           </Link>
           <span className="mx-2">/</span>

@@ -780,6 +780,83 @@ export const TOOLS: ToolContent[] = [
     disclaimers: ["financial"],
     related: ["tanzania-paye-calculator", "tanzania-nssf-calculator", "retirement-calculator"],
   },
+  {
+    slug: "tanzania-employer-cost-calculator",
+    name: "Tanzania Employer Cost Calculator",
+    category: "Finance",
+    kind: "widget",
+    metaDescription:
+      "Free Tanzania employer cost calculator: see the true cost of hiring staff with NSSF, SDL and WCF employer contributions. No sign-up needed.",
+    intro:
+      "Work out what it actually costs to employ someone in Tanzania. Enter the gross monthly salary to see the employer contributions — NSSF (10%), Skills Development Levy (3.5% where it applies) and Workers Compensation Fund (0.5%) — and the total cost per employee.",
+    howItWorks: {
+      formula: "On-cost = NSSF 10% + SDL 3.5% (≥10 staff) + WCF 0.5% ≈ 14% · Total = salary + on-cost",
+      explanation:
+        "Beyond the gross salary, Tanzanian employers pay three statutory contributions: 10% NSSF (pension), 3.5% Skills Development Levy (only for employers with 10+ staff), and 0.5% Workers Compensation Fund. Together they add about 14% on top of salary.",
+    },
+    examples: [
+      { title: "Example", text: "Employing someone on 1,000,000 TZS gross costs about 1,140,000 TZS once you add NSSF (100,000), SDL (35,000) and WCF (5,000)." },
+      { title: "Under 10 staff", text: "With fewer than 10 employees, SDL doesn't apply, so the on-cost is NSSF 10% + WCF 0.5% = 10.5%, or 1,105,000 TZS on a 1,000,000 TZS salary." },
+    ],
+    faq: [
+      { q: "What does it cost to employ someone in Tanzania?", a: "Roughly 14% above gross salary: 10% NSSF, 3.5% SDL (if 10+ employees) and 0.5% WCF, all paid by the employer." },
+      { q: "Who pays SDL and WCF?", a: "Both are employer-only contributions — they are not deducted from the employee's pay." },
+      { q: "When does SDL apply?", a: "The Skills Development Levy applies to employers with 10 or more employees, at 3.5% of total gross monthly payroll." },
+      { q: "Are these rates current?", a: "Rates change over time. This shows the current NSSF 10%, SDL 3.5% and WCF 0.5% — always verify with the relevant authority." },
+    ],
+    disclaimers: ["financial"],
+    related: ["tanzania-nssf-calculator", "tanzania-psssf-calculator", "tanzania-paye-calculator"],
+  },
+  {
+    slug: "tanzania-sdl-calculator",
+    name: "Tanzania SDL Calculator",
+    category: "Finance",
+    kind: "widget",
+    metaDescription:
+      "Free Tanzania Skills Development Levy (SDL) calculator: work out the 3.5% employer levy on your monthly payroll. Fast and free, no sign-up.",
+    intro:
+      "Calculate the Skills Development Levy (SDL) you owe as an employer in Tanzania. Enter your total gross monthly payroll to see the 3.5% levy, which applies to employers with 10 or more employees.",
+    howItWorks: {
+      formula: "SDL = 3.5% × total gross monthly payroll (if 10+ employees)",
+      explanation:
+        "SDL is a compulsory employer levy that funds vocational skills development. It is charged at 3.5% of total gross monthly emoluments and only applies to employers with 10 or more employees.",
+    },
+    examples: [
+      { title: "Example", text: "A 1,000,000 TZS monthly payroll with 10+ employees attracts 3.5% × 1,000,000 = 35,000 TZS in SDL." },
+    ],
+    faq: [
+      { q: "What is the SDL rate in Tanzania?", a: "3.5% of total gross monthly emoluments paid to all employees." },
+      { q: "Who pays SDL?", a: "The employer only — it is never deducted from employees' wages." },
+      { q: "Does SDL apply to all employers?", a: "No. It applies only to employers with 10 or more employees." },
+    ],
+    disclaimers: ["financial"],
+    related: ["tanzania-employer-cost-calculator", "tanzania-nssf-calculator", "tanzania-paye-calculator"],
+  },
+  {
+    slug: "tanzania-wcf-calculator",
+    name: "Tanzania WCF Calculator",
+    category: "Finance",
+    kind: "widget",
+    metaDescription:
+      "Free Tanzania Workers Compensation Fund (WCF) calculator: work out the 0.5% employer contribution on your monthly payroll. Fast, free, no sign-up.",
+    intro:
+      "Calculate your Workers Compensation Fund (WCF) contribution in Tanzania. Enter your total gross monthly payroll to see the 0.5% employer contribution that funds workplace injury protection.",
+    howItWorks: {
+      formula: "WCF = 0.5% × total gross monthly payroll",
+      explanation:
+        "The Workers Compensation Fund is a mandatory insurance scheme funded by employers at 0.5% of cash paid to employees. It covers workplace injuries and occupational diseases — the cost is employer-borne only.",
+    },
+    examples: [
+      { title: "Example", text: "A 1,000,000 TZS monthly payroll attracts 0.5% × 1,000,000 = 5,000 TZS in WCF." },
+    ],
+    faq: [
+      { q: "What is the WCF rate in Tanzania?", a: "0.5% of cash paid to employees, at a unified rate for all sectors." },
+      { q: "Who pays WCF?", a: "The employer only — it is not deducted from employees' pay." },
+      { q: "What does WCF cover?", a: "Compensation for workplace injuries and occupational diseases." },
+    ],
+    disclaimers: ["financial"],
+    related: ["tanzania-employer-cost-calculator", "tanzania-sdl-calculator", "tanzania-nssf-calculator"],
+  },
 ];
 
 export function getTool(slug: string): ToolContent | undefined {

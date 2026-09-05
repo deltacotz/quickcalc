@@ -4,7 +4,7 @@ import { monthlyPayment, mortgage, compoundInterest, salaryToHourly, retirement,
 import { bmi, calorie, bodyFat } from "./calculators/health";
 import { percentage, tip, discount, fuelCost, age, dayDiff, breakdown, pregnancy, average, standardDeviation } from "./calculators/everyday";
 import { paint, electrical } from "./calculators/home";
-import { payeTax, tanzaniaPaye, tanzaniaVat, tanzaniaNssf, tanzaniaPsssf, nssfEmployee, nssfEmployer, psssfEmployee, psssfEmployer, psssfGratuity } from "./calculators/tanzania";
+import { payeTax, tanzaniaPaye, tanzaniaVat, tanzaniaNssf, tanzaniaPsssf, nssfEmployee, nssfEmployer, psssfEmployee, psssfEmployer, psssfGratuity, tanzaniaEmployerCost, tanzaniaSdl, tanzaniaWcf, sdlEmployer, wcfEmployer } from "./calculators/tanzania";
 import { mobileMoneyFee } from "./calculators/mobilemoney";
 import { feeFor } from "./mobilemoney";
 import { uttCalculator } from "./calculators/utt";
@@ -184,6 +184,39 @@ test("PSSSF retirement pension estimate", () => {
 test("NSSF and PSSSF reject non-positive salary", () => {
   assert.equal(tanzaniaNssf.compute({ salary: "0" }, USD)[0].label, "Error");
   assert.equal(tanzaniaPsssf.compute({ mode: "paycheck", salary: "0", months: "180" }, USD)[0].label, "Error");
+});
+
+test("SDL and WCF helper rates", () => {
+  assert.equal(sdlEmployer(1000000), 35000);
+  assert.equal(wcfEmployer(1000000), 5000);
+});
+
+test("employer cost: 10+ employees (NSSF 10% + SDL 3.5% + WCF 0.5% = 14%)", () => {
+  const res = tanzaniaEmployerCost.compute({ salary: "1000000", employees: "10", sdl: "auto" }, USD);
+  // total cost = 1,000,000 + 100,000 + 35,000 + 5,000 = 1,140,000
+  assert.equal(res[0].value, "TSh 1,140,000");
+  assert.equal(res[5].value, "TSh 140,000"); // total on-cost
+});
+
+test("employer cost: SDL exempt below 10 employees", () => {
+  const res = tanzaniaEmployerCost.compute({ salary: "1000000", employees: "5", sdl: "auto" }, USD);
+  // total cost = 1,000,000 + 100,000 + 0 + 5,000 = 1,105,000
+  assert.equal(res[0].value, "TSh 1,105,000");
+  assert.equal(res[3].value, "TSh 0"); // SDL
+});
+
+test("SDL calculator: applies at 10+, exempt below", () => {
+  assert.equal(tanzaniaSdl.compute({ payroll: "1000000", employees: "10" }, USD)[0].value, "TSh 35,000");
+  assert.equal(tanzaniaSdl.compute({ payroll: "1000000", employees: "9" }, USD)[0].value, "TSh 0");
+});
+
+test("WCF calculator: 0.5% regardless", () => {
+  assert.equal(tanzaniaWcf.compute({ payroll: "1000000" }, USD)[0].value, "TSh 5,000");
+});
+
+test("SDL and WCF reject non-positive payroll", () => {
+  assert.equal(tanzaniaSdl.compute({ payroll: "0", employees: "10" }, USD)[0].label, "Error");
+  assert.equal(tanzaniaWcf.compute({ payroll: "0" }, USD)[0].label, "Error");
 });
 
 test("mobile money: M-Pesa withdraw 10,000 (tax-inclusive)", () => {

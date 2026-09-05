@@ -188,3 +188,108 @@ export const tanzaniaPsssf: CalculatorSpec = {
     ];
   },
 };
+
+// Skills Development Levy (SDL) — employer-borne, 3.5% of total gross monthly
+// emoluments, applies only to employers with 10 or more employees.
+export const SDL_RATE = 0.035;
+export const SDL_EMPLOYEE_THRESHOLD = 10;
+
+export function sdlEmployer(payroll: number): number {
+  return payroll * SDL_RATE;
+}
+
+// Workers Compensation Fund (WCF) — employer-borne, 0.5% of cash paid to
+// employees (unified rate for all sectors). Historical 0.6% private-sector rate
+// is flagged in the content disclaimer.
+export const WCF_RATE = 0.005;
+
+export function wcfEmployer(payroll: number): number {
+  return payroll * WCF_RATE;
+}
+
+/** True when SDL applies to an employer (10+ employees, or an explicit override). */
+function sdlApplies(employees: number, override: string): boolean {
+  if (override === "yes") return true;
+  if (override === "no") return false;
+  return employees >= SDL_EMPLOYEE_THRESHOLD;
+}
+
+export const tanzaniaEmployerCost: CalculatorSpec = {
+  slug: "tanzania-employer-cost-calculator",
+  fields: [
+    { id: "salary", label: "Gross monthly salary (per employee)", type: "number", unit: "TSh", default: "1000000", min: 0, step: "1000" },
+    { id: "employees", label: "Number of employees", type: "number", unit: "", default: "1", min: 1, step: "1" },
+    {
+      id: "sdl",
+      label: "SDL (Skills Development Levy)",
+      type: "select",
+      options: [
+        { value: "auto", label: "Auto — apply if 10+ employees" },
+        { value: "yes", label: "Yes — employer is SDL-liable" },
+        { value: "no", label: "No — exempt" },
+      ],
+      default: "auto",
+    },
+  ],
+  compute: (inp: Inputs) => {
+    const salary = num(inp, "salary");
+    if (salary <= 0) return [{ label: "Error", value: "—", note: "Enter a positive salary." }];
+    const employees = Math.max(1, num(inp, "employees"));
+    const f = (v: number) => formatCurrency(v, "TZS");
+
+    const nssfEr = nssfEmployer(salary);
+    const appliesSdl = sdlApplies(employees, inp.sdl ?? "auto");
+    const sdl = appliesSdl ? sdlEmployer(salary) : 0;
+    const wcf = wcfEmployer(salary);
+    const onCost = nssfEr + sdl + wcf;
+    const totalCost = salary + onCost;
+
+    return [
+      { label: "Total cost to employer (per employee)", value: f(totalCost), highlight: true },
+      { label: "Gross salary", value: f(salary) },
+      { label: "NSSF employer (10%)", value: f(nssfEr) },
+      { label: "SDL (3.5%)", value: f(sdl), note: appliesSdl ? "Applies at 10+ employees." : "Exempt — fewer than 10 employees." },
+      { label: "WCF (0.5%)", value: f(wcf) },
+      { label: "Total employer on-cost", value: f(onCost) },
+    ];
+  },
+};
+
+export const tanzaniaSdl: CalculatorSpec = {
+  slug: "tanzania-sdl-calculator",
+  fields: [
+    { id: "payroll", label: "Total gross monthly payroll", type: "number", unit: "TSh", default: "1000000", min: 0, step: "1000" },
+    { id: "employees", label: "Number of employees", type: "number", unit: "", default: "10", min: 0, step: "1" },
+  ],
+  compute: (inp: Inputs) => {
+    const payroll = num(inp, "payroll");
+    if (payroll <= 0) return [{ label: "Error", value: "—", note: "Enter a positive payroll." }];
+    const employees = num(inp, "employees");
+    const f = (v: number) => formatCurrency(v, "TZS");
+    const applies = employees >= SDL_EMPLOYEE_THRESHOLD;
+    const levy = applies ? sdlEmployer(payroll) : 0;
+    return [
+      { label: "SDL levy (monthly)", value: f(levy), highlight: true },
+      { label: "Total gross payroll", value: f(payroll) },
+      { label: "SDL rate", value: "3.5%" },
+      { label: "Status", value: applies ? "Liable (10+ employees)" : "Exempt (fewer than 10 employees)" },
+    ];
+  },
+};
+
+export const tanzaniaWcf: CalculatorSpec = {
+  slug: "tanzania-wcf-calculator",
+  fields: [
+    { id: "payroll", label: "Total gross monthly payroll", type: "number", unit: "TSh", default: "1000000", min: 0, step: "1000" },
+  ],
+  compute: (inp: Inputs) => {
+    const payroll = num(inp, "payroll");
+    if (payroll <= 0) return [{ label: "Error", value: "—", note: "Enter a positive payroll." }];
+    const f = (v: number) => formatCurrency(v, "TZS");
+    return [
+      { label: "WCF contribution (monthly)", value: f(wcfEmployer(payroll)), highlight: true },
+      { label: "Total gross payroll", value: f(payroll) },
+      { label: "WCF rate", value: "0.5%" },
+    ];
+  },
+};

@@ -3,7 +3,7 @@ import { percentage, age, dateDifference, tip, discount, fuelCost, pregnancy, av
 import { mortgage, loan, compoundInterest, salaryToHourly, retirement, inflation, debtToIncome } from "./finance";
 import { bmi, calorie, bodyFat } from "./health";
 import { paint, electrical } from "./home";
-import { tanzaniaPaye, tanzaniaVat } from "./tanzania";
+import { tanzaniaPaye, tanzaniaVat, tanzaniaNssf, tanzaniaPsssf } from "./tanzania";
 import { mobileMoneyFee } from "./mobilemoney";
 import { uttCalculator } from "./utt";
 
@@ -30,6 +30,8 @@ export const CALCULATORS: CalculatorSpec[] = [
   electrical,
   tanzaniaPaye,
   tanzaniaVat,
+  tanzaniaNssf,
+  tanzaniaPsssf,
   mobileMoneyFee,
   average,
   uttCalculator,

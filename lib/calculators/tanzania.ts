@@ -82,3 +82,109 @@ export const tanzaniaVat: CalculatorSpec = {
     return results;
   },
 };
+
+// National Social Security Fund (private sector) — flat 20% total.
+// Verify against the latest NSSF rates: 10% employee + 10% employer on gross
+// monthly wage, no salary ceiling (NSSF Act, Cap 50 s.13).
+export const NSSF_EMPLOYEE_RATE = 0.1;
+export const NSSF_EMPLOYER_RATE = 0.1;
+
+export function nssfEmployee(salary: number): number {
+  return salary * NSSF_EMPLOYEE_RATE;
+}
+export function nssfEmployer(salary: number): number {
+  return salary * NSSF_EMPLOYER_RATE;
+}
+
+export const tanzaniaNssf: CalculatorSpec = {
+  slug: "tanzania-nssf-calculator",
+  fields: [
+    { id: "salary", label: "Gross monthly salary", type: "number", unit: "TSh", default: "1000000", min: 0, step: "1000" },
+  ],
+  compute: (inp: Inputs) => {
+    const salary = num(inp, "salary");
+    if (salary <= 0) return [{ label: "Error", value: "—", note: "Enter a positive salary." }];
+    const employee = nssfEmployee(salary);
+    const employer = nssfEmployer(salary);
+    // Employee NSSF is deducted before PAYE is computed.
+    const monthlyTax = payeTax(salary - employee);
+    const netMonthly = salary - employee - monthlyTax;
+    const f = (v: number) => formatCurrency(v, "TZS");
+    return [
+      { label: "Net (take-home) monthly", value: f(netMonthly), highlight: true },
+      { label: "Employee NSSF (10%)", value: f(employee) },
+      { label: "Employer NSSF (10%)", value: f(employer) },
+      { label: "Total NSSF (20%)", value: f(employee + employer) },
+      { label: "PAYE tax (monthly)", value: f(monthlyTax) },
+      { label: "Net (take-home) annual", value: f(netMonthly * 12) },
+    ];
+  },
+};
+
+// Public Service Social Security Fund (public sector) — flat 20% total,
+// split 15% employer / 5% employee (Public Service Social Security Fund Act
+// No. 2 of 2018, Part IV). Verify against the latest PSSSF rates.
+export const PSSSF_EMPLOYEE_RATE = 0.05;
+export const PSSSF_EMPLOYER_RATE = 0.15;
+
+export function psssfEmployee(salary: number): number {
+  return salary * PSSSF_EMPLOYEE_RATE;
+}
+export function psssfEmployer(salary: number): number {
+  return salary * PSSSF_EMPLOYER_RATE;
+}
+
+/** Retirement pension estimate: (1/580) × months of service × annual pensionable emoluments. */
+export function psssfGratuity(monthsOfService: number, annualEmoluments: number): number {
+  return (monthsOfService * annualEmoluments) / 580;
+}
+
+export const tanzaniaPsssf: CalculatorSpec = {
+  slug: "tanzania-psssf-calculator",
+  fields: [
+    {
+      id: "mode",
+      label: "Calculation",
+      type: "select",
+      options: [
+        { value: "paycheck", label: "Monthly deductions (take-home pay)" },
+        { value: "retirement", label: "Retirement pension estimate" },
+      ],
+      default: "paycheck",
+    },
+    { id: "salary", label: "Gross monthly salary", type: "number", unit: "TSh", default: "1000000", min: 0, step: "1000" },
+    { id: "months", label: "Months of service", type: "number", unit: "mo", default: "180", min: 0, step: "1" },
+  ],
+  compute: (inp: Inputs) => {
+    const salary = num(inp, "salary");
+    if (salary <= 0) return [{ label: "Error", value: "—", note: "Enter a positive salary." }];
+    const f = (v: number) => formatCurrency(v, "TZS");
+
+    if (inp.mode === "retirement") {
+      const months = num(inp, "months");
+      if (months <= 0) return [{ label: "Error", value: "—", note: "Enter months of service." }];
+      const annualEmoluments = salary * 12;
+      const gratuity = psssfGratuity(months, annualEmoluments);
+      return [
+        { label: "Estimated gratuity (commuted pension)", value: f(gratuity), highlight: true },
+        { label: "Estimated monthly pension", value: f(gratuity / 12) },
+        { label: "Annual pensionable emoluments (APE)", value: f(annualEmoluments) },
+        { label: "Months of service", value: String(months) },
+        { label: "Note", value: "—", note: "Estimate only — retirees before age 60 may receive a reduced pension." },
+      ];
+    }
+
+    const employee = psssfEmployee(salary);
+    const employer = psssfEmployer(salary);
+    const monthlyTax = payeTax(salary - employee);
+    const netMonthly = salary - employee - monthlyTax;
+    return [
+      { label: "Net (take-home) monthly", value: f(netMonthly), highlight: true },
+      { label: "Employee PSSSF (5%)", value: f(employee) },
+      { label: "Employer PSSSF (15%)", value: f(employer) },
+      { label: "Total PSSSF (20%)", value: f(employee + employer) },
+      { label: "PAYE tax (monthly)", value: f(monthlyTax) },
+      { label: "Net (take-home) annual", value: f(netMonthly * 12) },
+    ];
+  },
+};

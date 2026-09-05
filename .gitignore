@@ -40,3 +40,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# campaign media (generated locally, hosted on Cloudinary)
+/vendor/ffmpeg
+/vendor/ffmpeg.gz
+/videos/
+/cards/

@@ -727,6 +727,59 @@ export const TOOLS: ToolContent[] = [
     disclaimers: ["financial"],
     related: ["loan-calculator", "mortgage-calculator", "compound-interest-calculator"],
   },
+  {
+    slug: "tanzania-nssf-calculator",
+    name: "Tanzania NSSF Calculator",
+    category: "Finance",
+    kind: "widget",
+    metaDescription:
+      "Free Tanzania NSSF calculator: see your employee and employer NSSF contributions and net take-home pay after tax. No sign-up needed.",
+    intro:
+      "Work out your National Social Security Fund (NSSF) deductions and take-home pay in Tanzania. Enter your gross monthly salary to see the employee and employer contributions (10% each, 20% total) and your net pay after NSSF and PAYE.",
+    howItWorks: {
+      formula: "NSSF = 10% (employee) + 10% (employer) = 20% of gross · PAYE on (gross − employee NSSF) · Net = gross − employee NSSF − PAYE",
+      explanation:
+        "NSSF is a mandatory pension scheme for private-sector employees. Each month 10% of your gross salary is deducted as the employee share and your employer contributes a matching 10% (20% total). Your employee NSSF is deducted before PAYE, so it reduces your taxable income.",
+    },
+    examples: [
+      { title: "Example", text: "A 1,000,000 TZS gross salary deducts 100,000 TZS employee NSSF and the employer adds 100,000 TZS, giving about 772,000 TZS take-home after PAYE." },
+    ],
+    faq: [
+      { q: "What is NSSF?", a: "The National Social Security Fund is Tanzania's mandatory pension scheme for private-sector and informal employees." },
+      { q: "How much is NSSF in Tanzania?", a: "20% of gross monthly salary in total — 10% from the employee and 10% from the employer." },
+      { q: "Does NSSF reduce my tax?", a: "Yes. Your employee NSSF contribution is deducted from your salary before PAYE is calculated, lowering your taxable income." },
+      { q: "Is there a salary cap for NSSF?", a: "No — NSSF is calculated on your full gross salary with no ceiling (Tanzania)." },
+    ],
+    disclaimers: ["financial"],
+    related: ["tanzania-paye-calculator", "tanzania-psssf-calculator", "mobile-money-fee-calculator"],
+  },
+  {
+    slug: "tanzania-psssf-calculator",
+    name: "Tanzania PSSSF Calculator",
+    category: "Finance",
+    kind: "widget",
+    metaDescription:
+      "Free Tanzania PSSSF calculator for public servants: 5% employee + 15% employer contributions, net take-home pay and an estimate of your retirement pension.",
+    intro:
+      "Calculate your Public Service Social Security Fund (PSSSF) deductions, net take-home pay and an estimate of your retirement pension. Enter your gross monthly salary to see your 5% employee and 15% employer contributions, then switch to retirement mode to estimate your pension.",
+    howItWorks: {
+      formula: "PSSSF = 5% (employee) + 15% (employer) = 20% of salary · Pension = (1/580) × months of service × APE",
+      explanation:
+        "PSSSF is the mandatory pension fund for public-sector employees. 5% of your salary is deducted as the employee share and your employer contributes 15% (20% total). The retirement pension is estimated using 1/580 × months of service × your annual pensionable emoluments (APE).",
+    },
+    examples: [
+      { title: "Paycheck example", text: "A 1,000,000 TZS gross salary deducts 50,000 TZS employee PSSSF and the employer adds 150,000 TZS, giving about 824,500 TZS take-home after PAYE." },
+      { title: "Retirement example", text: "180 months of service with an annual pensionable emolument of 12,000,000 TZS gives an estimated gratuity of about 3,724,000 TZS." },
+    ],
+    faq: [
+      { q: "What is PSSSF?", a: "The Public Service Social Security Fund is Tanzania's mandatory pension scheme for public-sector employees." },
+      { q: "How is PSSSF different from NSSF?", a: "NSSF covers private-sector employees (10% employee / 10% employer), while PSSSF covers public servants (5% employee / 15% employer). Both total 20%." },
+      { q: "How is my PSSSF pension calculated?", a: "It's estimated as (1/580) × months of service × your annual pensionable emoluments, paid as a commuted gratuity." },
+      { q: "When can I retire under PSSSF?", a: "Compulsory retirement is age 60; you may retire voluntarily from age 55 with at least 180 months (15 years) of contributions." },
+    ],
+    disclaimers: ["financial"],
+    related: ["tanzania-paye-calculator", "tanzania-nssf-calculator", "retirement-calculator"],
+  },
 ];
 
 export function getTool(slug: string): ToolContent | undefined {

@@ -4,7 +4,7 @@ import { monthlyPayment, mortgage, compoundInterest, salaryToHourly, retirement,
 import { bmi, calorie, bodyFat } from "./calculators/health";
 import { percentage, tip, discount, fuelCost, age, dayDiff, breakdown, pregnancy, average, standardDeviation } from "./calculators/everyday";
 import { paint, electrical } from "./calculators/home";
-import { payeTax, tanzaniaPaye, tanzaniaVat } from "./calculators/tanzania";
+import { payeTax, tanzaniaPaye, tanzaniaVat, tanzaniaNssf, tanzaniaPsssf, nssfEmployee, nssfEmployer, psssfEmployee, psssfEmployer, psssfGratuity } from "./calculators/tanzania";
 import { mobileMoneyFee } from "./calculators/mobilemoney";
 import { feeFor } from "./mobilemoney";
 import { uttCalculator } from "./calculators/utt";
@@ -150,6 +150,40 @@ test("tanzania PAYE", () => {
   const res = tanzaniaPaye.compute({ salary: "1000000" }, USD);
   assert.equal(res[0].value, "TSh 872,000");
   assert.equal(res[1].value, "TSh 128,000");
+});
+
+test("NSSF contributions (10% employee + 10% employer)", () => {
+  assert.equal(nssfEmployee(1000000), 100000);
+  assert.equal(nssfEmployer(1000000), 100000);
+  const res = tanzaniaNssf.compute({ salary: "1000000" }, USD);
+  // employee NSSF 100,000; PAYE on 900,000 = 20k + 48k + 35k = 103,000; net = 1,000,000 - 100,000 - 103,000 = 797,000
+  assert.equal(res[0].value, "TSh 797,000");
+  assert.equal(res[1].value, "TSh 100,000");
+  assert.equal(res[2].value, "TSh 100,000");
+  assert.equal(res[3].value, "TSh 200,000");
+});
+
+test("PSSSF contributions (5% employee + 15% employer)", () => {
+  assert.equal(psssfEmployee(1000000), 50000);
+  assert.equal(psssfEmployer(1000000), 150000);
+  const res = tanzaniaPsssf.compute({ mode: "paycheck", salary: "1000000", months: "180" }, USD);
+  // employee PSSSF 50,000; PAYE on 950,000 = 20k + 48k + 47.5k = 115,500; net = 1,000,000 - 50,000 - 115,500 = 834,500
+  assert.equal(res[0].value, "TSh 834,500");
+  assert.equal(res[1].value, "TSh 50,000");
+  assert.equal(res[2].value, "TSh 150,000");
+  assert.equal(res[3].value, "TSh 200,000");
+});
+
+test("PSSSF retirement pension estimate", () => {
+  assert.ok(Math.abs(psssfGratuity(180, 12000000) - 3724137.9310344825) < 0.01);
+  const res = tanzaniaPsssf.compute({ mode: "retirement", salary: "1000000", months: "180" }, USD);
+  assert.equal(res[0].value, "TSh 3,724,138");
+  assert.equal(res[1].value, "TSh 310,345");
+});
+
+test("NSSF and PSSSF reject non-positive salary", () => {
+  assert.equal(tanzaniaNssf.compute({ salary: "0" }, USD)[0].label, "Error");
+  assert.equal(tanzaniaPsssf.compute({ mode: "paycheck", salary: "0", months: "180" }, USD)[0].label, "Error");
 });
 
 test("mobile money: M-Pesa withdraw 10,000 (tax-inclusive)", () => {

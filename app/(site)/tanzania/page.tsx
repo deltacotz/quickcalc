@@ -10,6 +10,8 @@ const MONEY = [
   { href: "/tzs-to-usd", title: "TZS to USD", desc: "Tanzanian Shilling to US Dollar" },
   { href: "/tools/tanzania-paye-calculator", title: "Tanzania PAYE Calculator", desc: "Take-home pay after PAYE tax" },
   { href: "/tools/tanzania-vat-calculator", title: "Tanzania VAT Calculator", desc: "Add or remove 18% VAT" },
+  { href: "/tools/tanzania-nssf-calculator", title: "Tanzania NSSF Calculator", desc: "Private-sector NSSF contributions (10% + 10%)" },
+  { href: "/tools/tanzania-psssf-calculator", title: "Tanzania PSSSF Calculator", desc: "Public-service PSSSF (5% + 15%) and pension estimate" },
   { href: "/tools/mobile-money-fee-calculator", title: "Mobile Money Fees", desc: "M-Pesa, Airtel & Mixx send/withdraw fees" },
   { href: "/tools/utt-calculator", title: "UTT Calculator", desc: "Project UTT AMIS unit trust returns" },
   { href: "/tools/loan-calculator", title: "Loan Calculator", desc: "Monthly payments in TZS or USD" },

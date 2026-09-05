@@ -71,7 +71,7 @@ export const TOOLS: ToolContent[] = [
       { q: "Is BMI different for children?", a: "Yes. For children and teens, BMI is interpreted against age- and sex-specific percentiles rather than fixed cutoffs." },
     ],
     disclaimers: ["medical"],
-    related: ["calorie-calculator", "percentage-calculator", "age-calculator"],
+    related: ["calorie-calculator", "percentage-calculator", "body-fat-calculator"],
   },
   {
     slug: "age-calculator",
@@ -121,7 +121,7 @@ export const TOOLS: ToolContent[] = [
       { q: "How many weeks are in a year?", a: "There are 52 weeks and 1 day in a common year, or 52 weeks and 2 days in a leap year." },
       { q: "Why are months and years approximations?", a: "Months and years vary in length, so the calculator uses average values (30.4375 days per month, 365.25 days per year)." },
     ],
-    related: ["age-calculator", "percentage-calculator", "fuel-cost-calculator"],
+    related: ["age-calculator", "percentage-calculator", "time-zone-converter"],
   },
   {
     slug: "mortgage-calculator",
@@ -147,7 +147,7 @@ export const TOOLS: ToolContent[] = [
       { q: "What is amortization?", a: "Amortization is the gradual repayment of a loan through scheduled payments that cover both principal and interest." },
     ],
     disclaimers: ["financial"],
-    related: ["loan-calculator", "compound-interest-calculator", "salary-to-hourly-calculator"],
+    related: ["loan-calculator", "compound-interest-calculator", "debt-to-income-calculator"],
   },
   {
     slug: "loan-calculator",
@@ -376,7 +376,7 @@ export const TOOLS: ToolContent[] = [
       { q: "What is a safe withdrawal rate?", a: "The 4% rule suggests withdrawing about 4% of your portfolio in the first year, adjusted for inflation." },
     ],
     disclaimers: ["financial"],
-    related: ["compound-interest-calculator", "salary-to-hourly-calculator", "mortgage-calculator"],
+    related: ["compound-interest-calculator", "utt-calculator", "inflation-calculator"],
   },
   {
     slug: "pregnancy-due-date-calculator",
@@ -549,7 +549,7 @@ export const TOOLS: ToolContent[] = [
       { q: "What is the tax-free threshold in Tanzania?", a: "The first 270,000 TZS of monthly income is taxed at 0%." },
     ],
     disclaimers: ["financial"],
-    related: ["salary-to-hourly-calculator", "loan-calculator", "retirement-calculator"],
+    related: ["tanzania-vat-calculator", "loan-calculator", "retirement-calculator"],
   },
   {
     slug: "mobile-money-fee-calculator",
@@ -626,7 +626,7 @@ export const TOOLS: ToolContent[] = [
       { q: "What is the difference between mean, median and mode?", a: "The mean is the average from dividing the sum by the count. The median is the middle value, and the mode is the most common value." },
       { q: "Can I enter negative numbers?", a: "Yes, negative numbers are included in the average." },
     ],
-    related: ["percentage-calculator", "gpa-calculator", "date-difference-calculator"],
+    related: ["percentage-calculator", "gpa-calculator", "standard-deviation-calculator"],
   },
   {
     slug: "utt-calculator",
@@ -805,7 +805,7 @@ export const TOOLS: ToolContent[] = [
       { q: "Are these rates current?", a: "Rates change over time. This shows the current NSSF 10%, SDL 3.5% and WCF 0.5% — always verify with the relevant authority." },
     ],
     disclaimers: ["financial"],
-    related: ["tanzania-nssf-calculator", "tanzania-psssf-calculator", "tanzania-paye-calculator"],
+    related: ["tanzania-nssf-calculator", "tanzania-psssf-calculator", "tanzania-wcf-calculator"],
   },
   {
     slug: "tanzania-sdl-calculator",

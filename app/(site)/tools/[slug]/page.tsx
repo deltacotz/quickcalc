@@ -14,6 +14,7 @@ import { FaqSection } from "@/components/FaqSection";
 import { MobileMoneyFees } from "@/components/MobileMoneyFees";
 import { UttFunds } from "@/components/UttFunds";
 import { Disclaimers } from "@/components/Disclaimers";
+import { Sources } from "@/components/Sources";
 import { AdSlot } from "@/components/AdSlot";
 import { AdSenseScript } from "@/components/AdSenseScript";
 import { JsonLd } from "@/components/JsonLd";
@@ -125,6 +126,8 @@ export default async function ToolPage({ params }: Props) {
         <FaqSection faq={tool.faq} />
 
         {tool.disclaimers && <Disclaimers kinds={tool.disclaimers} />}
+
+        {tool.sources && <Sources items={tool.sources} />}
 
         {related.length > 0 && (
           <section className="mt-10">

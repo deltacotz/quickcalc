@@ -16,6 +16,7 @@ export interface ToolContent {
   faq: { q: string; a: string }[];
   disclaimers?: ("medical" | "financial")[];
   affiliate?: { cta: string; url: string; note: string };
+  sources?: { label: string; url: string }[];
   related: string[];
 }
 
@@ -549,6 +550,7 @@ export const TOOLS: ToolContent[] = [
       { q: "What is the tax-free threshold in Tanzania?", a: "The first 270,000 TZS of monthly income is taxed at 0%." },
     ],
     disclaimers: ["financial"],
+    sources: [{ label: "Tanzania Revenue Authority (TRA)", url: "https://www.tra.go.tz" }],
     related: ["tanzania-vat-calculator", "loan-calculator", "retirement-calculator"],
   },
   {
@@ -576,6 +578,10 @@ export const TOOLS: ToolContent[] = [
       { q: "Are these fees exact?", a: "Fees change with operator tariffs and government budgets. The figures are a snapshot — always verify with your operator before a large transaction." },
     ],
     disclaimers: ["financial"],
+    sources: [
+      { label: "Vodacom M-Pesa", url: "https://www.vodacom.co.tz" },
+      { label: "Airtel Money", url: "https://www.airtel.co.tz" },
+    ],
     related: ["currency-converter", "tanzania-paye-calculator", "loan-calculator"],
   },
   {
@@ -602,6 +608,7 @@ export const TOOLS: ToolContent[] = [
       { q: "How do I remove VAT from a price?", a: "Divide the gross amount by 1.18 to get the net amount; the VAT is the difference." },
     ],
     disclaimers: ["financial"],
+    sources: [{ label: "Tanzania Revenue Authority (TRA)", url: "https://www.tra.go.tz" }],
     related: ["tanzania-paye-calculator", "discount-calculator", "percentage-calculator"],
   },
   {
@@ -751,6 +758,7 @@ export const TOOLS: ToolContent[] = [
       { q: "Is there a salary cap for NSSF?", a: "No — NSSF is calculated on your full gross salary with no ceiling (Tanzania)." },
     ],
     disclaimers: ["financial"],
+    sources: [{ label: "National Social Security Fund (NSSF)", url: "https://www.nssf.go.tz" }],
     related: ["tanzania-paye-calculator", "tanzania-psssf-calculator", "mobile-money-fee-calculator"],
   },
   {
@@ -778,6 +786,7 @@ export const TOOLS: ToolContent[] = [
       { q: "When can I retire under PSSSF?", a: "Compulsory retirement is age 60; you may retire voluntarily from age 55 with at least 180 months (15 years) of contributions." },
     ],
     disclaimers: ["financial"],
+    sources: [{ label: "Public Service Social Security Fund (PSSSF)", url: "https://www.psssf.go.tz" }],
     related: ["tanzania-paye-calculator", "tanzania-nssf-calculator", "retirement-calculator"],
   },
   {
@@ -805,6 +814,10 @@ export const TOOLS: ToolContent[] = [
       { q: "Are these rates current?", a: "Rates change over time. This shows the current NSSF 10%, SDL 3.5% and WCF 0.5% — always verify with the relevant authority." },
     ],
     disclaimers: ["financial"],
+    sources: [
+      { label: "National Social Security Fund (NSSF)", url: "https://www.nssf.go.tz" },
+      { label: "Tanzania Revenue Authority (TRA)", url: "https://www.tra.go.tz" },
+    ],
     related: ["tanzania-nssf-calculator", "tanzania-psssf-calculator", "tanzania-wcf-calculator"],
   },
   {
@@ -830,6 +843,7 @@ export const TOOLS: ToolContent[] = [
       { q: "Does SDL apply to all employers?", a: "No. It applies only to employers with 10 or more employees." },
     ],
     disclaimers: ["financial"],
+    sources: [{ label: "Tanzania Revenue Authority (TRA)", url: "https://www.tra.go.tz" }],
     related: ["tanzania-employer-cost-calculator", "tanzania-nssf-calculator", "tanzania-paye-calculator"],
   },
   {
@@ -855,6 +869,7 @@ export const TOOLS: ToolContent[] = [
       { q: "What does WCF cover?", a: "Compensation for workplace injuries and occupational diseases." },
     ],
     disclaimers: ["financial"],
+    sources: [{ label: "Workers Compensation Fund (WCF)", url: "https://www.wcf.go.tz" }],
     related: ["tanzania-employer-cost-calculator", "tanzania-sdl-calculator", "tanzania-nssf-calculator"],
   },
 ];
